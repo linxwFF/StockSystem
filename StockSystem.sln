@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StockSystem.DAL", "StockSys
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StockSystem.Model", "StockSystem.Model\StockSystem.Model.csproj", "{27B185AA-0031-47C0-9064-1387D60AF0D8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StockSystem.ORM", "..\StockSystem.ORM\StockSystem.ORM.csproj", "{BC1099C8-0E2B-4373-AEDA-656D946617A0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -31,6 +33,10 @@ Global
 		{27B185AA-0031-47C0-9064-1387D60AF0D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{27B185AA-0031-47C0-9064-1387D60AF0D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{27B185AA-0031-47C0-9064-1387D60AF0D8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BC1099C8-0E2B-4373-AEDA-656D946617A0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BC1099C8-0E2B-4373-AEDA-656D946617A0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BC1099C8-0E2B-4373-AEDA-656D946617A0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BC1099C8-0E2B-4373-AEDA-656D946617A0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

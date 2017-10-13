@@ -70,7 +70,7 @@ namespace StockSystem.DAL
         }
 
 
-        /// <summary>     
+        /// <summary>     查询总记录数
         /// 执行一条计算查询结果语句，返回查询结果（object）。     
         /// </summary>     
         /// <param name="SQLString">计算查询结果语句</param>     

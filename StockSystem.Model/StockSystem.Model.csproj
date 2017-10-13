@@ -39,11 +39,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="Hold_Stock_Info.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Stock_Holder.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\StockSystem.ORM\StockSystem.ORM.csproj">
+      <Project>{bc1099c8-0e2b-4373-aeda-656d946617a0}</Project>
+      <Name>StockSystem.ORM</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
