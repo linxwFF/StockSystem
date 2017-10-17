@@ -9,7 +9,7 @@ using StockSystem.ORM;
 namespace StockSystem.Model
 {
     [Serializable]
-    public class Personal_Stock_Account
+    public class Personal_Stock_Account : DataEntityBase
     {
         [DataField("id")]
         public int id { get; set; }

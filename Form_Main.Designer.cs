@@ -34,6 +34,15 @@
             this.button3 = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.listView1 = new System.Windows.Forms.ListView();
+            this.column_stock_name = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.column_stock_code = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.column_amount = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.column_amount_useable = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.column_cost_price = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.column_price = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.column_profitLoss = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.column_profitLossPer = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.column_current_price = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btn_min = new System.Windows.Forms.Button();
             this.btn_daily = new System.Windows.Forms.Button();
@@ -144,11 +153,76 @@
             // 
             // listView1
             // 
+            this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.column_stock_name,
+            this.column_stock_code,
+            this.column_amount,
+            this.column_amount_useable,
+            this.column_cost_price,
+            this.column_price,
+            this.column_profitLoss,
+            this.column_profitLossPer,
+            this.column_current_price});
+            this.listView1.GridLines = true;
             this.listView1.Location = new System.Drawing.Point(7, 20);
             this.listView1.Name = "listView1";
             this.listView1.Size = new System.Drawing.Size(963, 239);
             this.listView1.TabIndex = 0;
             this.listView1.UseCompatibleStateImageBehavior = false;
+            this.listView1.View = System.Windows.Forms.View.Details;
+            // 
+            // column_stock_name
+            // 
+            this.column_stock_name.Tag = "column_stock_name";
+            this.column_stock_name.Text = "股票名称";
+            // 
+            // column_stock_code
+            // 
+            this.column_stock_code.Tag = "column_stock_code";
+            this.column_stock_code.Text = "股票代码";
+            // 
+            // column_amount
+            // 
+            this.column_amount.DisplayIndex = 3;
+            this.column_amount.Tag = "column_amount";
+            this.column_amount.Text = "持有数量";
+            // 
+            // column_amount_useable
+            // 
+            this.column_amount_useable.DisplayIndex = 2;
+            this.column_amount_useable.Tag = "column_amount_useable";
+            this.column_amount_useable.Text = "可卖数量";
+            // 
+            // column_cost_price
+            // 
+            this.column_cost_price.DisplayIndex = 8;
+            this.column_cost_price.Tag = "column_cost_price";
+            this.column_cost_price.Text = "成本价";
+            // 
+            // column_price
+            // 
+            this.column_price.DisplayIndex = 4;
+            this.column_price.Tag = "column_price";
+            this.column_price.Text = "市值";
+            // 
+            // column_profitLoss
+            // 
+            this.column_profitLoss.DisplayIndex = 5;
+            this.column_profitLoss.Tag = "column_profitLoss";
+            this.column_profitLoss.Text = "盈亏";
+            // 
+            // column_profitLossPer
+            // 
+            this.column_profitLossPer.DisplayIndex = 6;
+            this.column_profitLossPer.Tag = "column_profitLossPer";
+            this.column_profitLossPer.Text = "盈亏_百分比";
+            this.column_profitLossPer.Width = 86;
+            // 
+            // column_current_price
+            // 
+            this.column_current_price.DisplayIndex = 7;
+            this.column_current_price.Tag = "column_current_price";
+            this.column_current_price.Text = "当前价";
             // 
             // pictureBox1
             // 
@@ -777,6 +851,7 @@
             this.Controls.Add(this.button1);
             this.Name = "Form_Main";
             this.Text = "Form_Main";
+            this.Load += new System.EventHandler(this.Form_Main_Load);
             this.groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.groupBox2.ResumeLayout(false);
@@ -860,5 +935,14 @@
         private System.Windows.Forms.GroupBox groupBox2;
         private Microsoft.VisualBasic.PowerPacks.ShapeContainer shapeContainer2;
         private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.ColumnHeader column_stock_name;
+        private System.Windows.Forms.ColumnHeader column_stock_code;
+        private System.Windows.Forms.ColumnHeader column_amount;
+        private System.Windows.Forms.ColumnHeader column_amount_useable;
+        private System.Windows.Forms.ColumnHeader column_cost_price;
+        private System.Windows.Forms.ColumnHeader column_price;
+        private System.Windows.Forms.ColumnHeader column_profitLoss;
+        private System.Windows.Forms.ColumnHeader column_profitLossPer;
+        private System.Windows.Forms.ColumnHeader column_current_price;
     }
 }

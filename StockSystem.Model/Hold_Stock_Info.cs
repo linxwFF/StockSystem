@@ -16,12 +16,24 @@ namespace StockSystem.Model
         [DataField("stock_holder_id")]
         public int stock_holder_id { get; set; }
         [DataField("stock_code")]
-        public int stock_code { get; set; }
+        public string stock_code { get; set; }
         [DataField("amount_useable")]
-        public double amount_useable{get; set;}
+        public int amount_useable{get; set;}
         [DataField("cost_price")]
         public double cost_price { get; set; }
         [DataField("commission_id")]
         public int commission_id { get; set; }
+        [DataField("hold_quantity")]
+        public int hold_quantity { get; set; }
+        [DataField("market_price")]
+        public double market_price { get; set; }
+        [DataField("profit_loss")]
+        public double profit_loss { get; set; }
+        [DataField("profit_loss_per")]
+        public double profit_loss_per { get; set; }
+        [DataField("current_price")]
+        public double current_price { get; set; }
+        [DataField("stock_name")]
+        public string stock_name { get; set; }
     }
 }

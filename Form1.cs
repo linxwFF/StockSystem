@@ -24,12 +24,8 @@ namespace StockSystem
 
         private void button1_Click(object sender, EventArgs e)
         {
-            BLL.Class1 test = new BLL.Class1();
-            DataTable dt = test.queryStockHolder();
-            Stock_Holder sh = new Stock_Holder();
-            sh = test.getStockHoderByID(2);
-
-            Console.Write(sh.name);
+            BLL.Test test = new BLL.Test();
+            test.test();
         }
     }
 }

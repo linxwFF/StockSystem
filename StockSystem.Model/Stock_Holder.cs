@@ -25,5 +25,11 @@ namespace StockSystem.Model
         public string username { get; set; }
         [DataField("password")]
         public string password { get; set; }
+
+        //账户信息
+        public Personal_Stock_Account account { get; set; }
+
+        //持仓信息
+        public List<Hold_Stock_Info> HoldStockInfo { get; set; }
     }
 }
