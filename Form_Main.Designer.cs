@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form_Main));
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
@@ -108,10 +109,19 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.shapeContainer2 = new Microsoft.VisualBasic.PowerPacks.ShapeContainer();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.lab_6 = new System.Windows.Forms.Label();
+            this.lab_5 = new System.Windows.Forms.Label();
+            this.lab_4 = new System.Windows.Forms.Label();
+            this.lab_3 = new System.Windows.Forms.Label();
+            this.lab_2 = new System.Windows.Forms.Label();
+            this.lab_1 = new System.Windows.Forms.Label();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.label9 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
+            this.groupBox4.SuspendLayout();
             this.SuspendLayout();
             // 
             // button1
@@ -163,13 +173,16 @@
             this.column_profitLoss,
             this.column_profitLossPer,
             this.column_current_price});
+            this.listView1.FullRowSelect = true;
             this.listView1.GridLines = true;
             this.listView1.Location = new System.Drawing.Point(7, 20);
+            this.listView1.MultiSelect = false;
             this.listView1.Name = "listView1";
             this.listView1.Size = new System.Drawing.Size(963, 239);
             this.listView1.TabIndex = 0;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
+            this.listView1.SelectedIndexChanged += new System.EventHandler(this.listView1_SelectedIndexChanged);
             // 
             // column_stock_name
             // 
@@ -226,9 +239,12 @@
             // 
             // pictureBox1
             // 
+            this.pictureBox1.ErrorImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.ErrorImage")));
+            this.pictureBox1.Image = global::StockSystem.Properties.Resources.getStockImage_kByCode;
             this.pictureBox1.Location = new System.Drawing.Point(28, 341);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(550, 300);
+            this.pictureBox1.Size = new System.Drawing.Size(545, 300);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.pictureBox1.TabIndex = 3;
             this.pictureBox1.TabStop = false;
             // 
@@ -264,16 +280,21 @@
             // 
             // text_stockCode
             // 
-            this.text_stockCode.Location = new System.Drawing.Point(299, 13);
+            this.text_stockCode.Font = new System.Drawing.Font("宋体", 16F);
+            this.text_stockCode.Location = new System.Drawing.Point(824, 10);
             this.text_stockCode.Name = "text_stockCode";
-            this.text_stockCode.Size = new System.Drawing.Size(100, 21);
+            this.text_stockCode.Size = new System.Drawing.Size(100, 32);
             this.text_stockCode.TabIndex = 4;
+            this.text_stockCode.KeyDown += new System.Windows.Forms.KeyEventHandler(this.text_stockCode_KeyDown);
+            this.text_stockCode.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.text_stockCode_KeyPress);
+            this.text_stockCode.KeyUp += new System.Windows.Forms.KeyEventHandler(this.text_stockCode_KeyUp);
             // 
             // btn_query
             // 
-            this.btn_query.Location = new System.Drawing.Point(418, 13);
+            this.btn_query.Font = new System.Drawing.Font("宋体", 16F);
+            this.btn_query.Location = new System.Drawing.Point(930, 10);
             this.btn_query.Name = "btn_query";
-            this.btn_query.Size = new System.Drawing.Size(75, 23);
+            this.btn_query.Size = new System.Drawing.Size(75, 32);
             this.btn_query.TabIndex = 1;
             this.btn_query.Text = "查询";
             this.btn_query.UseVisualStyleBackColor = true;
@@ -282,7 +303,7 @@
             // stock_name
             // 
             this.stock_name.AutoSize = true;
-            this.stock_name.Location = new System.Drawing.Point(27, 38);
+            this.stock_name.Location = new System.Drawing.Point(27, 40);
             this.stock_name.Name = "stock_name";
             this.stock_name.Size = new System.Drawing.Size(53, 12);
             this.stock_name.TabIndex = 5;
@@ -291,7 +312,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(27, 60);
+            this.label2.Location = new System.Drawing.Point(27, 62);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(65, 12);
             this.label2.TabIndex = 5;
@@ -300,7 +321,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(27, 82);
+            this.label3.Location = new System.Drawing.Point(27, 84);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(65, 12);
             this.label3.TabIndex = 5;
@@ -309,7 +330,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(27, 104);
+            this.label4.Location = new System.Drawing.Point(27, 106);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(53, 12);
             this.label4.TabIndex = 5;
@@ -318,7 +339,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(27, 126);
+            this.label5.Location = new System.Drawing.Point(27, 128);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(65, 12);
             this.label5.TabIndex = 5;
@@ -327,7 +348,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(27, 148);
+            this.label6.Location = new System.Drawing.Point(27, 150);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(65, 12);
             this.label6.TabIndex = 5;
@@ -336,7 +357,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(27, 171);
+            this.label7.Location = new System.Drawing.Point(27, 173);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(41, 12);
             this.label7.TabIndex = 5;
@@ -345,11 +366,15 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(27, 193);
+            this.label8.Location = new System.Drawing.Point(27, 195);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(41, 12);
             this.label8.TabIndex = 5;
             this.label8.Text = "竞卖价";
+            // 
+            // timer1
+            // 
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // index_Timer
             // 
@@ -358,7 +383,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(29, 214);
+            this.label1.Location = new System.Drawing.Point(29, 216);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(77, 12);
             this.label1.TabIndex = 6;
@@ -367,7 +392,7 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(29, 236);
+            this.label10.Location = new System.Drawing.Point(29, 238);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(53, 12);
             this.label10.TabIndex = 8;
@@ -376,7 +401,7 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(15, 17);
+            this.label11.Location = new System.Drawing.Point(15, 21);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(29, 12);
             this.label11.TabIndex = 9;
@@ -385,7 +410,7 @@
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(15, 36);
+            this.label12.Location = new System.Drawing.Point(15, 40);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(29, 12);
             this.label12.TabIndex = 9;
@@ -394,7 +419,7 @@
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(15, 57);
+            this.label13.Location = new System.Drawing.Point(15, 61);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(29, 12);
             this.label13.TabIndex = 9;
@@ -403,7 +428,7 @@
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(15, 77);
+            this.label14.Location = new System.Drawing.Point(15, 81);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(29, 12);
             this.label14.TabIndex = 9;
@@ -412,7 +437,7 @@
             // label15
             // 
             this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(15, 97);
+            this.label15.Location = new System.Drawing.Point(15, 101);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(29, 12);
             this.label15.TabIndex = 9;
@@ -421,7 +446,7 @@
             // buy_1
             // 
             this.buy_1.AutoSize = true;
-            this.buy_1.Location = new System.Drawing.Point(75, 16);
+            this.buy_1.Location = new System.Drawing.Point(75, 20);
             this.buy_1.Name = "buy_1";
             this.buy_1.Size = new System.Drawing.Size(0, 12);
             this.buy_1.TabIndex = 10;
@@ -429,7 +454,7 @@
             // buy_1_price
             // 
             this.buy_1_price.AutoSize = true;
-            this.buy_1_price.Location = new System.Drawing.Point(127, 16);
+            this.buy_1_price.Location = new System.Drawing.Point(127, 20);
             this.buy_1_price.Name = "buy_1_price";
             this.buy_1_price.Size = new System.Drawing.Size(0, 12);
             this.buy_1_price.TabIndex = 10;
@@ -437,7 +462,7 @@
             // buy_2
             // 
             this.buy_2.AutoSize = true;
-            this.buy_2.Location = new System.Drawing.Point(75, 36);
+            this.buy_2.Location = new System.Drawing.Point(75, 40);
             this.buy_2.Name = "buy_2";
             this.buy_2.Size = new System.Drawing.Size(0, 12);
             this.buy_2.TabIndex = 10;
@@ -445,7 +470,7 @@
             // buy_2_price
             // 
             this.buy_2_price.AutoSize = true;
-            this.buy_2_price.Location = new System.Drawing.Point(127, 36);
+            this.buy_2_price.Location = new System.Drawing.Point(127, 40);
             this.buy_2_price.Name = "buy_2_price";
             this.buy_2_price.Size = new System.Drawing.Size(0, 12);
             this.buy_2_price.TabIndex = 10;
@@ -453,7 +478,7 @@
             // buy_3
             // 
             this.buy_3.AutoSize = true;
-            this.buy_3.Location = new System.Drawing.Point(75, 57);
+            this.buy_3.Location = new System.Drawing.Point(75, 61);
             this.buy_3.Name = "buy_3";
             this.buy_3.Size = new System.Drawing.Size(0, 12);
             this.buy_3.TabIndex = 10;
@@ -461,7 +486,7 @@
             // buy_3_price
             // 
             this.buy_3_price.AutoSize = true;
-            this.buy_3_price.Location = new System.Drawing.Point(127, 57);
+            this.buy_3_price.Location = new System.Drawing.Point(127, 61);
             this.buy_3_price.Name = "buy_3_price";
             this.buy_3_price.Size = new System.Drawing.Size(0, 12);
             this.buy_3_price.TabIndex = 10;
@@ -469,7 +494,7 @@
             // buy_4
             // 
             this.buy_4.AutoSize = true;
-            this.buy_4.Location = new System.Drawing.Point(75, 77);
+            this.buy_4.Location = new System.Drawing.Point(75, 81);
             this.buy_4.Name = "buy_4";
             this.buy_4.Size = new System.Drawing.Size(0, 12);
             this.buy_4.TabIndex = 10;
@@ -477,7 +502,7 @@
             // buy_4_price
             // 
             this.buy_4_price.AutoSize = true;
-            this.buy_4_price.Location = new System.Drawing.Point(127, 77);
+            this.buy_4_price.Location = new System.Drawing.Point(127, 81);
             this.buy_4_price.Name = "buy_4_price";
             this.buy_4_price.Size = new System.Drawing.Size(0, 12);
             this.buy_4_price.TabIndex = 10;
@@ -485,7 +510,7 @@
             // buy_5
             // 
             this.buy_5.AutoSize = true;
-            this.buy_5.Location = new System.Drawing.Point(75, 97);
+            this.buy_5.Location = new System.Drawing.Point(75, 101);
             this.buy_5.Name = "buy_5";
             this.buy_5.Size = new System.Drawing.Size(0, 12);
             this.buy_5.TabIndex = 10;
@@ -493,7 +518,7 @@
             // buy_5_price
             // 
             this.buy_5_price.AutoSize = true;
-            this.buy_5_price.Location = new System.Drawing.Point(127, 97);
+            this.buy_5_price.Location = new System.Drawing.Point(127, 101);
             this.buy_5_price.Name = "buy_5_price";
             this.buy_5_price.Size = new System.Drawing.Size(0, 12);
             this.buy_5_price.TabIndex = 10;
@@ -501,7 +526,7 @@
             // label26
             // 
             this.label26.AutoSize = true;
-            this.label26.Location = new System.Drawing.Point(19, 129);
+            this.label26.Location = new System.Drawing.Point(16, 131);
             this.label26.Name = "label26";
             this.label26.Size = new System.Drawing.Size(29, 12);
             this.label26.TabIndex = 9;
@@ -510,7 +535,7 @@
             // label27
             // 
             this.label27.AutoSize = true;
-            this.label27.Location = new System.Drawing.Point(19, 148);
+            this.label27.Location = new System.Drawing.Point(16, 150);
             this.label27.Name = "label27";
             this.label27.Size = new System.Drawing.Size(29, 12);
             this.label27.TabIndex = 9;
@@ -519,7 +544,7 @@
             // label28
             // 
             this.label28.AutoSize = true;
-            this.label28.Location = new System.Drawing.Point(19, 169);
+            this.label28.Location = new System.Drawing.Point(16, 171);
             this.label28.Name = "label28";
             this.label28.Size = new System.Drawing.Size(29, 12);
             this.label28.TabIndex = 9;
@@ -528,7 +553,7 @@
             // label29
             // 
             this.label29.AutoSize = true;
-            this.label29.Location = new System.Drawing.Point(19, 189);
+            this.label29.Location = new System.Drawing.Point(16, 191);
             this.label29.Name = "label29";
             this.label29.Size = new System.Drawing.Size(29, 12);
             this.label29.TabIndex = 9;
@@ -537,7 +562,7 @@
             // label30
             // 
             this.label30.AutoSize = true;
-            this.label30.Location = new System.Drawing.Point(19, 209);
+            this.label30.Location = new System.Drawing.Point(16, 211);
             this.label30.Name = "label30";
             this.label30.Size = new System.Drawing.Size(29, 12);
             this.label30.TabIndex = 9;
@@ -546,7 +571,7 @@
             // sell_1
             // 
             this.sell_1.AutoSize = true;
-            this.sell_1.Location = new System.Drawing.Point(78, 129);
+            this.sell_1.Location = new System.Drawing.Point(78, 133);
             this.sell_1.Name = "sell_1";
             this.sell_1.Size = new System.Drawing.Size(0, 12);
             this.sell_1.TabIndex = 10;
@@ -554,7 +579,7 @@
             // sell_1_price
             // 
             this.sell_1_price.AutoSize = true;
-            this.sell_1_price.Location = new System.Drawing.Point(126, 129);
+            this.sell_1_price.Location = new System.Drawing.Point(126, 133);
             this.sell_1_price.Name = "sell_1_price";
             this.sell_1_price.Size = new System.Drawing.Size(0, 12);
             this.sell_1_price.TabIndex = 10;
@@ -562,7 +587,7 @@
             // sell_2
             // 
             this.sell_2.AutoSize = true;
-            this.sell_2.Location = new System.Drawing.Point(78, 149);
+            this.sell_2.Location = new System.Drawing.Point(78, 153);
             this.sell_2.Name = "sell_2";
             this.sell_2.Size = new System.Drawing.Size(0, 12);
             this.sell_2.TabIndex = 10;
@@ -570,7 +595,7 @@
             // sell_2_price
             // 
             this.sell_2_price.AutoSize = true;
-            this.sell_2_price.Location = new System.Drawing.Point(126, 149);
+            this.sell_2_price.Location = new System.Drawing.Point(126, 153);
             this.sell_2_price.Name = "sell_2_price";
             this.sell_2_price.Size = new System.Drawing.Size(0, 12);
             this.sell_2_price.TabIndex = 10;
@@ -578,7 +603,7 @@
             // sell_3
             // 
             this.sell_3.AutoSize = true;
-            this.sell_3.Location = new System.Drawing.Point(78, 170);
+            this.sell_3.Location = new System.Drawing.Point(78, 174);
             this.sell_3.Name = "sell_3";
             this.sell_3.Size = new System.Drawing.Size(0, 12);
             this.sell_3.TabIndex = 10;
@@ -586,7 +611,7 @@
             // sell_4
             // 
             this.sell_4.AutoSize = true;
-            this.sell_4.Location = new System.Drawing.Point(78, 190);
+            this.sell_4.Location = new System.Drawing.Point(78, 194);
             this.sell_4.Name = "sell_4";
             this.sell_4.Size = new System.Drawing.Size(0, 12);
             this.sell_4.TabIndex = 10;
@@ -594,7 +619,7 @@
             // sell_5
             // 
             this.sell_5.AutoSize = true;
-            this.sell_5.Location = new System.Drawing.Point(78, 210);
+            this.sell_5.Location = new System.Drawing.Point(78, 214);
             this.sell_5.Name = "sell_5";
             this.sell_5.Size = new System.Drawing.Size(0, 12);
             this.sell_5.TabIndex = 10;
@@ -602,7 +627,7 @@
             // sell_3_price
             // 
             this.sell_3_price.AutoSize = true;
-            this.sell_3_price.Location = new System.Drawing.Point(126, 170);
+            this.sell_3_price.Location = new System.Drawing.Point(126, 174);
             this.sell_3_price.Name = "sell_3_price";
             this.sell_3_price.Size = new System.Drawing.Size(0, 12);
             this.sell_3_price.TabIndex = 10;
@@ -610,7 +635,7 @@
             // sell_4_price
             // 
             this.sell_4_price.AutoSize = true;
-            this.sell_4_price.Location = new System.Drawing.Point(126, 190);
+            this.sell_4_price.Location = new System.Drawing.Point(126, 194);
             this.sell_4_price.Name = "sell_4_price";
             this.sell_4_price.Size = new System.Drawing.Size(0, 12);
             this.sell_4_price.TabIndex = 10;
@@ -618,7 +643,7 @@
             // sell_5_price
             // 
             this.sell_5_price.AutoSize = true;
-            this.sell_5_price.Location = new System.Drawing.Point(126, 210);
+            this.sell_5_price.Location = new System.Drawing.Point(126, 214);
             this.sell_5_price.Name = "sell_5_price";
             this.sell_5_price.Size = new System.Drawing.Size(0, 12);
             this.sell_5_price.TabIndex = 10;
@@ -628,8 +653,8 @@
             this.lineShape1.Name = "lineShape1";
             this.lineShape1.X1 = 0;
             this.lineShape1.X2 = 154;
-            this.lineShape1.Y1 = 100;
-            this.lineShape1.Y2 = 100;
+            this.lineShape1.Y1 = 104;
+            this.lineShape1.Y2 = 104;
             // 
             // btn_monthly
             // 
@@ -644,7 +669,7 @@
             // 股票名字
             // 
             this.股票名字.AutoSize = true;
-            this.股票名字.Location = new System.Drawing.Point(112, 38);
+            this.股票名字.Location = new System.Drawing.Point(112, 40);
             this.股票名字.Name = "股票名字";
             this.股票名字.Size = new System.Drawing.Size(53, 12);
             this.股票名字.TabIndex = 5;
@@ -653,7 +678,7 @@
             // 今日开盘价
             // 
             this.今日开盘价.AutoSize = true;
-            this.今日开盘价.Location = new System.Drawing.Point(112, 60);
+            this.今日开盘价.Location = new System.Drawing.Point(112, 62);
             this.今日开盘价.Name = "今日开盘价";
             this.今日开盘价.Size = new System.Drawing.Size(65, 12);
             this.今日开盘价.TabIndex = 5;
@@ -662,7 +687,7 @@
             // 昨日收盘价
             // 
             this.昨日收盘价.AutoSize = true;
-            this.昨日收盘价.Location = new System.Drawing.Point(112, 82);
+            this.昨日收盘价.Location = new System.Drawing.Point(112, 84);
             this.昨日收盘价.Name = "昨日收盘价";
             this.昨日收盘价.Size = new System.Drawing.Size(65, 12);
             this.昨日收盘价.TabIndex = 5;
@@ -671,7 +696,7 @@
             // 当前价格
             // 
             this.当前价格.AutoSize = true;
-            this.当前价格.Location = new System.Drawing.Point(112, 104);
+            this.当前价格.Location = new System.Drawing.Point(112, 106);
             this.当前价格.Name = "当前价格";
             this.当前价格.Size = new System.Drawing.Size(53, 12);
             this.当前价格.TabIndex = 5;
@@ -680,7 +705,7 @@
             // 今日最高价
             // 
             this.今日最高价.AutoSize = true;
-            this.今日最高价.Location = new System.Drawing.Point(112, 126);
+            this.今日最高价.Location = new System.Drawing.Point(112, 128);
             this.今日最高价.Name = "今日最高价";
             this.今日最高价.Size = new System.Drawing.Size(65, 12);
             this.今日最高价.TabIndex = 5;
@@ -689,7 +714,7 @@
             // 今日最低价
             // 
             this.今日最低价.AutoSize = true;
-            this.今日最低价.Location = new System.Drawing.Point(112, 148);
+            this.今日最低价.Location = new System.Drawing.Point(112, 150);
             this.今日最低价.Name = "今日最低价";
             this.今日最低价.Size = new System.Drawing.Size(65, 12);
             this.今日最低价.TabIndex = 5;
@@ -698,7 +723,7 @@
             // 竞买价
             // 
             this.竞买价.AutoSize = true;
-            this.竞买价.Location = new System.Drawing.Point(112, 171);
+            this.竞买价.Location = new System.Drawing.Point(112, 173);
             this.竞买价.Name = "竞买价";
             this.竞买价.Size = new System.Drawing.Size(41, 12);
             this.竞买价.TabIndex = 5;
@@ -707,7 +732,7 @@
             // 竞卖价
             // 
             this.竞卖价.AutoSize = true;
-            this.竞卖价.Location = new System.Drawing.Point(112, 193);
+            this.竞卖价.Location = new System.Drawing.Point(112, 195);
             this.竞卖价.Name = "竞卖价";
             this.竞卖价.Size = new System.Drawing.Size(41, 12);
             this.竞卖价.TabIndex = 5;
@@ -716,7 +741,7 @@
             // 成交的股票数
             // 
             this.成交的股票数.AutoSize = true;
-            this.成交的股票数.Location = new System.Drawing.Point(114, 214);
+            this.成交的股票数.Location = new System.Drawing.Point(114, 216);
             this.成交的股票数.Name = "成交的股票数";
             this.成交的股票数.Size = new System.Drawing.Size(77, 12);
             this.成交的股票数.TabIndex = 6;
@@ -725,7 +750,7 @@
             // 成交金额
             // 
             this.成交金额.AutoSize = true;
-            this.成交金额.Location = new System.Drawing.Point(114, 236);
+            this.成交金额.Location = new System.Drawing.Point(114, 238);
             this.成交金额.Name = "成交金额";
             this.成交金额.Size = new System.Drawing.Size(53, 12);
             this.成交金额.TabIndex = 8;
@@ -734,7 +759,7 @@
             // 涨跌标签
             // 
             this.涨跌标签.AutoSize = true;
-            this.涨跌标签.Location = new System.Drawing.Point(28, 17);
+            this.涨跌标签.Location = new System.Drawing.Point(28, 19);
             this.涨跌标签.Name = "涨跌标签";
             this.涨跌标签.Size = new System.Drawing.Size(53, 12);
             this.涨跌标签.TabIndex = 12;
@@ -743,7 +768,7 @@
             // 时间标签
             // 
             this.时间标签.AutoSize = true;
-            this.时间标签.Location = new System.Drawing.Point(112, 17);
+            this.时间标签.Location = new System.Drawing.Point(112, 19);
             this.时间标签.Name = "时间标签";
             this.时间标签.Size = new System.Drawing.Size(53, 12);
             this.时间标签.TabIndex = 12;
@@ -787,7 +812,7 @@
             this.groupBox2.Size = new System.Drawing.Size(166, 300);
             this.groupBox2.TabIndex = 13;
             this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "groupBox2";
+            this.groupBox2.Text = "交易信息";
             // 
             // shapeContainer2
             // 
@@ -829,13 +854,95 @@
             this.groupBox3.Size = new System.Drawing.Size(247, 297);
             this.groupBox3.TabIndex = 14;
             this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "groupBox3";
+            this.groupBox3.Text = "股票信息";
+            // 
+            // lab_6
+            // 
+            this.lab_6.AutoSize = true;
+            this.lab_6.Location = new System.Drawing.Point(828, 21);
+            this.lab_6.Name = "lab_6";
+            this.lab_6.Size = new System.Drawing.Size(41, 12);
+            this.lab_6.TabIndex = 19;
+            this.lab_6.Text = "成交额";
+            // 
+            // lab_5
+            // 
+            this.lab_5.AutoSize = true;
+            this.lab_5.Location = new System.Drawing.Point(678, 21);
+            this.lab_5.Name = "lab_5";
+            this.lab_5.Size = new System.Drawing.Size(41, 12);
+            this.lab_5.TabIndex = 20;
+            this.lab_5.Text = "成交量";
+            // 
+            // lab_4
+            // 
+            this.lab_4.AutoSize = true;
+            this.lab_4.Location = new System.Drawing.Point(537, 21);
+            this.lab_4.Name = "lab_4";
+            this.lab_4.Size = new System.Drawing.Size(41, 12);
+            this.lab_4.TabIndex = 21;
+            this.lab_4.Text = "涨跌率";
+            // 
+            // lab_3
+            // 
+            this.lab_3.AutoSize = true;
+            this.lab_3.Location = new System.Drawing.Point(363, 21);
+            this.lab_3.Name = "lab_3";
+            this.lab_3.Size = new System.Drawing.Size(53, 12);
+            this.lab_3.TabIndex = 22;
+            this.lab_3.Text = "当前价格";
+            // 
+            // lab_2
+            // 
+            this.lab_2.AutoSize = true;
+            this.lab_2.Font = new System.Drawing.Font("宋体", 16F);
+            this.lab_2.Location = new System.Drawing.Point(81, 17);
+            this.lab_2.Name = "lab_2";
+            this.lab_2.Size = new System.Drawing.Size(98, 22);
+            this.lab_2.TabIndex = 23;
+            this.lab_2.Text = "当前点数";
+            // 
+            // lab_1
+            // 
+            this.lab_1.AutoSize = true;
+            this.lab_1.Location = new System.Drawing.Point(10, 21);
+            this.lab_1.Name = "lab_1";
+            this.lab_1.Size = new System.Drawing.Size(65, 12);
+            this.lab_1.TabIndex = 24;
+            this.lab_1.Text = "上证指数：";
+            // 
+            // groupBox4
+            // 
+            this.groupBox4.Controls.Add(this.lab_6);
+            this.groupBox4.Controls.Add(this.lab_5);
+            this.groupBox4.Controls.Add(this.lab_1);
+            this.groupBox4.Controls.Add(this.lab_4);
+            this.groupBox4.Controls.Add(this.lab_2);
+            this.groupBox4.Controls.Add(this.lab_3);
+            this.groupBox4.Location = new System.Drawing.Point(28, 647);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(976, 47);
+            this.groupBox4.TabIndex = 25;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "大盘指数";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("宋体", 16F);
+            this.label9.Location = new System.Drawing.Point(786, 16);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(32, 22);
+            this.label9.TabIndex = 26;
+            this.label9.Text = "SH";
             // 
             // Form_Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1016, 660);
+            this.ClientSize = new System.Drawing.Size(1016, 699);
+            this.Controls.Add(this.label9);
+            this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.btn_monthly);
@@ -858,6 +965,8 @@
             this.groupBox2.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
+            this.groupBox4.ResumeLayout(false);
+            this.groupBox4.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -944,5 +1053,13 @@
         private System.Windows.Forms.ColumnHeader column_profitLoss;
         private System.Windows.Forms.ColumnHeader column_profitLossPer;
         private System.Windows.Forms.ColumnHeader column_current_price;
+        private System.Windows.Forms.Label lab_6;
+        private System.Windows.Forms.Label lab_5;
+        private System.Windows.Forms.Label lab_4;
+        private System.Windows.Forms.Label lab_3;
+        private System.Windows.Forms.Label lab_2;
+        private System.Windows.Forms.Label lab_1;
+        private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.Label label9;
     }
 }

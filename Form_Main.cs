@@ -33,13 +33,22 @@ namespace StockSystem
         public Form_Main()
         {
             InitializeComponent();
-            stock_code = "sh601006";
+            //最大化窗口
+            this.WindowState = FormWindowState.Maximized;
+            stock_code = "sh000001";
             stock_k_url = "http://image2.sinajs.cn/newchart/min/n/";
             stock_id = 1;
+            
             // 定时间隔
             this.index_Timer.Interval = 10000;
             //定时器
             this.index_Timer.Enabled = true;
+
+            // 请求上证指数
+            this.timer1.Interval = 5000;
+            // 上证指数的定时器
+            this.timer1.Enabled = true;
+            query();
         }
 
         private string default_query(string stock_code, string stock_k_model) 
@@ -74,6 +83,12 @@ namespace StockSystem
 
             // K线图
             this.pictureBox1.ImageLocation = stock_k_model + stock_code + ".gif";
+
+            if (divide_result.Length != 33)
+            {
+                MessageBox.Show("数据信息获取错误，请输入正确的上证代码！");
+                return;
+            }
 
             if (this.股票名字.Text != divide_result[0])
             {
@@ -145,43 +160,40 @@ namespace StockSystem
             this.sell_5_price.Text = divide_result[29];
         }
 
-        private void btn_query_Click(object sender, EventArgs e)
-        {
-            default_query(this.stock_code,this.stock_k_url);
-        }
-
         //定时器10S一次
         private void index_Timer_Tick(object sender, EventArgs e)
         {
             //更新数据库的股东持仓信息
             stock_HolderService.updateStockHolderInfo(stock_id);
             DataBinding_Stock_Holder();
+
+            this.text_stockCode.Focus();
+            this.text_stockCode.SelectAll();
         }
 
         private void btn_min_Click(object sender, EventArgs e)
         {
             this.stock_k_url = "http://image2.sinajs.cn/newchart/min/n/";
-            default_query(stock_code, this.stock_k_url);
+            default_query(this.stock_code, this.stock_k_url);
         }
 
         private void btn_daily_Click(object sender, EventArgs e)
         {
             this.stock_k_url = "http://image.sinajs.cn/newchart/daily/n/";
-            default_query(stock_code, this.stock_k_url);
+            default_query(this.stock_code, this.stock_k_url);
         }
 
         private void btn_weekly_Click(object sender, EventArgs e)
         {
             this.stock_k_url = "http://image.sinajs.cn/newchart/weekly/n/";
-            default_query(stock_code, this.stock_k_url);
+            default_query(this.stock_code, this.stock_k_url);
         }
 
         private void btn_monthly_Click(object sender, EventArgs e)
         {
             this.stock_k_url = "http://image.sinajs.cn/newchart/monthly/n/";
-            default_query(stock_code, this.stock_k_url);
+            default_query(this.stock_code, this.stock_k_url);
         }
-
 
         //窗体加载事件
         private void Form_Main_Load(object sender, EventArgs e)
@@ -210,6 +222,120 @@ namespace StockSystem
                 Lvitem.SubItems.Add(item.cost_price.ToString());
 
                 listView1.Items.Add(Lvitem);
+            }
+        }
+
+        private void listView1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (listView1.SelectedItems.Count > 0) 
+            {
+                ListViewItem vItem = listView1.SelectedItems[0];
+                this.stock_code = vItem.SubItems[1].Text;
+                default_query(this.stock_code, this.stock_k_url);
+            }
+        }
+
+        //定时获取上证指数等信息
+        private void query()
+        {
+            string stock_data_content;  //股票数据内容
+
+            WebRequest req = WebRequest.Create("http://hq.sinajs.cn/list=s_sh000001");//上证指数
+
+            WebResponse resp = req.GetResponse();
+
+            Stream stream = resp.GetResponseStream();
+
+            StreamReader streamReader = new StreamReader(stream, Encoding.Default);
+
+            stock_data_content = streamReader.ReadToEnd();
+
+            //股票数据
+            string stock_data = stock_data_content.Substring(stock_data_content.IndexOf("\"") + 1, (stock_data_content.LastIndexOf("\"") - stock_data_content.IndexOf("\"") - 1));
+            string[] divide = new string[] { "," };
+            string[] divide_result;
+
+            divide_result = stock_data.Split(divide, StringSplitOptions.None);
+
+            this.lab_1.Text = divide_result[0];
+            this.lab_2.Text = divide_result[1];
+            this.lab_3.Text = "当前价格：" + divide_result[2];
+            this.lab_4.Text = "涨跌率："+ divide_result[3] + " %";
+            if (double.Parse(divide_result[3]) <=0 )
+            {
+                this.lab_4.ForeColor = Color.Red;
+            }else
+            {
+                this.lab_4.ForeColor = Color.Chartreuse;
+            }
+
+            this.lab_5.Text = "成交量：" + divide_result[4] + "（手）";
+            this.lab_6.Text = "成交额：" + divide_result[5] + "（万元）";
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            query();
+        }
+
+        //查询特定的股票信息
+        private void btn_query_Click(object sender, EventArgs e)
+        {
+            if (this.text_stockCode.Text.Trim() != "")
+            {
+                this.stock_code = "sh" + this.text_stockCode.Text;
+                default_query(this.stock_code, this.stock_k_url);
+            }
+        }
+
+        private void text_stockCode_KeyDown(object sender, KeyEventArgs e)
+        {
+            // 初始化标记为 false.
+            nonNumberEntered = false;
+
+            // 确定是否键盘上一排的数字键.
+            if (e.KeyCode < Keys.D0 || e.KeyCode > Keys.D9)
+            {
+                // 确定是否小键盘数字键.
+                if (e.KeyCode < Keys.NumPad0 || e.KeyCode > Keys.NumPad9)
+                {
+                    // 确定是否退格键.
+                    if (e.KeyCode != Keys.Back)
+                    {
+                        // 如果一个非数字键按下.
+                        // 设置标志为 true 到 KeyPress 事件中.
+                        nonNumberEntered = true;
+                    }
+                }
+            }
+
+            //按下 Shift 按键同上.
+            if (Control.ModifierKeys == Keys.Shift)
+            {
+                nonNumberEntered = true;
+            }
+
+            // 按下回车键调用查询股票方法
+            if (e.KeyCode == Keys.Enter)
+                this.index_Timer.Enabled = true;
+        }
+
+        private void text_stockCode_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // 检查 KeyDown 事件中的标志.
+            if (nonNumberEntered == true)
+            {
+                // 停止输入，因为它不是数字键.
+                e.Handled = true;
+            }
+        }
+
+        private void text_stockCode_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                this.text_stockCode.Focus();
+                this.text_stockCode.SelectAll();
             }
         }
     }
