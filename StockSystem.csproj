@@ -73,6 +73,18 @@
     <Compile Include="Form_Main.Designer.cs">
       <DependentUpon>Form_Main.cs</DependentUpon>
     </Compile>
+    <Compile Include="Form_toBuy.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_toBuy.Designer.cs">
+      <DependentUpon>Form_toBuy.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form_toSell.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_toSell.Designer.cs">
+      <DependentUpon>Form_toSell.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources\Resource1.Designer.cs">
@@ -88,6 +100,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form_Main.resx">
       <DependentUpon>Form_Main.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_toBuy.resx">
+      <DependentUpon>Form_toBuy.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_toSell.resx">
+      <DependentUpon>Form_toSell.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

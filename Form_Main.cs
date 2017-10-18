@@ -17,18 +17,19 @@ namespace StockSystem
 {
     public partial class Form_Main : Form
     {
+        private Stock_HolderService stock_HolderService = new Stock_HolderService();
+
         // 布尔标志，用来确定输入的是否是字符.
         private bool nonNumberEntered = false;
-
         // 当前股票代码信息
         private string stock_code;
         // K线
         private string stock_k_url;
-
         //当前帐号ID
         private int stock_id;
 
-        private Stock_HolderService stock_HolderService = new Stock_HolderService();
+        //选中的索引号
+        private int SelectedIndices;
 
         public Form_Main()
         {
@@ -45,11 +46,13 @@ namespace StockSystem
             this.index_Timer.Enabled = true;
 
             // 请求上证指数
-            this.timer1.Interval = 5000;
+            this.timer1.Interval = 10000;
             // 上证指数的定时器
             this.timer1.Enabled = true;
             query();
+            default_query(stock_code, stock_k_url);
         }
+        
 
         private string default_query(string stock_code, string stock_k_model) 
         {
@@ -86,7 +89,7 @@ namespace StockSystem
 
             if (divide_result.Length != 33)
             {
-                MessageBox.Show("数据信息获取错误，请输入正确的上证代码！");
+                //MessageBox.Show("数据信息获取错误，请输入正确的上证代码！");
                 return;
             }
 
@@ -160,15 +163,17 @@ namespace StockSystem
             this.sell_5_price.Text = divide_result[29];
         }
 
-        //定时器10S一次
+        //持股信息定时器 10S一次
         private void index_Timer_Tick(object sender, EventArgs e)
         {
             //更新数据库的股东持仓信息
             stock_HolderService.updateStockHolderInfo(stock_id);
             DataBinding_Stock_Holder();
-
-            this.text_stockCode.Focus();
-            this.text_stockCode.SelectAll();
+        }
+        //上证指数 定时器10S一次
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            query();
         }
 
         private void btn_min_Click(object sender, EventArgs e)
@@ -223,6 +228,16 @@ namespace StockSystem
 
                 listView1.Items.Add(Lvitem);
             }
+
+            this.listView1.Focus();
+            this.listView1.Items[SelectedIndices].Selected = true;
+
+            this.lab_bankroll.Text = sh.account.bankroll.ToString();
+            this.lab_bankroll_freezed.Text = sh.account.bankroll.ToString();
+            this.lab_bankroll_in_cash.Text = sh.account.bankroll_in_cash.ToString();
+            this.lab_bankroll_useable.Text = sh.account.bankroll_useable.ToString();
+            this.lab_total.Text = sh.account.total.ToString();
+            this.lab_total_stock.Text = sh.account.total_stock.ToString();
         }
 
         private void listView1_SelectedIndexChanged(object sender, EventArgs e)
@@ -232,6 +247,15 @@ namespace StockSystem
                 ListViewItem vItem = listView1.SelectedItems[0];
                 this.stock_code = vItem.SubItems[1].Text;
                 default_query(this.stock_code, this.stock_k_url);
+                this.SelectedIndices = this.listView1.SelectedIndices[0];
+            }
+        }
+
+        private void listView1_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right && this.listView1.SelectedItems.Count > 0)
+            {
+                this.contextMenuStrip1.Show(this, e.Location);
             }
         }
 
@@ -273,10 +297,7 @@ namespace StockSystem
             this.lab_6.Text = "成交额：" + divide_result[5] + "（万元）";
         }
 
-        private void timer1_Tick(object sender, EventArgs e)
-        {
-            query();
-        }
+       
 
         //查询特定的股票信息
         private void btn_query_Click(object sender, EventArgs e)
@@ -317,7 +338,10 @@ namespace StockSystem
 
             // 按下回车键调用查询股票方法
             if (e.KeyCode == Keys.Enter)
+            {
                 this.index_Timer.Enabled = true;
+                this.timer1.Enabled = true;
+            }
         }
 
         private void text_stockCode_KeyPress(object sender, KeyPressEventArgs e)
@@ -338,5 +362,30 @@ namespace StockSystem
                 this.text_stockCode.SelectAll();
             }
         }
+
+        private void btn_toBuy_Click(object sender, EventArgs e)
+        {
+              //买入窗口
+             Form_toBuy form_toBuy = new Form_toBuy();
+             form_toBuy.Show();
+
+             //暂停刷新
+             this.index_Timer.Enabled = false;
+             this.timer1.Enabled = false;
+        }
+
+        private void btn_Refresh_Click(object sender, EventArgs e)
+        {
+            //刷新
+            this.index_Timer.Enabled = true;
+            this.timer1.Enabled = true;
+            query();
+            default_query(stock_code, stock_k_url);
+
+            this.listView1.Items[SelectedIndices].Selected = true;
+
+        }
+
+
     }
 }
