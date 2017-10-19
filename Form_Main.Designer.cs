@@ -31,7 +31,6 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form_Main));
             this.btn_toBuy = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
             this.btn_Refresh = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.listView1 = new System.Windows.Forms.ListView();
@@ -44,6 +43,9 @@
             this.column_profitLoss = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.column_profitLossPer = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.column_current_price = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.买入股票ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.卖出股票ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btn_min = new System.Windows.Forms.Button();
             this.btn_daily = new System.Windows.Forms.Button();
@@ -130,16 +132,13 @@
             this.label27 = new System.Windows.Forms.Label();
             this.label26 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.买入股票ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.卖出股票ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox1.SuspendLayout();
+            this.contextMenuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox3.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupBox5.SuspendLayout();
             this.groupBox2.SuspendLayout();
-            this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // btn_toBuy
@@ -151,15 +150,6 @@
             this.btn_toBuy.Text = "买入股票";
             this.btn_toBuy.UseVisualStyleBackColor = true;
             this.btn_toBuy.Click += new System.EventHandler(this.btn_toBuy_Click);
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(109, 13);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 1;
-            this.button2.Text = "button2";
-            this.button2.UseVisualStyleBackColor = true;
             // 
             // btn_Refresh
             // 
@@ -259,6 +249,28 @@
             this.column_current_price.DisplayIndex = 7;
             this.column_current_price.Tag = "column_current_price";
             this.column_current_price.Text = "当前价";
+            // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.买入股票ToolStripMenuItem,
+            this.卖出股票ToolStripMenuItem});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(153, 70);
+            // 
+            // 买入股票ToolStripMenuItem
+            // 
+            this.买入股票ToolStripMenuItem.Name = "买入股票ToolStripMenuItem";
+            this.买入股票ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.买入股票ToolStripMenuItem.Text = "买入股票";
+            this.买入股票ToolStripMenuItem.Click += new System.EventHandler(this.btn_toBuy_Click_code);
+            // 
+            // 卖出股票ToolStripMenuItem
+            // 
+            this.卖出股票ToolStripMenuItem.Name = "卖出股票ToolStripMenuItem";
+            this.卖出股票ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.卖出股票ToolStripMenuItem.Text = "卖出股票";
+            this.卖出股票ToolStripMenuItem.Click += new System.EventHandler(this.btn_toSell_Click_code);
             // 
             // pictureBox1
             // 
@@ -1104,27 +1116,6 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "交易信息";
             // 
-            // contextMenuStrip1
-            // 
-            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.买入股票ToolStripMenuItem,
-            this.卖出股票ToolStripMenuItem});
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(153, 70);
-            // 
-            // 买入股票ToolStripMenuItem
-            // 
-            this.买入股票ToolStripMenuItem.Name = "买入股票ToolStripMenuItem";
-            this.买入股票ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.买入股票ToolStripMenuItem.Text = "买入股票";
-            this.买入股票ToolStripMenuItem.Click += new System.EventHandler(this.btn_toBuy_Click);
-            // 
-            // 卖出股票ToolStripMenuItem
-            // 
-            this.卖出股票ToolStripMenuItem.Name = "卖出股票ToolStripMenuItem";
-            this.卖出股票ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
-            this.卖出股票ToolStripMenuItem.Text = "卖出股票";
-            // 
             // Form_Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -1143,13 +1134,13 @@
             this.Controls.Add(this.btn_query);
             this.Controls.Add(this.btn_Refresh);
             this.Controls.Add(this.btn_daily);
-            this.Controls.Add(this.button2);
             this.Controls.Add(this.btn_min);
             this.Controls.Add(this.btn_toBuy);
             this.Name = "Form_Main";
             this.Text = "Form_Main";
             this.Load += new System.EventHandler(this.Form_Main_Load);
             this.groupBox1.ResumeLayout(false);
+            this.contextMenuStrip1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
@@ -1159,7 +1150,6 @@
             this.groupBox5.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
-            this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1168,7 +1158,6 @@
         #endregion
 
         private System.Windows.Forms.Button btn_toBuy;
-        private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button btn_Refresh;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.ListView listView1;

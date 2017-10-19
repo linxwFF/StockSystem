@@ -12,6 +12,7 @@ using System.IO;
 
 using StockSystem.BLL;
 using StockSystem.Model;
+using System.Configuration;
 
 namespace StockSystem
 {
@@ -38,7 +39,8 @@ namespace StockSystem
             this.WindowState = FormWindowState.Maximized;
             stock_code = "sh000001";
             stock_k_url = "http://image2.sinajs.cn/newchart/min/n/";
-            stock_id = 1;
+            //获取用户ID
+            stock_id = int.Parse(ConfigurationSettings.AppSettings["Current_id"]);
             
             // 定时间隔
             this.index_Timer.Interval = 10000;
@@ -297,8 +299,6 @@ namespace StockSystem
             this.lab_6.Text = "成交额：" + divide_result[5] + "（万元）";
         }
 
-       
-
         //查询特定的股票信息
         private void btn_query_Click(object sender, EventArgs e)
         {
@@ -374,6 +374,18 @@ namespace StockSystem
              this.timer1.Enabled = false;
         }
 
+        private void btn_toBuy_Click_code(object sender, EventArgs e)
+        {
+            //买入窗口
+            string code = this.stock_code.Replace("sh", "");
+            Form_toBuy form_toBuy = new Form_toBuy(code);
+            form_toBuy.Show();
+
+            //暂停刷新
+            this.index_Timer.Enabled = false;
+            this.timer1.Enabled = false;
+        }
+
         private void btn_Refresh_Click(object sender, EventArgs e)
         {
             //刷新
@@ -383,9 +395,19 @@ namespace StockSystem
             default_query(stock_code, stock_k_url);
 
             this.listView1.Items[SelectedIndices].Selected = true;
-
         }
 
+        //卖出股票
+        private void btn_toSell_Click_code(object sender, EventArgs e)
+        {
+            //卖出窗口
+            string code = this.stock_code.Replace("sh", "");
+            Form_toSell form_toSell = new Form_toSell(code);
+            form_toSell.Show();
 
+            //暂停刷新
+            this.index_Timer.Enabled = false;
+            this.timer1.Enabled = false;
+        }
     }
 }
