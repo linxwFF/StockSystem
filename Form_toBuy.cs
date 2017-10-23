@@ -205,8 +205,8 @@ namespace StockSystem
             {
                 MessageBox.Show("请输入购买数量");
             }
-            else { 
-                
+            else {
+                MessageBox.Show(string.Format("买入价格：{0}, 买入数量：{1}",this.buy_price,this.buy_quantity));
             }
         }
         //重置按钮

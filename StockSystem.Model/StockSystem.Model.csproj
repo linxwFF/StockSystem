@@ -43,6 +43,7 @@
     <Compile Include="Personal_Stock_Account.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Stock_Holder.cs" />
+    <Compile Include="Tactics.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\" />

@@ -44,13 +44,11 @@ namespace StockSystem
             
             // 定时间隔
             this.index_Timer.Interval = 10000;
-            //定时器
-            this.index_Timer.Enabled = true;
-
             // 请求上证指数
             this.timer1.Interval = 10000;
-            // 上证指数的定时器
-            this.timer1.Enabled = true;
+            // 开始刷新
+            start_Refresh();
+
             query();
             default_query(stock_code, stock_k_url);
         }
@@ -214,7 +212,9 @@ namespace StockSystem
             Stock_Holder sh = stock_HolderService.getStockHolder(stock_id);
 
             listView1.Items.Clear();
-            
+
+            string tempString;
+
             foreach(Hold_Stock_Info item in sh.HoldStockInfo)
             {
                 ListViewItem Lvitem = new ListViewItem(item.stock_name);
@@ -222,13 +222,57 @@ namespace StockSystem
                 Lvitem.SubItems.Add(item.amount_useable.ToString());
                 Lvitem.SubItems.Add(item.hold_quantity.ToString());
                 Lvitem.SubItems.Add(item.market_price.ToString());
-                Lvitem.SubItems.Add(item.market_price.ToString());
                 Lvitem.SubItems.Add(item.profit_loss.ToString());
                 Lvitem.SubItems.Add(item.profit_loss_per.ToString());
                 Lvitem.SubItems.Add(item.current_price.ToString());
                 Lvitem.SubItems.Add(item.cost_price.ToString());
 
+                if (item.tactics != null && item.tactics.profit_tactics == 1)
+                {
+                    //上涨减仓
+                    tempString = string.Format("上涨{0}%,卖出{1}股", item.tactics.profit_per, item.tactics.profit_quantity);
+                }
+                else if (item.tactics != null && item.tactics.profit_tactics == 2)
+                {
+                    //上涨加仓
+                    tempString = string.Format("上涨{0}%,买入{1}股", item.tactics.profit_per, item.tactics.profit_quantity);
+                }
+                else
+                {
+                    tempString = string.Format(" ");
+                }
+
+                Lvitem.SubItems.Add(tempString);
+
+                if(item.tactics != null && item.tactics.loss_tactics == 1)
+                {
+                    //下跌减仓
+                    tempString = string.Format("下跌{0}%,卖出{1}股", item.tactics.loss_per,item.tactics.loss_quantity);
+                }
+                else if (item.tactics != null && item.tactics.loss_tactics == 2)
+                {
+                    //下跌加仓
+                    tempString = string.Format("下跌{0}%,买入{1}股", item.tactics.loss_per, item.tactics.loss_quantity);
+                }
+                else {
+                    tempString = string.Format(" ");
+                }
+
+                Lvitem.SubItems.Add(tempString);
+                Lvitem.SubItems.Add("无");
+
                 listView1.Items.Add(Lvitem);
+
+                Lvitem.UseItemStyleForSubItems = false;
+
+                if (item.profit_loss > 0)
+                {
+                    Lvitem.SubItems[5].ForeColor = Color.Red;
+                    Lvitem.SubItems[6].ForeColor = Color.Red;
+                }else {
+                    Lvitem.SubItems[5].ForeColor = Color.Green;
+                    Lvitem.SubItems[6].ForeColor = Color.Green;
+                }
             }
 
             this.listView1.Focus();
@@ -339,8 +383,8 @@ namespace StockSystem
             // 按下回车键调用查询股票方法
             if (e.KeyCode == Keys.Enter)
             {
-                this.index_Timer.Enabled = true;
-                this.timer1.Enabled = true;
+                // 开始刷新
+                start_Refresh();
             }
         }
 
@@ -370,8 +414,7 @@ namespace StockSystem
              form_toBuy.Show();
 
              //暂停刷新
-             this.index_Timer.Enabled = false;
-             this.timer1.Enabled = false;
+             pause_Refresh();
         }
 
         private void btn_toBuy_Click_code(object sender, EventArgs e)
@@ -382,15 +425,14 @@ namespace StockSystem
             form_toBuy.Show();
 
             //暂停刷新
-            this.index_Timer.Enabled = false;
-            this.timer1.Enabled = false;
+            pause_Refresh();
         }
 
         private void btn_Refresh_Click(object sender, EventArgs e)
         {
-            //刷新
-            this.index_Timer.Enabled = true;
-            this.timer1.Enabled = true;
+            // 开始刷新
+            start_Refresh();
+
             query();
             default_query(stock_code, stock_k_url);
 
@@ -406,8 +448,33 @@ namespace StockSystem
             form_toSell.Show();
 
             //暂停刷新
+            pause_Refresh();
+        }
+
+        //指定策略
+        private void btn_make_plan_Click(object sender, EventArgs e)
+        {
+            //窗口
+            Form_ProfitAndLoss form_ProfitAndLoss = new Form_ProfitAndLoss();
+            form_ProfitAndLoss.Show();
+
+            //暂停刷新
+            pause_Refresh();
+        }
+
+        //开始刷新
+        private void start_Refresh()
+        {
+            this.index_Timer.Enabled = true;
+            this.timer1.Enabled = true;
+            this.btn_Refresh.Text = "刷新中";
+        }
+        //暂停刷新
+        private void pause_Refresh()
+        {
             this.index_Timer.Enabled = false;
             this.timer1.Enabled = false;
+            this.btn_Refresh.Text = "暂停中";
         }
     }
 }

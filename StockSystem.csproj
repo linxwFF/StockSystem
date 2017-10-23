@@ -73,6 +73,12 @@
     <Compile Include="Form_Main.Designer.cs">
       <DependentUpon>Form_Main.cs</DependentUpon>
     </Compile>
+    <Compile Include="Form_ProfitAndLoss.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_ProfitAndLoss.Designer.cs">
+      <DependentUpon>Form_ProfitAndLoss.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form_toBuy.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -100,6 +106,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form_Main.resx">
       <DependentUpon>Form_Main.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_ProfitAndLoss.resx">
+      <DependentUpon>Form_ProfitAndLoss.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form_toBuy.resx">
       <DependentUpon>Form_toBuy.cs</DependentUpon>

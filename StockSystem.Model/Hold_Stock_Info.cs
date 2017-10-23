@@ -35,5 +35,9 @@ namespace StockSystem.Model
         public double current_price { get; set; }
         [DataField("stock_name")]
         public string stock_name { get; set; }
+
+        // 持有股票指定的策略
+        [DataField("tactics")]
+        public Tactics tactics { get; set; }
     }
 }

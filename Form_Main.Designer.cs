@@ -38,14 +38,18 @@
             this.column_stock_code = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.column_amount = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.column_amount_useable = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.column_cost_price = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.column_price = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.column_profitLoss = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.column_profitLossPer = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.column_current_price = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.column_cost_price = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.column_profit = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.column_loss = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.column_tactics = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.买入股票ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.卖出股票ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.btn_make_plan = new System.Windows.Forms.ToolStripMenuItem();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btn_min = new System.Windows.Forms.Button();
             this.btn_daily = new System.Windows.Forms.Button();
@@ -132,6 +136,8 @@
             this.label27 = new System.Windows.Forms.Label();
             this.label26 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.btn_simulate = new System.Windows.Forms.Button();
+            this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.groupBox1.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -178,16 +184,19 @@
             this.column_stock_code,
             this.column_amount,
             this.column_amount_useable,
-            this.column_cost_price,
             this.column_price,
             this.column_profitLoss,
             this.column_profitLossPer,
-            this.column_current_price});
+            this.column_current_price,
+            this.column_cost_price,
+            this.column_profit,
+            this.column_loss,
+            this.column_tactics});
             this.listView1.ContextMenuStrip = this.contextMenuStrip1;
             this.listView1.FullRowSelect = true;
             this.listView1.GridLines = true;
             this.listView1.HideSelection = false;
-            this.listView1.Location = new System.Drawing.Point(7, 20);
+            this.listView1.Location = new System.Drawing.Point(9, 29);
             this.listView1.MultiSelect = false;
             this.listView1.Name = "listView1";
             this.listView1.Size = new System.Drawing.Size(963, 239);
@@ -219,44 +228,57 @@
             this.column_amount_useable.Tag = "column_amount_useable";
             this.column_amount_useable.Text = "可卖数量";
             // 
-            // column_cost_price
-            // 
-            this.column_cost_price.DisplayIndex = 8;
-            this.column_cost_price.Tag = "column_cost_price";
-            this.column_cost_price.Text = "成本价";
-            // 
             // column_price
             // 
-            this.column_price.DisplayIndex = 4;
             this.column_price.Tag = "column_price";
             this.column_price.Text = "市值";
+            this.column_price.Width = 53;
             // 
             // column_profitLoss
             // 
-            this.column_profitLoss.DisplayIndex = 5;
             this.column_profitLoss.Tag = "column_profitLoss";
             this.column_profitLoss.Text = "盈亏";
             // 
             // column_profitLossPer
             // 
-            this.column_profitLossPer.DisplayIndex = 6;
             this.column_profitLossPer.Tag = "column_profitLossPer";
             this.column_profitLossPer.Text = "盈亏_百分比";
-            this.column_profitLossPer.Width = 86;
+            this.column_profitLossPer.Width = 80;
             // 
             // column_current_price
             // 
-            this.column_current_price.DisplayIndex = 7;
             this.column_current_price.Tag = "column_current_price";
             this.column_current_price.Text = "当前价";
+            // 
+            // column_cost_price
+            // 
+            this.column_cost_price.Tag = "column_cost_price";
+            this.column_cost_price.Text = "成本价";
+            this.column_cost_price.Width = 54;
+            // 
+            // column_profit
+            // 
+            this.column_profit.Text = "止盈";
+            this.column_profit.Width = 145;
+            // 
+            // column_loss
+            // 
+            this.column_loss.Text = "止亏";
+            this.column_loss.Width = 144;
+            // 
+            // column_tactics
+            // 
+            this.column_tactics.Text = "执行交易策略";
+            this.column_tactics.Width = 120;
             // 
             // contextMenuStrip1
             // 
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.买入股票ToolStripMenuItem,
-            this.卖出股票ToolStripMenuItem});
+            this.卖出股票ToolStripMenuItem,
+            this.btn_make_plan});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(153, 70);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(125, 70);
             // 
             // 买入股票ToolStripMenuItem
             // 
@@ -268,9 +290,16 @@
             // 卖出股票ToolStripMenuItem
             // 
             this.卖出股票ToolStripMenuItem.Name = "卖出股票ToolStripMenuItem";
-            this.卖出股票ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.卖出股票ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
             this.卖出股票ToolStripMenuItem.Text = "卖出股票";
             this.卖出股票ToolStripMenuItem.Click += new System.EventHandler(this.btn_toSell_Click_code);
+            // 
+            // btn_make_plan
+            // 
+            this.btn_make_plan.Name = "btn_make_plan";
+            this.btn_make_plan.Size = new System.Drawing.Size(124, 22);
+            this.btn_make_plan.Text = "制定策略";
+            this.btn_make_plan.Click += new System.EventHandler(this.btn_make_plan_Click);
             // 
             // pictureBox1
             // 
@@ -1116,11 +1145,31 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "交易信息";
             // 
+            // btn_simulate
+            // 
+            this.btn_simulate.Location = new System.Drawing.Point(109, 13);
+            this.btn_simulate.Name = "btn_simulate";
+            this.btn_simulate.Size = new System.Drawing.Size(75, 23);
+            this.btn_simulate.TabIndex = 28;
+            this.btn_simulate.Text = "模拟";
+            this.btn_simulate.UseVisualStyleBackColor = true;
+            // 
+            // groupBox6
+            // 
+            this.groupBox6.Location = new System.Drawing.Point(1011, 101);
+            this.groupBox6.Name = "groupBox6";
+            this.groupBox6.Size = new System.Drawing.Size(344, 593);
+            this.groupBox6.TabIndex = 29;
+            this.groupBox6.TabStop = false;
+            this.groupBox6.Text = "自动交易记录";
+            // 
             // Form_Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1367, 699);
+            this.Controls.Add(this.groupBox6);
+            this.Controls.Add(this.btn_simulate);
             this.Controls.Add(this.groupBox5);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.groupBox4);
@@ -1259,5 +1308,11 @@
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem 买入股票ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 卖出股票ToolStripMenuItem;
+        private System.Windows.Forms.Button btn_simulate;
+        private System.Windows.Forms.GroupBox groupBox6;
+        private System.Windows.Forms.ColumnHeader column_profit;
+        private System.Windows.Forms.ColumnHeader column_loss;
+        private System.Windows.Forms.ColumnHeader column_tactics;
+        private System.Windows.Forms.ToolStripMenuItem btn_make_plan;
     }
 }

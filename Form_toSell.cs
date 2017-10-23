@@ -171,6 +171,7 @@ namespace StockSystem
 
             double bankroll_useable = sh.account.bankroll_useable;
             this.current_price = double.Parse(divide_result[3]);
+            this.sell_price = double.Parse(divide_result[3]);
             this.canBuy = (int)(bankroll_useable / this.current_price);
 
             this.lab_cansell.Text = canBuy.ToString();
@@ -208,10 +209,11 @@ namespace StockSystem
             {
                 MessageBox.Show("请输入卖出数量");
             }
-            else { 
-                
+            else {
+                MessageBox.Show(string.Format("卖出价格：{0}, 卖出数量：{1}", this.sell_price, this.sell_quantity));
             }
         }
+
         //重置按钮
         private void btn_reset_Click(object sender, EventArgs e)
         {
