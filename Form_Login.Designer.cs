@@ -31,8 +31,8 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.btn_exit = new System.Windows.Forms.Button();
             this.btn_login = new System.Windows.Forms.Button();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txt_password = new System.Windows.Forms.TextBox();
+            this.txt_username = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.title = new System.Windows.Forms.Label();
@@ -43,8 +43,8 @@
             // 
             this.panel1.Controls.Add(this.btn_exit);
             this.panel1.Controls.Add(this.btn_login);
-            this.panel1.Controls.Add(this.textBox2);
-            this.panel1.Controls.Add(this.textBox1);
+            this.panel1.Controls.Add(this.txt_password);
+            this.panel1.Controls.Add(this.txt_username);
             this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.label2);
             this.panel1.Location = new System.Drawing.Point(12, 59);
@@ -57,7 +57,7 @@
             this.btn_exit.Location = new System.Drawing.Point(186, 117);
             this.btn_exit.Name = "btn_exit";
             this.btn_exit.Size = new System.Drawing.Size(75, 23);
-            this.btn_exit.TabIndex = 3;
+            this.btn_exit.TabIndex = 4;
             this.btn_exit.Text = "取消";
             this.btn_exit.UseVisualStyleBackColor = true;
             // 
@@ -69,20 +69,21 @@
             this.btn_login.TabIndex = 3;
             this.btn_login.Text = "登录";
             this.btn_login.UseVisualStyleBackColor = true;
+            this.btn_login.Click += new System.EventHandler(this.btn_login_Click);
             // 
-            // textBox2
+            // txt_password
             // 
-            this.textBox2.Location = new System.Drawing.Point(85, 68);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(176, 21);
-            this.textBox2.TabIndex = 2;
+            this.txt_password.Location = new System.Drawing.Point(85, 68);
+            this.txt_password.Name = "txt_password";
+            this.txt_password.Size = new System.Drawing.Size(176, 21);
+            this.txt_password.TabIndex = 2;
             // 
-            // textBox1
+            // txt_username
             // 
-            this.textBox1.Location = new System.Drawing.Point(84, 28);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(177, 21);
-            this.textBox1.TabIndex = 2;
+            this.txt_username.Location = new System.Drawing.Point(84, 28);
+            this.txt_username.Name = "txt_username";
+            this.txt_username.Size = new System.Drawing.Size(177, 21);
+            this.txt_username.TabIndex = 1;
             // 
             // label3
             // 
@@ -131,8 +132,8 @@
         #endregion
 
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txt_password;
+        private System.Windows.Forms.TextBox txt_username;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label title;

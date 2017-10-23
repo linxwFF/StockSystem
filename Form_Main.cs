@@ -42,7 +42,7 @@ namespace StockSystem
             stock_code = "sh000001";
             stock_k_url = "http://image2.sinajs.cn/newchart/min/n/";
             //获取用户ID
-            stock_id = int.Parse(ConfigurationSettings.AppSettings["Current_id"]);
+            stock_id = Utility.user.id;
             
             // 定时间隔
             this.index_Timer.Interval = 10000;

@@ -166,7 +166,7 @@ namespace StockSystem
             this.lab_stock_name.Text = divide_result[0];
 
             //计算可买股票数量
-            int stock_id = int.Parse(ConfigurationSettings.AppSettings["Current_id"]);
+            int stock_id = Utility.user.id;
             Stock_Holder sh = stock_HolderService.getStockHolder(stock_id);
 
             double bankroll_useable = sh.account.bankroll_useable;

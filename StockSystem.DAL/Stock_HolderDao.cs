@@ -172,5 +172,23 @@ namespace StockSystem.DAL
 
             DBHelperSQL.Ins.ExecuteNonquery(sql, Paramter.ToArray());
         }
+
+        //验证用户密码
+        public Stock_Holder verifyPassword(string username, string password)
+        {
+            string sql = "select * from t_stock_holder where username = @username and password = @password limit 1";
+            List<MySqlParameter> Paramter = new List<MySqlParameter>();
+            Paramter.Add(new MySqlParameter("@username", username));
+            Paramter.Add(new MySqlParameter("@password", password));
+
+            DataTable dt = DBHelperSQL.Ins.ExcuteDataTable(sql, Paramter.ToArray());
+
+            if (dt.Rows.Count > 0) {
+                var list = DataConvert<Stock_Holder>.ToList(dt);
+                return list[0];
+            }else {
+                return null;
+            }
+        }
     }
 }

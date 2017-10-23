@@ -166,7 +166,7 @@ namespace StockSystem
             this.lab_stock_name.Text = divide_result[0];
 
             //计算可买股票数量
-            int stock_id = int.Parse(ConfigurationSettings.AppSettings["Current_id"]);
+            int stock_id = Utility.user.id;
             Stock_Holder sh = stock_HolderService.getStockHolder(stock_id);
 
             //当前价
@@ -207,6 +207,8 @@ namespace StockSystem
             }
             else {
                 MessageBox.Show(string.Format("买入价格：{0}, 买入数量：{1}",this.buy_price,this.buy_quantity));
+                //生成买入的委托记录
+
             }
         }
         //重置按钮

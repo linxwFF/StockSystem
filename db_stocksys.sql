@@ -4,13 +4,13 @@ Navicat MySQL Data Transfer
 Source Server         : 127.0.0.1
 Source Server Version : 50711
 Source Host           : 127.0.0.1:3306
-Source Database       : t_stocksys
+Source Database       : db_stocksys
 
 Target Server Type    : MYSQL
 Target Server Version : 50711
 File Encoding         : 65001
 
-Date: 2017-10-19 17:45:21
+Date: 2017-10-23 19:55:04
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -83,9 +83,9 @@ CREATE TABLE `t_hold_stock_info` (
 -- ----------------------------
 -- Records of t_hold_stock_info
 -- ----------------------------
-INSERT INTO `t_hold_stock_info` VALUES ('1', '1', '东方材料', 'sh603110', '100', '100', '2750', '550', '20', '27.5', '2200', '1');
-INSERT INTO `t_hold_stock_info` VALUES ('2', '1', '国芳集团', 'sh601086', '100', '100', '1075', '75', '6.98', '10.75', '1000', '1');
-INSERT INTO `t_hold_stock_info` VALUES ('3', '1', '四川长虹', 'sh600839', '100', '100', '390', '-1730', '-443.59', '3.9', '2120', '1');
+INSERT INTO `t_hold_stock_info` VALUES ('1', '1', '东方材料', 'sh603110', '100', '100', '3328', '1128', '33.89', '33.28', '2200', '1');
+INSERT INTO `t_hold_stock_info` VALUES ('2', '1', '国芳集团', 'sh601086', '100', '100', '1301', '301', '23.14', '13.01', '1000', '1');
+INSERT INTO `t_hold_stock_info` VALUES ('3', '1', '四川长虹', 'sh600839', '100', '100', '388', '-12', '-3.09', '3.88', '400', '1');
 
 -- ----------------------------
 -- Table structure for t_personal_stock_account
@@ -128,3 +128,24 @@ CREATE TABLE `t_stock_holder` (
 -- ----------------------------
 INSERT INTO `t_stock_holder` VALUES ('1', '1', '王耐金', '35033319912312312312', '13774545206', 'admin', 'admin');
 INSERT INTO `t_stock_holder` VALUES ('2', '2', '王大锤', '1231231231231352352', '32432423423', 'guest', 'guest');
+
+-- ----------------------------
+-- Table structure for t_tactics
+-- ----------------------------
+DROP TABLE IF EXISTS `t_tactics`;
+CREATE TABLE `t_tactics` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `hold_stock_info_id` int(11) DEFAULT NULL,
+  `loss_per` double DEFAULT NULL,
+  `loss_quantity` int(11) DEFAULT NULL,
+  `loss_tactics` int(11) DEFAULT NULL,
+  `profit_per` double DEFAULT NULL,
+  `profit_quantity` int(11) DEFAULT NULL,
+  `profit_tactics` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of t_tactics
+-- ----------------------------
+INSERT INTO `t_tactics` VALUES ('1', '1', '0.2', '100', '1', '0.2', '100', '1');
