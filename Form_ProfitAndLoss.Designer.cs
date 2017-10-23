@@ -29,42 +29,44 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.numericUpDown_buy_price = new System.Windows.Forms.NumericUpDown();
-            this.numericUpDown_buy_quantity = new System.Windows.Forms.NumericUpDown();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
+            this.numericUpDown_loss_per = new System.Windows.Forms.NumericUpDown();
+            this.numericUpDown_loss_quantity = new System.Windows.Forms.NumericUpDown();
+            this.rb_1_0 = new System.Windows.Forms.RadioButton();
+            this.rb_1_2 = new System.Windows.Forms.RadioButton();
+            this.rb_1_1 = new System.Windows.Forms.RadioButton();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.numericUpDown2 = new System.Windows.Forms.NumericUpDown();
-            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
-            this.radioButton5 = new System.Windows.Forms.RadioButton();
-            this.radioButton6 = new System.Windows.Forms.RadioButton();
+            this.numericUpDown_profit_per = new System.Windows.Forms.NumericUpDown();
+            this.numericUpDown_profit_quantity = new System.Windows.Forms.NumericUpDown();
+            this.rb_2_0 = new System.Windows.Forms.RadioButton();
+            this.rb_2_2 = new System.Windows.Forms.RadioButton();
+            this.rb_2_1 = new System.Windows.Forms.RadioButton();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.btn_reset = new System.Windows.Forms.Button();
             this.btn_submit = new System.Windows.Forms.Button();
-            this.radioButton3 = new System.Windows.Forms.RadioButton();
-            this.radioButton4 = new System.Windows.Forms.RadioButton();
+            this.btn_reset2 = new System.Windows.Forms.Button();
+            this.btn_submit2 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_buy_price)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_buy_quantity)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_loss_per)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_loss_quantity)).BeginInit();
             this.groupBox2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_profit_per)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_profit_quantity)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.numericUpDown_buy_price);
-            this.groupBox1.Controls.Add(this.numericUpDown_buy_quantity);
-            this.groupBox1.Controls.Add(this.radioButton3);
-            this.groupBox1.Controls.Add(this.radioButton2);
-            this.groupBox1.Controls.Add(this.radioButton1);
+            this.groupBox1.Controls.Add(this.numericUpDown_loss_per);
+            this.groupBox1.Controls.Add(this.numericUpDown_loss_quantity);
+            this.groupBox1.Controls.Add(this.rb_1_0);
+            this.groupBox1.Controls.Add(this.rb_1_2);
+            this.groupBox1.Controls.Add(this.rb_1_1);
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.label2);
@@ -76,74 +78,85 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "自动止损";
             // 
-            // numericUpDown_buy_price
+            // numericUpDown_loss_per
             // 
-            this.numericUpDown_buy_price.DecimalPlaces = 2;
-            this.numericUpDown_buy_price.Increment = new decimal(new int[] {
+            this.numericUpDown_loss_per.DecimalPlaces = 2;
+            this.numericUpDown_loss_per.Increment = new decimal(new int[] {
             1,
             0,
             0,
             131072});
-            this.numericUpDown_buy_price.Location = new System.Drawing.Point(58, 23);
-            this.numericUpDown_buy_price.Maximum = new decimal(new int[] {
+            this.numericUpDown_loss_per.Location = new System.Drawing.Point(58, 23);
+            this.numericUpDown_loss_per.Maximum = new decimal(new int[] {
             10000,
             0,
             0,
             0});
-            this.numericUpDown_buy_price.Name = "numericUpDown_buy_price";
-            this.numericUpDown_buy_price.Size = new System.Drawing.Size(100, 21);
-            this.numericUpDown_buy_price.TabIndex = 8;
+            this.numericUpDown_loss_per.Name = "numericUpDown_loss_per";
+            this.numericUpDown_loss_per.Size = new System.Drawing.Size(100, 21);
+            this.numericUpDown_loss_per.TabIndex = 8;
             // 
-            // numericUpDown_buy_quantity
+            // numericUpDown_loss_quantity
             // 
-            this.numericUpDown_buy_quantity.Increment = new decimal(new int[] {
+            this.numericUpDown_loss_quantity.Increment = new decimal(new int[] {
             100,
             0,
             0,
             0});
-            this.numericUpDown_buy_quantity.Location = new System.Drawing.Point(244, 23);
-            this.numericUpDown_buy_quantity.Maximum = new decimal(new int[] {
+            this.numericUpDown_loss_quantity.Location = new System.Drawing.Point(244, 23);
+            this.numericUpDown_loss_quantity.Maximum = new decimal(new int[] {
             1000000000,
             0,
             0,
             0});
-            this.numericUpDown_buy_quantity.Minimum = new decimal(new int[] {
+            this.numericUpDown_loss_quantity.Minimum = new decimal(new int[] {
             100,
             0,
             0,
             0});
-            this.numericUpDown_buy_quantity.Name = "numericUpDown_buy_quantity";
-            this.numericUpDown_buy_quantity.Size = new System.Drawing.Size(100, 21);
-            this.numericUpDown_buy_quantity.TabIndex = 7;
-            this.numericUpDown_buy_quantity.Value = new decimal(new int[] {
+            this.numericUpDown_loss_quantity.Name = "numericUpDown_loss_quantity";
+            this.numericUpDown_loss_quantity.Size = new System.Drawing.Size(100, 21);
+            this.numericUpDown_loss_quantity.TabIndex = 7;
+            this.numericUpDown_loss_quantity.Value = new decimal(new int[] {
             100,
             0,
             0,
             0});
             // 
-            // radioButton2
+            // rb_1_0
             // 
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.Location = new System.Drawing.Point(166, 61);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(71, 16);
-            this.radioButton2.TabIndex = 6;
-            this.radioButton2.Text = "下跌加仓";
-            this.radioButton2.UseVisualStyleBackColor = true;
-            this.radioButton2.CheckedChanged += new System.EventHandler(this.radioButton1_CheckedChanged);
+            this.rb_1_0.AutoSize = true;
+            this.rb_1_0.Checked = true;
+            this.rb_1_0.Location = new System.Drawing.Point(296, 61);
+            this.rb_1_0.Name = "rb_1_0";
+            this.rb_1_0.Size = new System.Drawing.Size(59, 16);
+            this.rb_1_0.TabIndex = 6;
+            this.rb_1_0.TabStop = true;
+            this.rb_1_0.Text = "不设置";
+            this.rb_1_0.UseVisualStyleBackColor = true;
+            this.rb_1_0.CheckedChanged += new System.EventHandler(this.radioButton1_CheckedChanged);
             // 
-            // radioButton1
+            // rb_1_2
             // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Checked = true;
-            this.radioButton1.Location = new System.Drawing.Point(25, 61);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(71, 16);
-            this.radioButton1.TabIndex = 6;
-            this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "下跌减仓";
-            this.radioButton1.UseVisualStyleBackColor = true;
-            this.radioButton1.CheckedChanged += new System.EventHandler(this.radioButton1_CheckedChanged);
+            this.rb_1_2.AutoSize = true;
+            this.rb_1_2.Location = new System.Drawing.Point(166, 61);
+            this.rb_1_2.Name = "rb_1_2";
+            this.rb_1_2.Size = new System.Drawing.Size(71, 16);
+            this.rb_1_2.TabIndex = 6;
+            this.rb_1_2.Text = "下跌加仓";
+            this.rb_1_2.UseVisualStyleBackColor = true;
+            this.rb_1_2.CheckedChanged += new System.EventHandler(this.radioButton1_CheckedChanged);
+            // 
+            // rb_1_1
+            // 
+            this.rb_1_1.AutoSize = true;
+            this.rb_1_1.Location = new System.Drawing.Point(25, 61);
+            this.rb_1_1.Name = "rb_1_1";
+            this.rb_1_1.Size = new System.Drawing.Size(71, 16);
+            this.rb_1_1.TabIndex = 6;
+            this.rb_1_1.Text = "下跌减仓";
+            this.rb_1_1.UseVisualStyleBackColor = true;
+            this.rb_1_1.CheckedChanged += new System.EventHandler(this.radioButton1_CheckedChanged);
             // 
             // label4
             // 
@@ -183,90 +196,101 @@
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.numericUpDown2);
-            this.groupBox2.Controls.Add(this.numericUpDown1);
-            this.groupBox2.Controls.Add(this.radioButton4);
-            this.groupBox2.Controls.Add(this.radioButton5);
-            this.groupBox2.Controls.Add(this.radioButton6);
+            this.groupBox2.Controls.Add(this.numericUpDown_profit_per);
+            this.groupBox2.Controls.Add(this.numericUpDown_profit_quantity);
+            this.groupBox2.Controls.Add(this.rb_2_0);
+            this.groupBox2.Controls.Add(this.rb_2_2);
+            this.groupBox2.Controls.Add(this.rb_2_1);
             this.groupBox2.Controls.Add(this.label5);
             this.groupBox2.Controls.Add(this.label6);
             this.groupBox2.Controls.Add(this.label7);
             this.groupBox2.Controls.Add(this.label8);
-            this.groupBox2.Location = new System.Drawing.Point(15, 127);
+            this.groupBox2.Location = new System.Drawing.Point(15, 153);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(384, 96);
             this.groupBox2.TabIndex = 0;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "自动止盈";
             // 
-            // numericUpDown2
+            // numericUpDown_profit_per
             // 
-            this.numericUpDown2.DecimalPlaces = 2;
-            this.numericUpDown2.Increment = new decimal(new int[] {
+            this.numericUpDown_profit_per.DecimalPlaces = 2;
+            this.numericUpDown_profit_per.Increment = new decimal(new int[] {
             1,
             0,
             0,
             131072});
-            this.numericUpDown2.Location = new System.Drawing.Point(56, 23);
-            this.numericUpDown2.Maximum = new decimal(new int[] {
+            this.numericUpDown_profit_per.Location = new System.Drawing.Point(56, 23);
+            this.numericUpDown_profit_per.Maximum = new decimal(new int[] {
             10000,
             0,
             0,
             0});
-            this.numericUpDown2.Name = "numericUpDown2";
-            this.numericUpDown2.Size = new System.Drawing.Size(100, 21);
-            this.numericUpDown2.TabIndex = 9;
+            this.numericUpDown_profit_per.Name = "numericUpDown_profit_per";
+            this.numericUpDown_profit_per.Size = new System.Drawing.Size(100, 21);
+            this.numericUpDown_profit_per.TabIndex = 9;
             // 
-            // numericUpDown1
+            // numericUpDown_profit_quantity
             // 
-            this.numericUpDown1.Increment = new decimal(new int[] {
+            this.numericUpDown_profit_quantity.Increment = new decimal(new int[] {
             100,
             0,
             0,
             0});
-            this.numericUpDown1.Location = new System.Drawing.Point(244, 25);
-            this.numericUpDown1.Maximum = new decimal(new int[] {
+            this.numericUpDown_profit_quantity.Location = new System.Drawing.Point(244, 25);
+            this.numericUpDown_profit_quantity.Maximum = new decimal(new int[] {
             1000000000,
             0,
             0,
             0});
-            this.numericUpDown1.Minimum = new decimal(new int[] {
+            this.numericUpDown_profit_quantity.Minimum = new decimal(new int[] {
             100,
             0,
             0,
             0});
-            this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(100, 21);
-            this.numericUpDown1.TabIndex = 8;
-            this.numericUpDown1.Value = new decimal(new int[] {
+            this.numericUpDown_profit_quantity.Name = "numericUpDown_profit_quantity";
+            this.numericUpDown_profit_quantity.Size = new System.Drawing.Size(100, 21);
+            this.numericUpDown_profit_quantity.TabIndex = 8;
+            this.numericUpDown_profit_quantity.Value = new decimal(new int[] {
             100,
             0,
             0,
             0});
             // 
-            // radioButton5
+            // rb_2_0
             // 
-            this.radioButton5.AutoSize = true;
-            this.radioButton5.Location = new System.Drawing.Point(166, 61);
-            this.radioButton5.Name = "radioButton5";
-            this.radioButton5.Size = new System.Drawing.Size(71, 16);
-            this.radioButton5.TabIndex = 6;
-            this.radioButton5.Text = "盈利加仓";
-            this.radioButton5.UseVisualStyleBackColor = true;
-            this.radioButton5.CheckedChanged += new System.EventHandler(this.radioButton6_CheckedChanged);
+            this.rb_2_0.AutoSize = true;
+            this.rb_2_0.Checked = true;
+            this.rb_2_0.Location = new System.Drawing.Point(294, 61);
+            this.rb_2_0.Name = "rb_2_0";
+            this.rb_2_0.Size = new System.Drawing.Size(59, 16);
+            this.rb_2_0.TabIndex = 6;
+            this.rb_2_0.TabStop = true;
+            this.rb_2_0.Text = "不设置";
+            this.rb_2_0.UseVisualStyleBackColor = true;
+            this.rb_2_0.CheckedChanged += new System.EventHandler(this.radioButton6_CheckedChanged);
             // 
-            // radioButton6
+            // rb_2_2
             // 
-            this.radioButton6.AutoSize = true;
-            this.radioButton6.Checked = true;
-            this.radioButton6.Location = new System.Drawing.Point(25, 61);
-            this.radioButton6.Name = "radioButton6";
-            this.radioButton6.Size = new System.Drawing.Size(71, 16);
-            this.radioButton6.TabIndex = 6;
-            this.radioButton6.TabStop = true;
-            this.radioButton6.Text = "盈利减仓";
-            this.radioButton6.UseVisualStyleBackColor = true;
-            this.radioButton6.CheckedChanged += new System.EventHandler(this.radioButton6_CheckedChanged);
+            this.rb_2_2.AutoSize = true;
+            this.rb_2_2.Location = new System.Drawing.Point(166, 61);
+            this.rb_2_2.Name = "rb_2_2";
+            this.rb_2_2.Size = new System.Drawing.Size(71, 16);
+            this.rb_2_2.TabIndex = 6;
+            this.rb_2_2.Text = "盈利加仓";
+            this.rb_2_2.UseVisualStyleBackColor = true;
+            this.rb_2_2.CheckedChanged += new System.EventHandler(this.radioButton6_CheckedChanged);
+            // 
+            // rb_2_1
+            // 
+            this.rb_2_1.AutoSize = true;
+            this.rb_2_1.Location = new System.Drawing.Point(25, 61);
+            this.rb_2_1.Name = "rb_2_1";
+            this.rb_2_1.Size = new System.Drawing.Size(71, 16);
+            this.rb_2_1.TabIndex = 6;
+            this.rb_2_1.Text = "盈利减仓";
+            this.rb_2_1.UseVisualStyleBackColor = true;
+            this.rb_2_1.CheckedChanged += new System.EventHandler(this.radioButton6_CheckedChanged);
             // 
             // label5
             // 
@@ -306,16 +330,17 @@
             // 
             // btn_reset
             // 
-            this.btn_reset.Location = new System.Drawing.Point(96, 242);
+            this.btn_reset.Location = new System.Drawing.Point(96, 127);
             this.btn_reset.Name = "btn_reset";
             this.btn_reset.Size = new System.Drawing.Size(75, 23);
             this.btn_reset.TabIndex = 4;
             this.btn_reset.Text = "重置";
             this.btn_reset.UseVisualStyleBackColor = true;
+            this.btn_reset.Click += new System.EventHandler(this.btn_reset_Click);
             // 
             // btn_submit
             // 
-            this.btn_submit.Location = new System.Drawing.Point(257, 243);
+            this.btn_submit.Location = new System.Drawing.Point(257, 127);
             this.btn_submit.Name = "btn_submit";
             this.btn_submit.Size = new System.Drawing.Size(75, 23);
             this.btn_submit.TabIndex = 5;
@@ -323,47 +348,47 @@
             this.btn_submit.UseVisualStyleBackColor = true;
             this.btn_submit.Click += new System.EventHandler(this.btn_submit_Click);
             // 
-            // radioButton3
+            // btn_reset2
             // 
-            this.radioButton3.AutoSize = true;
-            this.radioButton3.Location = new System.Drawing.Point(296, 61);
-            this.radioButton3.Name = "radioButton3";
-            this.radioButton3.Size = new System.Drawing.Size(59, 16);
-            this.radioButton3.TabIndex = 6;
-            this.radioButton3.Text = "不设置";
-            this.radioButton3.UseVisualStyleBackColor = true;
-            this.radioButton3.CheckedChanged += new System.EventHandler(this.radioButton1_CheckedChanged);
+            this.btn_reset2.Location = new System.Drawing.Point(96, 255);
+            this.btn_reset2.Name = "btn_reset2";
+            this.btn_reset2.Size = new System.Drawing.Size(75, 23);
+            this.btn_reset2.TabIndex = 4;
+            this.btn_reset2.Text = "重置";
+            this.btn_reset2.UseVisualStyleBackColor = true;
+            this.btn_reset2.Click += new System.EventHandler(this.btn_reset2_Click);
             // 
-            // radioButton4
+            // btn_submit2
             // 
-            this.radioButton4.AutoSize = true;
-            this.radioButton4.Location = new System.Drawing.Point(294, 61);
-            this.radioButton4.Name = "radioButton4";
-            this.radioButton4.Size = new System.Drawing.Size(59, 16);
-            this.radioButton4.TabIndex = 6;
-            this.radioButton4.Text = "不设置";
-            this.radioButton4.UseVisualStyleBackColor = true;
-            this.radioButton4.CheckedChanged += new System.EventHandler(this.radioButton6_CheckedChanged);
+            this.btn_submit2.Location = new System.Drawing.Point(259, 255);
+            this.btn_submit2.Name = "btn_submit2";
+            this.btn_submit2.Size = new System.Drawing.Size(75, 23);
+            this.btn_submit2.TabIndex = 5;
+            this.btn_submit2.Text = "提交";
+            this.btn_submit2.UseVisualStyleBackColor = true;
+            this.btn_submit2.Click += new System.EventHandler(this.btn_submit2_Click);
             // 
             // Form_ProfitAndLoss
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(411, 278);
-            this.Controls.Add(this.btn_reset);
+            this.ClientSize = new System.Drawing.Size(411, 291);
+            this.Controls.Add(this.btn_submit2);
             this.Controls.Add(this.btn_submit);
             this.Controls.Add(this.groupBox2);
+            this.Controls.Add(this.btn_reset2);
+            this.Controls.Add(this.btn_reset);
             this.Controls.Add(this.groupBox1);
             this.Name = "Form_ProfitAndLoss";
             this.Text = "Form_ProfitAndLoss";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_buy_price)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_buy_quantity)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_loss_per)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_loss_quantity)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_profit_per)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_profit_quantity)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -375,22 +400,24 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.RadioButton radioButton2;
-        private System.Windows.Forms.RadioButton radioButton1;
+        private System.Windows.Forms.RadioButton rb_1_2;
+        private System.Windows.Forms.RadioButton rb_1_1;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.RadioButton radioButton5;
-        private System.Windows.Forms.RadioButton radioButton6;
+        private System.Windows.Forms.RadioButton rb_2_2;
+        private System.Windows.Forms.RadioButton rb_2_1;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.NumericUpDown numericUpDown_buy_quantity;
-        private System.Windows.Forms.NumericUpDown numericUpDown1;
-        private System.Windows.Forms.NumericUpDown numericUpDown_buy_price;
-        private System.Windows.Forms.NumericUpDown numericUpDown2;
+        private System.Windows.Forms.NumericUpDown numericUpDown_loss_quantity;
+        private System.Windows.Forms.NumericUpDown numericUpDown_profit_quantity;
+        private System.Windows.Forms.NumericUpDown numericUpDown_loss_per;
+        private System.Windows.Forms.NumericUpDown numericUpDown_profit_per;
         private System.Windows.Forms.Button btn_reset;
         private System.Windows.Forms.Button btn_submit;
-        private System.Windows.Forms.RadioButton radioButton3;
-        private System.Windows.Forms.RadioButton radioButton4;
+        private System.Windows.Forms.RadioButton rb_1_0;
+        private System.Windows.Forms.RadioButton rb_2_0;
+        private System.Windows.Forms.Button btn_reset2;
+        private System.Windows.Forms.Button btn_submit2;
     }
 }

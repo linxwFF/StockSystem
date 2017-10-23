@@ -28,6 +28,8 @@ namespace StockSystem
         private string stock_k_url;
         //当前帐号ID
         private int stock_id;
+        // 当前股票id 
+        private int hold_stock_info_id;
 
         //选中的索引号
         private int SelectedIndices;
@@ -260,6 +262,7 @@ namespace StockSystem
 
                 Lvitem.SubItems.Add(tempString);
                 Lvitem.SubItems.Add("无");
+                Lvitem.Tag = item.id;       //id 标识
 
                 listView1.Items.Add(Lvitem);
 
@@ -291,7 +294,11 @@ namespace StockSystem
             if (listView1.SelectedItems.Count > 0) 
             {
                 ListViewItem vItem = listView1.SelectedItems[0];
+                //获取当前选中的股票代码
                 this.stock_code = vItem.SubItems[1].Text;
+                //获取当前选中的股票id
+                this.hold_stock_info_id = int.Parse(vItem.Tag.ToString());
+
                 default_query(this.stock_code, this.stock_k_url);
                 this.SelectedIndices = this.listView1.SelectedIndices[0];
             }
@@ -455,7 +462,7 @@ namespace StockSystem
         private void btn_make_plan_Click(object sender, EventArgs e)
         {
             //窗口
-            Form_ProfitAndLoss form_ProfitAndLoss = new Form_ProfitAndLoss();
+            Form_ProfitAndLoss form_ProfitAndLoss = new Form_ProfitAndLoss(hold_stock_info_id);
             form_ProfitAndLoss.Show();
 
             //暂停刷新
