@@ -130,6 +130,8 @@ namespace StockSystem
                 }
                 if (loss_tactics != 0) {
                     MessageBox.Show(string.Format("设置成功{0} {1}", this.loss_per.ToString(), this.loss_quantity.ToString()));
+                    
+                    
                 }
             }
         }
@@ -152,6 +154,10 @@ namespace StockSystem
                 }
                 if (profit_tactics != 0) {
                     MessageBox.Show(string.Format("设置成功{0} {1}", this.profit_per.ToString(), this.profit_quantity.ToString()));
+
+                    this.DialogResult = DialogResult.OK;
+                    //关闭窗口
+                    this.Close();
                 }
             }
         }

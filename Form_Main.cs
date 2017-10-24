@@ -28,11 +28,13 @@ namespace StockSystem
         private string stock_k_url;
         //当前帐号ID
         private int stock_id;
-        // 当前股票id 
-        private int hold_stock_info_id;
 
         //选中的索引号
         private int SelectedIndices;
+        // 当前股票id 
+        private int hold_stock_info_id;
+        // 当前股票可卖出状态
+        private bool canSellState = true;
 
         public Form_Main()
         {
@@ -222,11 +224,6 @@ namespace StockSystem
                 ListViewItem Lvitem = new ListViewItem(item.stock_name);
                 Lvitem.SubItems.Add(item.stock_code);
                 Lvitem.SubItems.Add(item.amount_useable.ToString());
-                if (item.amount_useable == 0) 
-                { 
-                    //不可卖出股票
-                    //this.ToolStripMenuItem_sell.Enabled = false;
-                }
                 Lvitem.SubItems.Add(item.hold_quantity.ToString());
                 Lvitem.SubItems.Add(item.market_price.ToString());
                 Lvitem.SubItems.Add(item.profit_loss.ToString());
@@ -303,7 +300,14 @@ namespace StockSystem
                 this.stock_code = vItem.SubItems[1].Text;
                 //获取当前选中的股票id
                 this.hold_stock_info_id = int.Parse(vItem.Tag.ToString());
-
+                //股票可卖出状态
+                if (vItem.SubItems[2].Text == "0")
+                {
+                    this.canSellState = false;
+                }
+                else {
+                    this.canSellState = true;
+                }
                 default_query(this.stock_code, this.stock_k_url);
                 this.SelectedIndices = this.listView1.SelectedIndices[0];
             }
@@ -454,13 +458,24 @@ namespace StockSystem
         //卖出股票
         private void btn_toSell_Click_code(object sender, EventArgs e)
         {
-            //卖出窗口
-            string code = this.stock_code.Replace("sh", "");
-            Form_toSell form_toSell = new Form_toSell(code);
-            form_toSell.Show();
+            if (canSellState == false)
+            {
+                MessageBox.Show("当前股票可卖股数为0，不可卖出!");
+            }
+            else {
+                //卖出窗口
+                string code = this.stock_code.Replace("sh", "");
+                Form_toSell form_toSell = new Form_toSell(code);
+                form_toSell.ShowDialog();
+                //暂停刷新
+                pause_Refresh();
 
-            //暂停刷新
-            pause_Refresh();
+                if (form_toSell.DialogResult == DialogResult.OK)
+                {
+                    start_Refresh();
+                    DataBinding_Stock_Holder();//重新绑定
+                }
+            }
         }
 
         //指定策略
@@ -468,10 +483,16 @@ namespace StockSystem
         {
             //窗口
             Form_ProfitAndLoss form_ProfitAndLoss = new Form_ProfitAndLoss(hold_stock_info_id);
-            form_ProfitAndLoss.Show();
+            form_ProfitAndLoss.ShowDialog();
 
             //暂停刷新
             pause_Refresh();
+
+            if (form_ProfitAndLoss.DialogResult == DialogResult.OK)
+            {
+                start_Refresh();
+                DataBinding_Stock_Holder();//重新绑定
+            }
         }
 
         //开始刷新

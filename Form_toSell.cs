@@ -250,9 +250,10 @@ namespace StockSystem
             commissionService.AddCommission(model);
             commissionService.UpdateAmountUseable(this.hold_stock_info_select.amount_useable - this.sell_quantity, this.hold_stock_info_select);
             //委托交易成功后，增加 bankroll_freezed的金额
-                
+
+            this.DialogResult = DialogResult.OK;
             //关闭窗口
-            this.Hide();
+            this.Close();
         }
 
         //重置按钮
