@@ -39,6 +39,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Commission.cs" />
     <Compile Include="Hold_Stock_Info.cs" />
     <Compile Include="Personal_Stock_Account.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

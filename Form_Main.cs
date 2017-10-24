@@ -222,6 +222,11 @@ namespace StockSystem
                 ListViewItem Lvitem = new ListViewItem(item.stock_name);
                 Lvitem.SubItems.Add(item.stock_code);
                 Lvitem.SubItems.Add(item.amount_useable.ToString());
+                if (item.amount_useable == 0) 
+                { 
+                    //不可卖出股票
+                    //this.ToolStripMenuItem_sell.Enabled = false;
+                }
                 Lvitem.SubItems.Add(item.hold_quantity.ToString());
                 Lvitem.SubItems.Add(item.market_price.ToString());
                 Lvitem.SubItems.Add(item.profit_loss.ToString());

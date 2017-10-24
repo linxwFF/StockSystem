@@ -162,11 +162,6 @@
             0,
             0,
             0});
-            this.numericUpDown_sell_quantity.Minimum = new decimal(new int[] {
-            100,
-            0,
-            0,
-            0});
             this.numericUpDown_sell_quantity.Name = "numericUpDown_sell_quantity";
             this.numericUpDown_sell_quantity.Size = new System.Drawing.Size(100, 21);
             this.numericUpDown_sell_quantity.TabIndex = 11;

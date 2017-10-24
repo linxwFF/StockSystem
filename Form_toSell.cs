@@ -19,6 +19,7 @@ namespace StockSystem
     public partial class Form_toSell : Form
     {
         private Stock_HolderService stock_HolderService = new Stock_HolderService();
+        private CommissionService commissionService = new CommissionService();
 
         // 布尔标志，用来确定输入的是否是字符.
         private bool nonNumberEntered = false;
@@ -27,8 +28,9 @@ namespace StockSystem
 
         private double sell_price;
         private int sell_quantity;
-        private int canBuy;
+        private int canSell;
         private double current_price;
+        private Hold_Stock_Info hold_stock_info_select;    //选中要卖出的股票信息
 
         public Form_toSell(string stock_code = "")
         {
@@ -172,9 +174,13 @@ namespace StockSystem
             double bankroll_useable = sh.account.bankroll_useable;
             this.current_price = double.Parse(divide_result[3]);
             this.sell_price = double.Parse(divide_result[3]);
-            this.canBuy = (int)(bankroll_useable / this.current_price);
 
-            this.lab_cansell.Text = canBuy.ToString();
+            //可以卖的股票数量
+            var datalist =  sh.HoldStockInfo.Where(hsi => hsi.stock_code.Equals(stock_code)).ToList();
+            this.hold_stock_info_select = datalist[0];
+            this.canSell = hold_stock_info_select.amount_useable;
+
+            this.lab_cansell.Text = canSell.ToString();
             this.btn_max.Enabled = true;
 
             //买入的默认价格
@@ -188,15 +194,18 @@ namespace StockSystem
             //所需要的总金额
             this.sell_price = Convert.ToDouble(this.numericUpDown_sell_price.Value);
             this.sell_quantity = Convert.ToInt32(this.numericUpDown_sell_quantity.Value);
-            if (this.sell_quantity > this.canBuy)
+            if (this.sell_quantity > this.canSell)
             {
                 this.sell_quantity = 100;
+                this.numericUpDown_sell_quantity.Value = 100;
                 MessageBox.Show("卖出数量不能超过可买数量！");
+                return;
             }
-            if (this.sell_quantity / 100 == 0)
+            if (this.sell_quantity % 100 != 0)
             {
                 this.sell_quantity = 100;
                 MessageBox.Show("卖出数量为100的倍数！");
+                return;
             }
 
             this.lab_get_money.Text = Convert.ToDouble(sell_price * sell_quantity).ToString();
@@ -207,11 +216,43 @@ namespace StockSystem
         {
             if (this.sell_quantity == 0)
             {
-                MessageBox.Show("请输入卖出数量");
+                MessageBox.Show("请输入卖出数量！");
+                return;
             }
-            else {
-                MessageBox.Show(string.Format("卖出价格：{0}, 卖出数量：{1}", this.sell_price, this.sell_quantity));
+
+            if (this.canSell == 0)
+            {
+                MessageBox.Show("当前股票可用股票为0不可卖出！");
+                return;
             }
+
+            if (this.sell_quantity > this.canSell)
+            {
+                this.sell_quantity = 100;
+                this.numericUpDown_sell_quantity.Value = 100;
+                MessageBox.Show("卖出数量不能超过可买数量！");
+                return;
+            }
+
+            MessageBox.Show(string.Format("卖出价格：{0}, 卖出数量：{1}", this.sell_price, this.sell_quantity));
+                
+            //生成卖出的委托记录
+            Commission model = new Commission();
+            model.hold_stock_info = this.hold_stock_info_select;
+            model.commission_price = this.sell_price;
+            model.commission_amount = this.sell_quantity;
+            // 1.买入 2. 卖出
+            model.direction = 2;
+            // 状态：1.已撤销 2.已成交 3.已提交（默认值）
+            model.state = 3;
+            model.remain = this.sell_quantity;
+
+            commissionService.AddCommission(model);
+            commissionService.UpdateAmountUseable(this.hold_stock_info_select.amount_useable - this.sell_quantity, this.hold_stock_info_select);
+            //委托交易成功后，增加 bankroll_freezed的金额
+                
+            //关闭窗口
+            this.Hide();
         }
 
         //重置按钮
@@ -224,7 +265,7 @@ namespace StockSystem
 
         private void btn_max_Click(object sender, EventArgs e)
         {
-            this.numericUpDown_sell_quantity.Value = (this.canBuy/100) * 100;
+            this.numericUpDown_sell_quantity.Value = (this.canSell/100) * 100;
         }
     }
 }

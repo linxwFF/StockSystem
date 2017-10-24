@@ -75,8 +75,10 @@
             // 
             this.txt_password.Location = new System.Drawing.Point(85, 68);
             this.txt_password.Name = "txt_password";
+            this.txt_password.PasswordChar = '*';
             this.txt_password.Size = new System.Drawing.Size(176, 21);
             this.txt_password.TabIndex = 2;
+            this.txt_password.Text = "admin";
             // 
             // txt_username
             // 
@@ -84,6 +86,7 @@
             this.txt_username.Name = "txt_username";
             this.txt_username.Size = new System.Drawing.Size(177, 21);
             this.txt_username.TabIndex = 1;
+            this.txt_username.Text = "admin";
             // 
             // label3
             // 
