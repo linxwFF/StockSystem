@@ -84,29 +84,29 @@ namespace StockSystem.DAL
                 for (int i = 0; i < list.Count; i++)
                 {
                     Tactics tactics = new Tactics();
+                    if (dt.Rows[i][13] != DBNull.Value)
+                    {
+                        tactics.loss_per = Convert.ToDouble(dt.Rows[i][13]);
+                    }
                     if (dt.Rows[i][14] != DBNull.Value)
                     {
-                        tactics.loss_per = Convert.ToDouble(dt.Rows[i][14]);
+                        tactics.loss_quantity = int.Parse(dt.Rows[i][14].ToString());
                     }
                     if (dt.Rows[i][15] != DBNull.Value)
                     {
-                        tactics.loss_quantity = int.Parse(dt.Rows[i][15].ToString());
+                        tactics.loss_tactics = int.Parse(dt.Rows[i][15].ToString());
                     }
                     if (dt.Rows[i][16] != DBNull.Value)
                     {
-                        tactics.loss_tactics = int.Parse(dt.Rows[i][16].ToString());
+                        tactics.profit_per = double.Parse(dt.Rows[i][16].ToString());
                     }
                     if (dt.Rows[i][17] != DBNull.Value)
                     {
-                        tactics.profit_per = double.Parse(dt.Rows[i][17].ToString());
+                        tactics.profit_quantity = int.Parse(dt.Rows[i][17].ToString());
                     }
                     if (dt.Rows[i][18] != DBNull.Value)
                     {
-                        tactics.profit_quantity = int.Parse(dt.Rows[i][18].ToString());
-                    }
-                    if (dt.Rows[i][19] != DBNull.Value)
-                    {
-                        tactics.profit_tactics = int.Parse(dt.Rows[i][19].ToString());
+                        tactics.profit_tactics = int.Parse(dt.Rows[i][18].ToString());
                     }
                         list[i].tactics = tactics;
                 }

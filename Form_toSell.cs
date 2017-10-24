@@ -234,7 +234,7 @@ namespace StockSystem
                 return;
             }
 
-            MessageBox.Show(string.Format("卖出价格：{0}, 卖出数量：{1}", this.sell_price, this.sell_quantity));
+            //MessageBox.Show(string.Format("卖出价格：{0}, 卖出数量：{1}", this.sell_price, this.sell_quantity));
                 
             //生成卖出的委托记录
             Commission model = new Commission();

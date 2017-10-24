@@ -19,16 +19,22 @@ namespace StockSystem
     public partial class Form_toBuy : Form
     {
         private Stock_HolderService stock_HolderService = new Stock_HolderService();
+        private CommissionService commissionService = new CommissionService();
 
         // 布尔标志，用来确定输入的是否是字符.
         private bool nonNumberEntered = false;
         // 当前股票代码信息
         private string stock_code;
+        // 当前股票名称
+        private string stock_name;
 
         private double buy_price;
         private int buy_quantity;
         private int canBuy;
         private double current_price;
+        // 是否是有效的股票
+        private bool isCanBuy;  //http://finance.sina.com.cn/data/#stock-schq-hsgs-qbag  可买的A股代码数据大全
+        private Hold_Stock_Info hold_stock_info_select;    //选中要卖出的股票信息
 
         public Form_toBuy(string stock_code = "")
         {
@@ -134,7 +140,11 @@ namespace StockSystem
             if (divide_result.Length != 33)
             {
                 //MessageBox.Show("数据信息获取错误，请输入正确的上证代码！");
+                this.isCanBuy = false;
                 return;
+            }
+            else {
+                this.isCanBuy = true;
             }
 
             this.时间标签.Text = divide_result[30] + " " + divide_result[31];
@@ -164,10 +174,17 @@ namespace StockSystem
                 this.涨跌标签.ForeColor = Color.Chartreuse;
             }
             this.lab_stock_name.Text = divide_result[0];
+            this.stock_name = divide_result[0];
 
             //计算可买股票数量
             int stock_id = Utility.user.id;
             Stock_Holder sh = stock_HolderService.getStockHolder(stock_id);
+
+            //是否是持有的股票代码
+            var datalist = sh.HoldStockInfo.Where(hsi => hsi.stock_code.Equals(stock_code)).ToList();
+            if (datalist.Count != 0 ) {
+                this.hold_stock_info_select = datalist[0];
+            }
 
             //当前价
             this.current_price = double.Parse(divide_result[3]);
@@ -203,14 +220,56 @@ namespace StockSystem
         {
             if (this.buy_quantity == 0)
             {
-                MessageBox.Show("请输入购买数量");
+                MessageBox.Show("请输入购买数量!");
+                return;
             }
-            else {
-                MessageBox.Show(string.Format("买入价格：{0}, 买入数量：{1}",this.buy_price,this.buy_quantity));
-                //生成买入的委托记录
+            if (!this.isCanBuy) 
+            {
+                MessageBox.Show("请输入有效的A股代码!");
+                return;
+            }
+            //MessageBox.Show(string.Format("买入价格：{0}, 买入数量：{1}",this.buy_price,this.buy_quantity));
 
+            //生成买入的委托记录
+            Commission model = new Commission();
+            model.hold_stock_info = this.hold_stock_info_select;
+            model.commission_price = this.buy_price;
+            model.commission_amount = this.buy_quantity;
+            // 1.买入 2. 卖出
+            model.direction = 1;
+            // 状态：1.已撤销 2.已成交 3.已提交（默认值）
+            model.state = 3;
+            model.remain = this.buy_quantity;
+            model.stockholder_id = Utility.user.id;
+
+            if (this.hold_stock_info_select == null)
+            {
+                //生成持有股票记录
+                Hold_Stock_Info holdStockInfo = new Hold_Stock_Info();
+                holdStockInfo.stock_name = this.stock_name;
+                holdStockInfo.stock_code = this.stock_code;
+                holdStockInfo.amount_useable = 0;
+                holdStockInfo.hold_quantity = this.buy_quantity;
+                holdStockInfo.cost_price = this.buy_price * this.buy_quantity;
+                holdStockInfo.stock_holder_id = Utility.user.id;
+                commissionService.AddCommission(model, holdStockInfo);
+
+                //委托交易成功后，增加 bankroll_freezed的金额
+                //TODO
+
+            } else {
+                commissionService.AddCommission(model, this.hold_stock_info_select);
+                commissionService.UpdateAmountUseableSell(this.buy_quantity, this.hold_stock_info_select);
+                
+                //委托交易成功后，增加 bankroll_freezed的金额
+                //TODO
             }
+
+            this.DialogResult = DialogResult.OK;
+            //关闭窗口
+            this.Close();
         }
+
         //重置按钮
         private void btn_reset_Click(object sender, EventArgs e)
         {

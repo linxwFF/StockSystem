@@ -120,6 +120,19 @@ namespace StockSystem.DAL
             }
         }
 
+        // 执行Update,Delete,Insert操作 获取主键ID
+        public long ExecuteLastId(string sql, params MySqlParameter[] paras)
+        {
+            using (MySqlConnection con = new MySqlConnection(ConnStr))
+            {
+                MySqlCommand cmd = new MySqlCommand(sql, con);
+                cmd.Parameters.AddRange(paras);
+                con.Open();
+                cmd.ExecuteNonQuery();
+                return cmd.LastInsertedId;
+            }
+        }
+
         /// <summary>  
         /// 调用存储过程 无返回值  
         /// </summary>  

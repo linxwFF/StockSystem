@@ -274,7 +274,7 @@ namespace StockSystem
                 {
                     Lvitem.SubItems[5].ForeColor = Color.Red;
                     Lvitem.SubItems[6].ForeColor = Color.Red;
-                }else {
+                }else if(item.profit_loss < 0){
                     Lvitem.SubItems[5].ForeColor = Color.Green;
                     Lvitem.SubItems[6].ForeColor = Color.Green;
                 }
@@ -319,7 +319,7 @@ namespace StockSystem
                         Lvitem.SubItems.Add("已提交");
                         break;
                 }
-
+                Lvitem.SubItems.Add(item.time.ToString());
                 this.listView2.Items.Add(Lvitem);
             }
         }
@@ -380,10 +380,11 @@ namespace StockSystem
             this.lab_2.Text = divide_result[1];
             this.lab_3.Text = "当前价格：" + divide_result[2];
             this.lab_4.Text = "涨跌率："+ divide_result[3] + " %";
-            if (double.Parse(divide_result[3]) <=0 )
+            if (double.Parse(divide_result[3]) < 0 )
             {
                 this.lab_4.ForeColor = Color.Red;
-            }else
+            }
+            else if (double.Parse(divide_result[3]) > 0)
             {
                 this.lab_4.ForeColor = Color.Chartreuse;
             }
@@ -460,10 +461,15 @@ namespace StockSystem
         {
               //买入窗口
              Form_toBuy form_toBuy = new Form_toBuy();
-             form_toBuy.Show();
-
+             form_toBuy.ShowDialog();
              //暂停刷新
              pause_Refresh();
+
+             if (form_toBuy.DialogResult == DialogResult.OK)
+             {
+                 start_Refresh();
+                 DataBinding_Stock_Holder();//重新绑定
+             }
         }
 
         private void btn_toBuy_Click_code(object sender, EventArgs e)
@@ -471,10 +477,15 @@ namespace StockSystem
             //买入窗口
             string code = this.stock_code.Replace("sh", "");
             Form_toBuy form_toBuy = new Form_toBuy(code);
-            form_toBuy.Show();
-
+            form_toBuy.ShowDialog();
             //暂停刷新
             pause_Refresh();
+
+            if (form_toBuy.DialogResult == DialogResult.OK)
+            {
+                start_Refresh();
+                DataBinding_Stock_Holder();//重新绑定
+            }
         }
 
         private void btn_Refresh_Click(object sender, EventArgs e)
@@ -494,20 +505,19 @@ namespace StockSystem
             if (canSellState == false)
             {
                 MessageBox.Show("当前股票可卖股数为0，不可卖出!");
+                return;
             }
-            else {
-                //卖出窗口
-                string code = this.stock_code.Replace("sh", "");
-                Form_toSell form_toSell = new Form_toSell(code);
-                form_toSell.ShowDialog();
-                //暂停刷新
-                pause_Refresh();
+            //卖出窗口
+            string code = this.stock_code.Replace("sh", "");
+            Form_toSell form_toSell = new Form_toSell(code);
+            form_toSell.ShowDialog();
+            //暂停刷新
+            pause_Refresh();
 
-                if (form_toSell.DialogResult == DialogResult.OK)
-                {
-                    start_Refresh();
-                    DataBinding_Stock_Holder();//重新绑定
-                }
+            if (form_toSell.DialogResult == DialogResult.OK)
+            {
+                start_Refresh();
+                DataBinding_Stock_Holder();//重新绑定
             }
         }
 

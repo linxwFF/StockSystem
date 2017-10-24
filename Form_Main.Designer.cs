@@ -36,8 +36,8 @@
             this.listView1 = new System.Windows.Forms.ListView();
             this.column_stock_name = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.column_stock_code = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.column_amount = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.column_amount_useable = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.column_hold_quantity = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.column_price = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.column_profitLoss = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.column_profitLossPer = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -191,8 +191,8 @@
             this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.column_stock_name,
             this.column_stock_code,
-            this.column_amount,
             this.column_amount_useable,
+            this.column_hold_quantity,
             this.column_price,
             this.column_profitLoss,
             this.column_profitLossPer,
@@ -225,17 +225,15 @@
             this.column_stock_code.Tag = "column_stock_code";
             this.column_stock_code.Text = "股票代码";
             // 
-            // column_amount
-            // 
-            this.column_amount.DisplayIndex = 3;
-            this.column_amount.Tag = "column_amount";
-            this.column_amount.Text = "持有数量";
-            // 
             // column_amount_useable
             // 
-            this.column_amount_useable.DisplayIndex = 2;
             this.column_amount_useable.Tag = "column_amount_useable";
             this.column_amount_useable.Text = "可卖数量";
+            // 
+            // column_hold_quantity
+            // 
+            this.column_hold_quantity.Tag = "column_hold_quantity";
+            this.column_hold_quantity.Text = "持有数量";
             // 
             // column_price
             // 
@@ -292,21 +290,21 @@
             // ToolStripMenuItem_buy
             // 
             this.ToolStripMenuItem_buy.Name = "ToolStripMenuItem_buy";
-            this.ToolStripMenuItem_buy.Size = new System.Drawing.Size(152, 22);
+            this.ToolStripMenuItem_buy.Size = new System.Drawing.Size(124, 22);
             this.ToolStripMenuItem_buy.Text = "买入股票";
             this.ToolStripMenuItem_buy.Click += new System.EventHandler(this.btn_toBuy_Click_code);
             // 
             // ToolStripMenuItem_sell
             // 
             this.ToolStripMenuItem_sell.Name = "ToolStripMenuItem_sell";
-            this.ToolStripMenuItem_sell.Size = new System.Drawing.Size(152, 22);
+            this.ToolStripMenuItem_sell.Size = new System.Drawing.Size(124, 22);
             this.ToolStripMenuItem_sell.Text = "卖出股票";
             this.ToolStripMenuItem_sell.Click += new System.EventHandler(this.btn_toSell_Click_code);
             // 
             // btn_make_plan
             // 
             this.btn_make_plan.Name = "btn_make_plan";
-            this.btn_make_plan.Size = new System.Drawing.Size(152, 22);
+            this.btn_make_plan.Size = new System.Drawing.Size(124, 22);
             this.btn_make_plan.Text = "制定策略";
             this.btn_make_plan.Click += new System.EventHandler(this.btn_make_plan_Click);
             // 
@@ -574,7 +572,7 @@
             // 涨跌标签
             // 
             this.涨跌标签.AutoSize = true;
-            this.涨跌标签.Location = new System.Drawing.Point(6, 19);
+            this.涨跌标签.Location = new System.Drawing.Point(3, 19);
             this.涨跌标签.Name = "涨跌标签";
             this.涨跌标签.Size = new System.Drawing.Size(53, 12);
             this.涨跌标签.TabIndex = 12;
@@ -583,7 +581,7 @@
             // 时间标签
             // 
             this.时间标签.AutoSize = true;
-            this.时间标签.Location = new System.Drawing.Point(64, 19);
+            this.时间标签.Location = new System.Drawing.Point(66, 19);
             this.时间标签.Name = "时间标签";
             this.时间标签.Size = new System.Drawing.Size(53, 12);
             this.时间标签.TabIndex = 12;
@@ -1228,6 +1226,7 @@
             // columnHeader7
             // 
             this.columnHeader7.Text = "委托时间";
+            this.columnHeader7.Width = 169;
             // 
             // Form_Main
             // 
@@ -1311,7 +1310,7 @@
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.ColumnHeader column_stock_name;
         private System.Windows.Forms.ColumnHeader column_stock_code;
-        private System.Windows.Forms.ColumnHeader column_amount;
+        private System.Windows.Forms.ColumnHeader column_hold_quantity;
         private System.Windows.Forms.ColumnHeader column_amount_useable;
         private System.Windows.Forms.ColumnHeader column_cost_price;
         private System.Windows.Forms.ColumnHeader column_price;

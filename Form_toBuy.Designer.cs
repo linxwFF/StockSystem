@@ -282,9 +282,9 @@
             this.groupBox2.Controls.Add(this.buy_3_price);
             this.groupBox2.Controls.Add(this.buy_4_price);
             this.groupBox2.Controls.Add(this.buy_5_price);
-            this.groupBox2.Location = new System.Drawing.Point(191, 15);
+            this.groupBox2.Location = new System.Drawing.Point(191, 12);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(193, 185);
+            this.groupBox2.Size = new System.Drawing.Size(193, 188);
             this.groupBox2.TabIndex = 31;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "交易信息";

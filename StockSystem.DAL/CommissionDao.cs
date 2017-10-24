@@ -13,8 +13,8 @@ namespace StockSystem.DAL
 {
     public class CommissionDao
     {
-        //插入委托记录
-        public void AddCommission(Commission model)
+        //插入委托记录 持有的
+        public void AddCommissionHave(Commission model)
         {
             string sql = "insert into t_commission ("
             + "hold_stock_info_id, commission_price, direction,time,commission_amount,state,remain,stockholder_id) "
@@ -32,13 +32,28 @@ namespace StockSystem.DAL
             DBHelperSQL.Ins.ExecuteNonquery(sql, Paramter.ToArray());
         }
 
-        //修改股东持有股票的可使用股票数量
+        //修改股东持有股票的可使用股票数量  卖出
         public void UpdateAmountUseable(int quantity, string stock_code, int stock_holder_id)
         {
             string sql = "update t_hold_stock_info set amount_useable = @quantity where stock_holder_id = @stock_holder_id and stock_code = @stock_code";
 
             List<MySqlParameter> Paramter = new List<MySqlParameter>();
             Paramter.Add(new MySqlParameter("@quantity", quantity));
+            Paramter.Add(new MySqlParameter("@stock_holder_id", stock_holder_id));
+            Paramter.Add(new MySqlParameter("@stock_code", stock_code));
+
+            DBHelperSQL.Ins.ExecuteNonquery(sql, Paramter.ToArray());
+        }
+        //修改股东持有股票的可使用股票数量  买入
+        public void UpdateAmountUseableBuy(int quantity, string stock_code, int stock_holder_id)
+        {
+            string sql = "update t_hold_stock_info set "
+                +"hold_quantity = hold_quantity +@hold_quantity "
+                +"where stock_holder_id = @stock_holder_id and stock_code = @stock_code";
+
+            List<MySqlParameter> Paramter = new List<MySqlParameter>();
+            Paramter.Add(new MySqlParameter("@quantity", quantity));
+            Paramter.Add(new MySqlParameter("@hold_quantity", quantity));
             Paramter.Add(new MySqlParameter("@stock_holder_id", stock_holder_id));
             Paramter.Add(new MySqlParameter("@stock_code", stock_code));
 
