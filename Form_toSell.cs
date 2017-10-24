@@ -246,6 +246,7 @@ namespace StockSystem
             // 状态：1.已撤销 2.已成交 3.已提交（默认值）
             model.state = 3;
             model.remain = this.sell_quantity;
+            model.stockholder_id = Utility.user.id;
 
             commissionService.AddCommission(model);
             commissionService.UpdateAmountUseable(this.hold_stock_info_select.amount_useable - this.sell_quantity, this.hold_stock_info_select);

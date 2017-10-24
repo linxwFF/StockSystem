@@ -114,7 +114,7 @@
             this.title.Name = "title";
             this.title.Size = new System.Drawing.Size(303, 36);
             this.title.TabIndex = 1;
-            this.title.Text = "股票自动交易助手";
+            this.title.Text = "股票模拟交易系统";
             // 
             // Form_Login
             // 

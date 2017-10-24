@@ -29,5 +29,8 @@ namespace StockSystem.Model
 
         [DataField("hold_stock_info")]
         public Hold_Stock_Info hold_stock_info { get; set; }
+
+        [DataField("stockholder_id")]
+        public int stockholder_id { get; set; }
     }
 }

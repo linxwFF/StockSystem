@@ -287,7 +287,7 @@
             this.ToolStripMenuItem_sell,
             this.btn_make_plan});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(153, 92);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(125, 70);
             // 
             // ToolStripMenuItem_buy
             // 
@@ -1252,7 +1252,7 @@
             this.Controls.Add(this.btn_min);
             this.Controls.Add(this.btn_toBuy);
             this.Name = "Form_Main";
-            this.Text = "Form_Main";
+            this.Text = "Dashboard";
             this.Load += new System.EventHandler(this.Form_Main_Load);
             this.groupBox1.ResumeLayout(false);
             this.contextMenuStrip1.ResumeLayout(false);

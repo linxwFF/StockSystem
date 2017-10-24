@@ -21,8 +21,6 @@ namespace StockSystem.Model
         public int amount_useable{get; set;}
         [DataField("cost_price")]
         public double cost_price { get; set; }
-        [DataField("commission_id")]
-        public int commission_id { get; set; }
         [DataField("hold_quantity")]
         public int hold_quantity { get; set; }
         [DataField("market_price")]
@@ -39,5 +37,9 @@ namespace StockSystem.Model
         // 持有股票指定的策略
         [DataField("tactics")]
         public Tactics tactics { get; set; }
+
+        //委托记录
+        [DataField("commission_list")]
+        public List<Commission> commission_list { get; set; }
     }
 }

@@ -19,6 +19,7 @@ namespace StockSystem
     public partial class Form_Main : Form
     {
         private Stock_HolderService stock_HolderService = new Stock_HolderService();
+        private CommissionService commissionService = new CommissionService();
 
         // 布尔标志，用来确定输入的是否是字符.
         private bool nonNumberEntered = false;
@@ -215,10 +216,9 @@ namespace StockSystem
         {
             Stock_Holder sh = stock_HolderService.getStockHolder(stock_id);
 
+            //持有股票信息
             listView1.Items.Clear();
-
             string tempString;
-
             foreach(Hold_Stock_Info item in sh.HoldStockInfo)
             {
                 ListViewItem Lvitem = new ListViewItem(item.stock_name);
@@ -227,8 +227,8 @@ namespace StockSystem
                 Lvitem.SubItems.Add(item.hold_quantity.ToString());
                 Lvitem.SubItems.Add(item.market_price.ToString());
                 Lvitem.SubItems.Add(item.profit_loss.ToString());
-                Lvitem.SubItems.Add(item.profit_loss_per.ToString());
-                Lvitem.SubItems.Add(item.current_price.ToString());
+                Lvitem.SubItems.Add(item.profit_loss_per.ToString("f2"));
+                Lvitem.SubItems.Add(item.current_price.ToString("f2"));
                 Lvitem.SubItems.Add(item.cost_price.ToString());
 
                 if (item.tactics != null && item.tactics.profit_tactics == 1)
@@ -283,12 +283,45 @@ namespace StockSystem
             this.listView1.Focus();
             this.listView1.Items[SelectedIndices].Selected = true;
 
+            //账户信息
             this.lab_bankroll.Text = sh.account.bankroll.ToString();
             this.lab_bankroll_freezed.Text = sh.account.bankroll.ToString();
             this.lab_bankroll_in_cash.Text = sh.account.bankroll_in_cash.ToString();
             this.lab_bankroll_useable.Text = sh.account.bankroll_useable.ToString();
             this.lab_total.Text = sh.account.total.ToString();
             this.lab_total_stock.Text = sh.account.total_stock.ToString();
+
+            //委托记录信息
+            listView2.Items.Clear();
+            List<Commission> lisCom = commissionService.GetAllCommissionById(Utility.user.id);
+            foreach (Commission item in lisCom)
+            {
+                ListViewItem Lvitem = new ListViewItem(item.hold_stock_info.stock_code);
+                Lvitem.SubItems.Add(item.commission_price.ToString());
+                if (item.direction == 1) {
+                    Lvitem.SubItems.Add("买入");
+                }
+                else if (item.direction == 2) {
+                    Lvitem.SubItems.Add("卖出");
+                }
+
+                Lvitem.SubItems.Add(item.commission_amount.ToString());
+                Lvitem.SubItems.Add(item.remain.ToString());
+                switch(item.state)
+                {
+                    case 1:
+                        Lvitem.SubItems.Add("已撤单");
+                        break;
+                    case 2:
+                        Lvitem.SubItems.Add("已成交");
+                        break;
+                    case 3:
+                        Lvitem.SubItems.Add("已提交");
+                        break;
+                }
+
+                this.listView2.Items.Add(Lvitem);
+            }
         }
 
         private void listView1_SelectedIndexChanged(object sender, EventArgs e)

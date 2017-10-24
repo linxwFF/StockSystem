@@ -14,6 +14,8 @@ namespace StockSystem.DAL
 {
     public class Stock_HolderDao
     {
+        private CommissionDao commissiondao = new CommissionDao();
+
         //获取股东列表
         public DataTable queryStockHolder()
         {
@@ -79,9 +81,9 @@ namespace StockSystem.DAL
             {
                 List<Hold_Stock_Info> list = (List<Hold_Stock_Info>)DataConvert<Hold_Stock_Info>.ToList(dt);
                 //查询出股票策略
-                Tactics tactics = new Tactics();
                 for (int i = 0; i < list.Count; i++)
                 {
+                    Tactics tactics = new Tactics();
                     if (dt.Rows[i][14] != DBNull.Value)
                     {
                         tactics.loss_per = Convert.ToDouble(dt.Rows[i][14]);
@@ -100,11 +102,16 @@ namespace StockSystem.DAL
                     }
                     if (dt.Rows[i][18] != DBNull.Value)
                     {
+                        tactics.profit_quantity = int.Parse(dt.Rows[i][18].ToString());
+                    }
+                    if (dt.Rows[i][19] != DBNull.Value)
+                    {
                         tactics.profit_tactics = int.Parse(dt.Rows[i][19].ToString());
                     }
                         list[i].tactics = tactics;
-                        tactics = null;
                 }
+                //查询出股票的委托记录
+                //TODO
                 
                 return list;
             }
@@ -185,7 +192,10 @@ namespace StockSystem.DAL
 
             if (dt.Rows.Count > 0) {
                 var list = DataConvert<Stock_Holder>.ToList(dt);
-                return list[0];
+                //根据ID获取所有的用户信息
+                //TODO
+                Stock_Holder result = getStockHoderByID(list[0].id);
+                return result;
             }else {
                 return null;
             }
