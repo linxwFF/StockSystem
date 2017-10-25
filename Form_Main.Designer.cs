@@ -138,6 +138,8 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.btn_simulate = new System.Windows.Forms.Button();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
             this.listView2 = new System.Windows.Forms.ListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -146,6 +148,8 @@
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.button_Refresh = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -154,6 +158,8 @@
             this.groupBox5.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox6.SuspendLayout();
+            this.tabControl1.SuspendLayout();
+            this.tabPage1.SuspendLayout();
             this.SuspendLayout();
             // 
             // btn_toBuy
@@ -172,7 +178,7 @@
             this.btn_Refresh.Name = "btn_Refresh";
             this.btn_Refresh.Size = new System.Drawing.Size(75, 23);
             this.btn_Refresh.TabIndex = 1;
-            this.btn_Refresh.Text = "刷新";
+            this.btn_Refresh.Text = "定时刷新";
             this.btn_Refresh.UseVisualStyleBackColor = true;
             this.btn_Refresh.Click += new System.EventHandler(this.btn_Refresh_Click);
             // 
@@ -1173,13 +1179,34 @@
             // 
             // groupBox6
             // 
-            this.groupBox6.Controls.Add(this.listView2);
+            this.groupBox6.Controls.Add(this.tabControl1);
             this.groupBox6.Location = new System.Drawing.Point(28, 368);
             this.groupBox6.Name = "groupBox6";
             this.groupBox6.Size = new System.Drawing.Size(773, 273);
             this.groupBox6.TabIndex = 29;
             this.groupBox6.TabStop = false;
-            this.groupBox6.Text = "自动交易委托记录";
+            this.groupBox6.Text = "交易委托记录";
+            // 
+            // tabControl1
+            // 
+            this.tabControl1.Controls.Add(this.tabPage1);
+            this.tabControl1.Controls.Add(this.tabPage2);
+            this.tabControl1.Location = new System.Drawing.Point(6, 20);
+            this.tabControl1.Name = "tabControl1";
+            this.tabControl1.SelectedIndex = 0;
+            this.tabControl1.Size = new System.Drawing.Size(761, 247);
+            this.tabControl1.TabIndex = 1;
+            // 
+            // tabPage1
+            // 
+            this.tabPage1.Controls.Add(this.listView2);
+            this.tabPage1.Location = new System.Drawing.Point(4, 22);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(753, 221);
+            this.tabPage1.TabIndex = 0;
+            this.tabPage1.Text = "委托记录";
+            this.tabPage1.UseVisualStyleBackColor = true;
             // 
             // listView2
             // 
@@ -1192,9 +1219,9 @@
             this.columnHeader6,
             this.columnHeader7});
             this.listView2.GridLines = true;
-            this.listView2.Location = new System.Drawing.Point(9, 21);
+            this.listView2.Location = new System.Drawing.Point(6, 6);
             this.listView2.Name = "listView2";
-            this.listView2.Size = new System.Drawing.Size(758, 246);
+            this.listView2.Size = new System.Drawing.Size(758, 209);
             this.listView2.TabIndex = 0;
             this.listView2.UseCompatibleStateImageBehavior = false;
             this.listView2.View = System.Windows.Forms.View.Details;
@@ -1228,11 +1255,32 @@
             this.columnHeader7.Text = "委托时间";
             this.columnHeader7.Width = 169;
             // 
+            // tabPage2
+            // 
+            this.tabPage2.Location = new System.Drawing.Point(4, 22);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(753, 221);
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "交易记录";
+            this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // button_Refresh
+            // 
+            this.button_Refresh.Location = new System.Drawing.Point(271, 13);
+            this.button_Refresh.Name = "button_Refresh";
+            this.button_Refresh.Size = new System.Drawing.Size(75, 23);
+            this.button_Refresh.TabIndex = 30;
+            this.button_Refresh.Text = "刷新数据";
+            this.button_Refresh.UseVisualStyleBackColor = true;
+            this.button_Refresh.Click += new System.EventHandler(this.button_Refresh_Click);
+            // 
             // Form_Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1367, 699);
+            this.Controls.Add(this.button_Refresh);
             this.Controls.Add(this.groupBox6);
             this.Controls.Add(this.btn_simulate);
             this.Controls.Add(this.groupBox5);
@@ -1265,6 +1313,8 @@
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.groupBox6.ResumeLayout(false);
+            this.tabControl1.ResumeLayout(false);
+            this.tabPage1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1388,5 +1438,9 @@
         private System.Windows.Forms.ColumnHeader columnHeader5;
         private System.Windows.Forms.ColumnHeader columnHeader6;
         private System.Windows.Forms.ColumnHeader columnHeader7;
+        private System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.Button button_Refresh;
     }
 }

@@ -181,9 +181,12 @@ namespace StockSystem
             Stock_Holder sh = stock_HolderService.getStockHolder(stock_id);
 
             //是否是持有的股票代码
-            var datalist = sh.HoldStockInfo.Where(hsi => hsi.stock_code.Equals(stock_code)).ToList();
-            if (datalist.Count != 0 ) {
-                this.hold_stock_info_select = datalist[0];
+            if (sh.HoldStockInfo != null) {
+                var datalist = sh.HoldStockInfo.Where(hsi => hsi.stock_code.Equals(stock_code)).ToList();
+                if (datalist.Count != 0)
+                {
+                    this.hold_stock_info_select = datalist[0];
+                }
             }
 
             //当前价
@@ -259,8 +262,8 @@ namespace StockSystem
 
             } else {
                 commissionService.AddCommission(model, this.hold_stock_info_select);
-                commissionService.UpdateAmountUseableSell(this.buy_quantity, this.hold_stock_info_select);
-                
+
+                commissionService.UpdateAmountUseableBuy(this.buy_quantity,this.buy_price, this.hold_stock_info_select);
                 //委托交易成功后，增加 bankroll_freezed的金额
                 //TODO
             }

@@ -174,6 +174,9 @@ namespace StockSystem
             //更新数据库的股东持仓信息
             stock_HolderService.updateStockHolderInfo(stock_id);
             DataBinding_Stock_Holder();
+
+            //结算股东账户
+
         }
         //上证指数 定时器10S一次
         private void timer1_Tick(object sender, EventArgs e)
@@ -216,6 +219,15 @@ namespace StockSystem
         {
             Stock_Holder sh = stock_HolderService.getStockHolder(stock_id);
 
+            //账户信息
+            this.lab_bankroll.Text = sh.account.bankroll.ToString();
+            this.lab_bankroll_freezed.Text = sh.account.bankroll.ToString();
+            this.lab_bankroll_in_cash.Text = sh.account.bankroll_in_cash.ToString();
+            this.lab_bankroll_useable.Text = sh.account.bankroll_useable.ToString();
+            this.lab_total.Text = sh.account.total.ToString();
+            this.lab_total_stock.Text = sh.account.total_stock.ToString();
+
+            if (sh.HoldStockInfo == null) { return; }
             //持有股票信息
             listView1.Items.Clear();
             string tempString;
@@ -283,14 +295,6 @@ namespace StockSystem
             this.listView1.Focus();
             this.listView1.Items[SelectedIndices].Selected = true;
 
-            //账户信息
-            this.lab_bankroll.Text = sh.account.bankroll.ToString();
-            this.lab_bankroll_freezed.Text = sh.account.bankroll.ToString();
-            this.lab_bankroll_in_cash.Text = sh.account.bankroll_in_cash.ToString();
-            this.lab_bankroll_useable.Text = sh.account.bankroll_useable.ToString();
-            this.lab_total.Text = sh.account.total.ToString();
-            this.lab_total_stock.Text = sh.account.total_stock.ToString();
-
             //委托记录信息
             listView2.Items.Clear();
             List<Commission> lisCom = commissionService.GetAllCommissionById(Utility.user.id);
@@ -323,6 +327,9 @@ namespace StockSystem
                 this.listView2.Items.Add(Lvitem);
             }
         }
+
+        //结算股东帐号
+
 
         private void listView1_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -469,6 +476,7 @@ namespace StockSystem
              {
                  start_Refresh();
                  DataBinding_Stock_Holder();//重新绑定
+                 //index_Timer_Tick(sender, e);
              }
         }
 
@@ -485,18 +493,8 @@ namespace StockSystem
             {
                 start_Refresh();
                 DataBinding_Stock_Holder();//重新绑定
+                //index_Timer_Tick(sender, e);
             }
-        }
-
-        private void btn_Refresh_Click(object sender, EventArgs e)
-        {
-            // 开始刷新
-            start_Refresh();
-
-            query();
-            default_query(stock_code, stock_k_url);
-
-            this.listView1.Items[SelectedIndices].Selected = true;
         }
 
         //卖出股票
@@ -518,6 +516,7 @@ namespace StockSystem
             {
                 start_Refresh();
                 DataBinding_Stock_Holder();//重新绑定
+                //index_Timer_Tick(sender, e);
             }
         }
 
@@ -551,6 +550,22 @@ namespace StockSystem
             this.index_Timer.Enabled = false;
             this.timer1.Enabled = false;
             this.btn_Refresh.Text = "暂停中";
+        }
+
+        private void btn_Refresh_Click(object sender, EventArgs e)
+        {
+            // 开始刷新
+            start_Refresh();
+
+            query();
+            default_query(stock_code, stock_k_url);
+
+            this.listView1.Items[SelectedIndices].Selected = true;
+        }
+
+        private void button_Refresh_Click(object sender, EventArgs e)
+        {
+            DataBinding_Stock_Holder();
         }
     }
 }
