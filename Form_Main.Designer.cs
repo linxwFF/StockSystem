@@ -164,7 +164,7 @@
             // 
             // btn_toBuy
             // 
-            this.btn_toBuy.Location = new System.Drawing.Point(28, 13);
+            this.btn_toBuy.Location = new System.Drawing.Point(16, 13);
             this.btn_toBuy.Name = "btn_toBuy";
             this.btn_toBuy.Size = new System.Drawing.Size(75, 23);
             this.btn_toBuy.TabIndex = 0;
@@ -174,7 +174,7 @@
             // 
             // btn_Refresh
             // 
-            this.btn_Refresh.Location = new System.Drawing.Point(190, 13);
+            this.btn_Refresh.Location = new System.Drawing.Point(178, 13);
             this.btn_Refresh.Name = "btn_Refresh";
             this.btn_Refresh.Size = new System.Drawing.Size(75, 23);
             this.btn_Refresh.TabIndex = 1;
@@ -185,9 +185,9 @@
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.listView1);
-            this.groupBox1.Location = new System.Drawing.Point(28, 42);
+            this.groupBox1.Location = new System.Drawing.Point(12, 42);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(976, 320);
+            this.groupBox1.Size = new System.Drawing.Size(992, 320);
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "持有股票";
@@ -214,7 +214,7 @@
             this.listView1.Location = new System.Drawing.Point(9, 20);
             this.listView1.MultiSelect = false;
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(961, 289);
+            this.listView1.Size = new System.Drawing.Size(977, 289);
             this.listView1.TabIndex = 0;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
@@ -245,7 +245,7 @@
             // 
             this.column_price.Tag = "column_price";
             this.column_price.Text = "市值";
-            this.column_price.Width = 53;
+            this.column_price.Width = 70;
             // 
             // column_profitLoss
             // 
@@ -687,9 +687,9 @@
             this.groupBox4.Controls.Add(this.lab_4);
             this.groupBox4.Controls.Add(this.lab_2);
             this.groupBox4.Controls.Add(this.lab_3);
-            this.groupBox4.Location = new System.Drawing.Point(28, 647);
+            this.groupBox4.Location = new System.Drawing.Point(12, 647);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(773, 47);
+            this.groupBox4.Size = new System.Drawing.Size(789, 47);
             this.groupBox4.TabIndex = 25;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "大盘指数";
@@ -1170,7 +1170,7 @@
             // 
             // btn_simulate
             // 
-            this.btn_simulate.Location = new System.Drawing.Point(109, 13);
+            this.btn_simulate.Location = new System.Drawing.Point(97, 13);
             this.btn_simulate.Name = "btn_simulate";
             this.btn_simulate.Size = new System.Drawing.Size(75, 23);
             this.btn_simulate.TabIndex = 28;
@@ -1180,9 +1180,9 @@
             // groupBox6
             // 
             this.groupBox6.Controls.Add(this.tabControl1);
-            this.groupBox6.Location = new System.Drawing.Point(28, 368);
+            this.groupBox6.Location = new System.Drawing.Point(12, 368);
             this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(773, 273);
+            this.groupBox6.Size = new System.Drawing.Size(789, 273);
             this.groupBox6.TabIndex = 29;
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "交易委托记录";
@@ -1194,7 +1194,7 @@
             this.tabControl1.Location = new System.Drawing.Point(6, 20);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(761, 247);
+            this.tabControl1.Size = new System.Drawing.Size(777, 247);
             this.tabControl1.TabIndex = 1;
             // 
             // tabPage1
@@ -1203,7 +1203,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(753, 221);
+            this.tabPage1.Size = new System.Drawing.Size(769, 221);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "委托记录";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -1260,14 +1260,14 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(753, 221);
+            this.tabPage2.Size = new System.Drawing.Size(769, 221);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "交易记录";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
             // button_Refresh
             // 
-            this.button_Refresh.Location = new System.Drawing.Point(271, 13);
+            this.button_Refresh.Location = new System.Drawing.Point(259, 13);
             this.button_Refresh.Name = "button_Refresh";
             this.button_Refresh.Size = new System.Drawing.Size(75, 23);
             this.button_Refresh.TabIndex = 30;

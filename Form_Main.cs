@@ -37,6 +37,12 @@ namespace StockSystem
         // 当前股票可卖出状态
         private bool canSellState = true;
 
+        //选中行右键状态
+        private bool canRightClick = true;
+
+        //当前持有股票的总价值
+        private double CountStockAssets;
+
         public Form_Main()
         {
             InitializeComponent();
@@ -227,10 +233,50 @@ namespace StockSystem
             this.lab_total.Text = sh.account.total.ToString();
             this.lab_total_stock.Text = sh.account.total_stock.ToString();
 
+            //委托记录信息
+            listView2.Items.Clear();
+            List<Commission> lisCom = commissionService.GetAllCommissionById(Utility.user.id);
+            foreach (Commission item in lisCom)
+            {
+                ListViewItem Lvitem = new ListViewItem(item.hold_stock_info.stock_code);
+                Lvitem.SubItems.Add(item.commission_price.ToString());
+                if (item.direction == 1)
+                {
+                    Lvitem.SubItems.Add("买入");
+                }
+                else if (item.direction == 2)
+                {
+                    Lvitem.SubItems.Add("卖出");
+                }
+
+                Lvitem.SubItems.Add(item.commission_amount.ToString());
+                Lvitem.SubItems.Add(item.remain.ToString());
+                switch (item.state)
+                {
+                    case 1:
+                        Lvitem.SubItems.Add("已撤单");
+                        break;
+                    case 2:
+                        Lvitem.SubItems.Add("已成交");
+                        break;
+                    case 3:
+                        Lvitem.SubItems.Add("已提交");
+                        break;
+                }
+                Lvitem.SubItems.Add(item.time.ToString());
+                this.listView2.Items.Add(Lvitem);
+            }
+
+
             if (sh.HoldStockInfo == null) { return; }
             //持有股票信息
             listView1.Items.Clear();
             string tempString;
+
+            double stockTotalAssets = 0;            //持有股票总价值
+            double lossProfit = 0;                       //盈亏
+            double lossProfitPer = 0;                  //盈亏百分比
+
             foreach(Hold_Stock_Info item in sh.HoldStockInfo)
             {
                 ListViewItem Lvitem = new ListViewItem(item.stock_name);
@@ -238,8 +284,14 @@ namespace StockSystem
                 Lvitem.SubItems.Add(item.amount_useable.ToString());
                 Lvitem.SubItems.Add(item.hold_quantity.ToString());
                 Lvitem.SubItems.Add(item.market_price.ToString());
+                //计算持有股票总价值
+                stockTotalAssets += item.market_price;
                 Lvitem.SubItems.Add(item.profit_loss.ToString());
+                //计算总盈亏
+                lossProfit += item.profit_loss;
                 Lvitem.SubItems.Add(item.profit_loss_per.ToString("f2"));
+                //计算总盈亏百分比
+                lossProfitPer += item.profit_loss_per;
                 Lvitem.SubItems.Add(item.current_price.ToString("f2"));
                 Lvitem.SubItems.Add(item.cost_price.ToString());
 
@@ -292,43 +344,45 @@ namespace StockSystem
                 }
             }
 
+            // 持有股票汇总
+            ListViewItem LvitemCount = new ListViewItem("汇总：");
+            LvitemCount.BackColor = Color.Orange;
+
+            LvitemCount.SubItems.Add(" ");
+            LvitemCount.SubItems.Add(" ");
+            LvitemCount.SubItems.Add(" ");
+            LvitemCount.SubItems.Add("总盈亏：");
+            if (lossProfit > 0) {
+                LvitemCount.SubItems.Add("+" +lossProfit.ToString());
+                LvitemCount.SubItems.Add("+" +lossProfitPer.ToString() + "%");
+            }
+            else if (lossProfit < 0)
+            {
+                LvitemCount.SubItems.Add("-" + lossProfit.ToString());
+                LvitemCount.SubItems.Add("-" + lossProfitPer.ToString() + "%");
+            }
+            else {
+                LvitemCount.SubItems.Add(lossProfit.ToString());
+                LvitemCount.SubItems.Add(lossProfitPer.ToString() + "%");
+            }
+
+            LvitemCount.SubItems.Add(" ");
+            LvitemCount.SubItems.Add(" ");
+            LvitemCount.SubItems.Add("股票总值：￥" + stockTotalAssets);
+            LvitemCount.SubItems.Add("持有股票数量：" + sh.HoldStockInfo.Count().ToString());
+            this.CountStockAssets = stockTotalAssets;
+
+            listView1.Items.Add(LvitemCount);
+
             this.listView1.Focus();
             this.listView1.Items[SelectedIndices].Selected = true;
-
-            //委托记录信息
-            listView2.Items.Clear();
-            List<Commission> lisCom = commissionService.GetAllCommissionById(Utility.user.id);
-            foreach (Commission item in lisCom)
-            {
-                ListViewItem Lvitem = new ListViewItem(item.hold_stock_info.stock_code);
-                Lvitem.SubItems.Add(item.commission_price.ToString());
-                if (item.direction == 1) {
-                    Lvitem.SubItems.Add("买入");
-                }
-                else if (item.direction == 2) {
-                    Lvitem.SubItems.Add("卖出");
-                }
-
-                Lvitem.SubItems.Add(item.commission_amount.ToString());
-                Lvitem.SubItems.Add(item.remain.ToString());
-                switch(item.state)
-                {
-                    case 1:
-                        Lvitem.SubItems.Add("已撤单");
-                        break;
-                    case 2:
-                        Lvitem.SubItems.Add("已成交");
-                        break;
-                    case 3:
-                        Lvitem.SubItems.Add("已提交");
-                        break;
-                }
-                Lvitem.SubItems.Add(item.time.ToString());
-                this.listView2.Items.Add(Lvitem);
-            }
         }
 
-        //结算股东帐号
+        //结算持有股票价值
+        private void StockTotalAssets(double totalAssets)
+        { 
+            
+        }
 
 
         private void listView1_SelectedIndexChanged(object sender, EventArgs e)
@@ -336,6 +390,14 @@ namespace StockSystem
             if (listView1.SelectedItems.Count > 0) 
             {
                 ListViewItem vItem = listView1.SelectedItems[0];
+                if (vItem.SubItems[0].Text == "汇总：")
+                {
+                    this.canRightClick = false;
+                    return;
+                }
+                else {
+                    this.canRightClick = true;
+                }
                 //获取当前选中的股票代码
                 this.stock_code = vItem.SubItems[1].Text;
                 //获取当前选中的股票id
@@ -482,6 +544,11 @@ namespace StockSystem
 
         private void btn_toBuy_Click_code(object sender, EventArgs e)
         {
+            if (this.canRightClick == false)
+            {
+                MessageBox.Show("不可操作！");
+                return;
+            }
             //买入窗口
             string code = this.stock_code.Replace("sh", "");
             Form_toBuy form_toBuy = new Form_toBuy(code);
@@ -505,6 +572,11 @@ namespace StockSystem
                 MessageBox.Show("当前股票可卖股数为0，不可卖出!");
                 return;
             }
+            if (this.canRightClick == false)
+            {
+                MessageBox.Show("不可操作！");
+                return;
+            }
             //卖出窗口
             string code = this.stock_code.Replace("sh", "");
             Form_toSell form_toSell = new Form_toSell(code);
@@ -523,6 +595,11 @@ namespace StockSystem
         //指定策略
         private void btn_make_plan_Click(object sender, EventArgs e)
         {
+            if (this.canRightClick == false)
+            {
+                MessageBox.Show("不可操作！");
+                return;
+            }
             //窗口
             Form_ProfitAndLoss form_ProfitAndLoss = new Form_ProfitAndLoss(hold_stock_info_id);
             form_ProfitAndLoss.ShowDialog();
