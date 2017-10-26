@@ -247,7 +247,7 @@ namespace StockSystem
 
             if (this.hold_stock_info_select == null)
             {
-                //生成持有股票记录
+                //生成持有股票记录 （数据库中无持有此股票）
                 Hold_Stock_Info holdStockInfo = new Hold_Stock_Info();
                 holdStockInfo.stock_name = this.stock_name;
                 holdStockInfo.stock_code = this.stock_code;
@@ -255,17 +255,20 @@ namespace StockSystem
                 holdStockInfo.hold_quantity = this.buy_quantity;
                 holdStockInfo.cost_price = this.buy_price * this.buy_quantity;
                 holdStockInfo.stock_holder_id = Utility.user.id;
+                holdStockInfo.type = 1;
                 commissionService.AddCommission(model, holdStockInfo);
 
-                //委托交易成功后，增加 bankroll_freezed的金额
-                //TODO
+                //委托交易成功后，减少 bankroll的金额 cost_price
+                //TODO 
 
             } else {
                 commissionService.AddCommission(model, this.hold_stock_info_select);
 
                 commissionService.UpdateAmountUseableBuy(this.buy_quantity,this.buy_price, this.hold_stock_info_select);
-                //委托交易成功后，增加 bankroll_freezed的金额
+                //委托交易成功后，减少 bankroll的金额
                 //TODO
+
+
             }
 
             this.DialogResult = DialogResult.OK;

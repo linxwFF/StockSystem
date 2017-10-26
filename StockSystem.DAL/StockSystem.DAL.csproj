@@ -45,6 +45,7 @@
     <Compile Include="CommissionDao.cs" />
     <Compile Include="DBHelperSQL.cs" />
     <Compile Include="Hold_Stock_InfoDao.cs" />
+    <Compile Include="Personal_Stock_AccountDao.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Stock_HolderDao.cs" />
     <Compile Include="TacticsDao.cs" />

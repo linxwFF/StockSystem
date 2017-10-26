@@ -150,7 +150,22 @@
             this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.button_Refresh = new System.Windows.Forms.Button();
-            this.groupBox1.SuspendLayout();
+            this.分析ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.tabControl2 = new System.Windows.Forms.TabControl();
+            this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.listView3 = new System.Windows.Forms.ListView();
+            this.listView4 = new System.Windows.Forms.ListView();
+            this.listView5 = new System.Windows.Forms.ListView();
+            this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader10 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader11 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader12 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.btn_addOptional = new System.Windows.Forms.Button();
             this.contextMenuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox3.SuspendLayout();
@@ -160,6 +175,11 @@
             this.groupBox6.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
+            this.tabPage2.SuspendLayout();
+            this.tabPage3.SuspendLayout();
+            this.tabControl2.SuspendLayout();
+            this.tabPage4.SuspendLayout();
+            this.tabPage5.SuspendLayout();
             this.SuspendLayout();
             // 
             // btn_toBuy
@@ -184,8 +204,7 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.listView1);
-            this.groupBox1.Location = new System.Drawing.Point(12, 42);
+            this.groupBox1.Location = new System.Drawing.Point(22, 251);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(992, 320);
             this.groupBox1.TabIndex = 2;
@@ -211,10 +230,10 @@
             this.listView1.FullRowSelect = true;
             this.listView1.GridLines = true;
             this.listView1.HideSelection = false;
-            this.listView1.Location = new System.Drawing.Point(9, 20);
+            this.listView1.Location = new System.Drawing.Point(2, 3);
             this.listView1.MultiSelect = false;
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(977, 289);
+            this.listView1.Size = new System.Drawing.Size(977, 287);
             this.listView1.TabIndex = 0;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
@@ -289,9 +308,10 @@
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.ToolStripMenuItem_buy,
             this.ToolStripMenuItem_sell,
-            this.btn_make_plan});
+            this.btn_make_plan,
+            this.分析ToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(125, 70);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(125, 92);
             // 
             // ToolStripMenuItem_buy
             // 
@@ -1130,6 +1150,7 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.btn_addOptional);
             this.groupBox2.Controls.Add(this.label26);
             this.groupBox2.Controls.Add(this.label27);
             this.groupBox2.Controls.Add(this.label28);
@@ -1191,6 +1212,7 @@
             // 
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
+            this.tabControl1.Controls.Add(this.tabPage3);
             this.tabControl1.Location = new System.Drawing.Point(6, 20);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
@@ -1257,6 +1279,7 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.listView4);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
@@ -1275,11 +1298,148 @@
             this.button_Refresh.UseVisualStyleBackColor = true;
             this.button_Refresh.Click += new System.EventHandler(this.button_Refresh_Click);
             // 
+            // 分析ToolStripMenuItem
+            // 
+            this.分析ToolStripMenuItem.Name = "分析ToolStripMenuItem";
+            this.分析ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.分析ToolStripMenuItem.Text = "分析";
+            // 
+            // tabPage3
+            // 
+            this.tabPage3.Controls.Add(this.listView5);
+            this.tabPage3.Location = new System.Drawing.Point(4, 22);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Size = new System.Drawing.Size(769, 221);
+            this.tabPage3.TabIndex = 2;
+            this.tabPage3.Text = "优选股（推荐买入股）";
+            this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // tabControl2
+            // 
+            this.tabControl2.Controls.Add(this.tabPage4);
+            this.tabControl2.Controls.Add(this.tabPage5);
+            this.tabControl2.Location = new System.Drawing.Point(16, 43);
+            this.tabControl2.Name = "tabControl2";
+            this.tabControl2.SelectedIndex = 0;
+            this.tabControl2.Size = new System.Drawing.Size(992, 322);
+            this.tabControl2.TabIndex = 31;
+            // 
+            // tabPage4
+            // 
+            this.tabPage4.Controls.Add(this.listView1);
+            this.tabPage4.Location = new System.Drawing.Point(4, 22);
+            this.tabPage4.Name = "tabPage4";
+            this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage4.Size = new System.Drawing.Size(984, 296);
+            this.tabPage4.TabIndex = 0;
+            this.tabPage4.Text = "持有股票信息";
+            this.tabPage4.UseVisualStyleBackColor = true;
+            // 
+            // tabPage5
+            // 
+            this.tabPage5.Controls.Add(this.listView3);
+            this.tabPage5.Location = new System.Drawing.Point(4, 22);
+            this.tabPage5.Name = "tabPage5";
+            this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage5.Size = new System.Drawing.Size(984, 296);
+            this.tabPage5.TabIndex = 1;
+            this.tabPage5.Text = "自选股信息";
+            this.tabPage5.UseVisualStyleBackColor = true;
+            // 
+            // listView3
+            // 
+            this.listView3.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader8,
+            this.columnHeader9,
+            this.columnHeader10});
+            this.listView3.GridLines = true;
+            this.listView3.Location = new System.Drawing.Point(4, 4);
+            this.listView3.Name = "listView3";
+            this.listView3.Size = new System.Drawing.Size(974, 289);
+            this.listView3.TabIndex = 0;
+            this.listView3.UseCompatibleStateImageBehavior = false;
+            this.listView3.View = System.Windows.Forms.View.Details;
+            // 
+            // listView4
+            // 
+            this.listView4.GridLines = true;
+            this.listView4.Location = new System.Drawing.Point(3, 3);
+            this.listView4.Name = "listView4";
+            this.listView4.Size = new System.Drawing.Size(760, 212);
+            this.listView4.TabIndex = 0;
+            this.listView4.UseCompatibleStateImageBehavior = false;
+            this.listView4.View = System.Windows.Forms.View.Details;
+            // 
+            // listView5
+            // 
+            this.listView5.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader11,
+            this.columnHeader12});
+            this.listView5.GridLines = true;
+            this.listView5.Location = new System.Drawing.Point(3, 3);
+            this.listView5.Name = "listView5";
+            this.listView5.Size = new System.Drawing.Size(763, 215);
+            this.listView5.TabIndex = 0;
+            this.listView5.UseCompatibleStateImageBehavior = false;
+            this.listView5.View = System.Windows.Forms.View.Details;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(340, 13);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 32;
+            this.button1.Text = "自动";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(421, 13);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.TabIndex = 32;
+            this.button2.Text = "半自动";
+            this.button2.UseVisualStyleBackColor = true;
+            // 
+            // columnHeader8
+            // 
+            this.columnHeader8.Text = "股票名称";
+            // 
+            // columnHeader9
+            // 
+            this.columnHeader9.Text = "股票代码";
+            // 
+            // columnHeader10
+            // 
+            this.columnHeader10.Text = "当前价";
+            // 
+            // columnHeader11
+            // 
+            this.columnHeader11.Text = "股票名称";
+            // 
+            // columnHeader12
+            // 
+            this.columnHeader12.Text = "股票代码";
+            // 
+            // btn_addOptional
+            // 
+            this.btn_addOptional.Enabled = false;
+            this.btn_addOptional.Location = new System.Drawing.Point(70, 237);
+            this.btn_addOptional.Name = "btn_addOptional";
+            this.btn_addOptional.Size = new System.Drawing.Size(75, 23);
+            this.btn_addOptional.TabIndex = 12;
+            this.btn_addOptional.Text = "加入自选股";
+            this.btn_addOptional.UseVisualStyleBackColor = true;
+            this.btn_addOptional.Click += new System.EventHandler(this.btn_addOptional_Click);
+            // 
             // Form_Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1367, 699);
+            this.Controls.Add(this.button2);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.tabControl2);
             this.Controls.Add(this.button_Refresh);
             this.Controls.Add(this.groupBox6);
             this.Controls.Add(this.btn_simulate);
@@ -1301,7 +1461,6 @@
             this.Name = "Form_Main";
             this.Text = "Dashboard";
             this.Load += new System.EventHandler(this.Form_Main_Load);
-            this.groupBox1.ResumeLayout(false);
             this.contextMenuStrip1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.groupBox3.ResumeLayout(false);
@@ -1315,6 +1474,11 @@
             this.groupBox6.ResumeLayout(false);
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
+            this.tabPage2.ResumeLayout(false);
+            this.tabPage3.ResumeLayout(false);
+            this.tabControl2.ResumeLayout(false);
+            this.tabPage4.ResumeLayout(false);
+            this.tabPage5.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1442,5 +1606,21 @@
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.Button button_Refresh;
+        private System.Windows.Forms.ToolStripMenuItem 分析ToolStripMenuItem;
+        private System.Windows.Forms.TabPage tabPage3;
+        private System.Windows.Forms.TabControl tabControl2;
+        private System.Windows.Forms.TabPage tabPage4;
+        private System.Windows.Forms.TabPage tabPage5;
+        private System.Windows.Forms.ListView listView4;
+        private System.Windows.Forms.ListView listView5;
+        private System.Windows.Forms.ListView listView3;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.ColumnHeader columnHeader8;
+        private System.Windows.Forms.ColumnHeader columnHeader9;
+        private System.Windows.Forms.ColumnHeader columnHeader10;
+        private System.Windows.Forms.ColumnHeader columnHeader11;
+        private System.Windows.Forms.ColumnHeader columnHeader12;
+        private System.Windows.Forms.Button btn_addOptional;
     }
 }

@@ -20,9 +20,13 @@ namespace StockSystem
     {
         private Stock_HolderService stock_HolderService = new Stock_HolderService();
         private CommissionService commissionService = new CommissionService();
+        private Personal_Stock_AccountService accountService = new Personal_Stock_AccountService();
 
         // 布尔标志，用来确定输入的是否是字符.
         private bool nonNumberEntered = false;
+        // 布尔标志， 用来确定查询是否有结果
+        private bool isReachResult = true;
+
         // 当前股票代码信息
         private string stock_code;
         // K线
@@ -86,7 +90,7 @@ namespace StockSystem
         }
 
         //显示数据
-        private void showData(string stock_data_content, string stock_k_model) 
+        private bool showData(string stock_data_content, string stock_k_model) 
         {
              //股票数据
             string stock_data = stock_data_content.Substring(stock_data_content.IndexOf("\"") +  1, (stock_data_content.LastIndexOf("\"") - stock_data_content.IndexOf("\"") - 1));
@@ -100,8 +104,9 @@ namespace StockSystem
 
             if (divide_result.Length != 33)
             {
+                this.isReachResult = false;
                 //MessageBox.Show("数据信息获取错误，请输入正确的上证代码！");
-                return;
+                return false;
             }
 
             if (this.股票名字.Text != divide_result[0])
@@ -172,6 +177,9 @@ namespace StockSystem
 
             this.sell_5.Text = divide_result[28];
             this.sell_5_price.Text = divide_result[29];
+
+            this.isReachResult = true;
+            return true;
         }
 
         //持股信息定时器 10S一次
@@ -182,7 +190,7 @@ namespace StockSystem
             DataBinding_Stock_Holder();
 
             //结算股东账户
-
+            accountService.updateTotalStock(this.CountStockAssets);
         }
         //上证指数 定时器10S一次
         private void timer1_Tick(object sender, EventArgs e)
@@ -226,12 +234,12 @@ namespace StockSystem
             Stock_Holder sh = stock_HolderService.getStockHolder(stock_id);
 
             //账户信息
-            this.lab_bankroll.Text = sh.account.bankroll.ToString();
-            this.lab_bankroll_freezed.Text = sh.account.bankroll.ToString();
-            this.lab_bankroll_in_cash.Text = sh.account.bankroll_in_cash.ToString();
-            this.lab_bankroll_useable.Text = sh.account.bankroll_useable.ToString();
-            this.lab_total.Text = sh.account.total.ToString();
-            this.lab_total_stock.Text = sh.account.total_stock.ToString();
+            this.lab_bankroll.Text = sh.account.bankroll.ToString("f2");
+            this.lab_bankroll_freezed.Text = sh.account.bankroll.ToString("f2");
+            this.lab_bankroll_in_cash.Text = sh.account.bankroll_in_cash.ToString("f2");
+            this.lab_bankroll_useable.Text = sh.account.bankroll_useable.ToString("f2");
+            this.lab_total.Text = sh.account.total.ToString("f2");
+            this.lab_total_stock.Text = sh.account.total_stock.ToString("f2");
 
             //委托记录信息
             listView2.Items.Clear();
@@ -378,13 +386,6 @@ namespace StockSystem
             this.listView1.Items[SelectedIndices].Selected = true;
         }
 
-        //结算持有股票价值
-        private void StockTotalAssets(double totalAssets)
-        { 
-            
-        }
-
-
         private void listView1_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (listView1.SelectedItems.Count > 0) 
@@ -469,6 +470,52 @@ namespace StockSystem
             {
                 this.stock_code = "sh" + this.text_stockCode.Text;
                 default_query(this.stock_code, this.stock_k_url);
+                if (this.isReachResult == false)
+                {
+                    MessageBox.Show("请输入正确的A股股票代码！");
+
+                    this.股票名字.Text = "";
+                    this.今日开盘价.Text = "";
+                    this.昨日收盘价.Text = "";
+                    this.当前价格.Text = "";
+                    this.今日最高价.Text = "";
+                    this.今日最低价.Text = "";
+                    this.竞买价.Text = "";
+                    this.竞卖价.Text = "";
+                    this.成交的股票数.Text = "";
+                    this.成交金额.Text = "";
+                    this.涨跌标签.Text = "涨跌:";
+
+                    //买
+                    this.buy_1.Text = "";
+                    this.buy_1_price.Text = "";
+                    this.buy_2.Text = "";
+                    this.buy_2_price.Text = "";
+                    this.buy_3.Text = "";
+                    this.buy_3_price.Text = "";
+                    this.buy_4.Text = "";
+                    this.buy_4_price.Text = "";
+                    this.buy_5.Text = "";
+                    this.buy_5_price.Text = "";
+
+                    //卖
+                    this.sell_1.Text = "";
+                    this.sell_1_price.Text = "";
+                    this.sell_2.Text = "";
+                    this.sell_2_price.Text = "";
+                    this.sell_3.Text = "";
+                    this.sell_3_price.Text = "";
+                    this.sell_4.Text = "";
+                    this.sell_4_price.Text = "";
+                    this.sell_5.Text = "";
+                    this.sell_5_price.Text = "";
+                }
+                else {
+                    //暂停刷新
+                    pause_Refresh();
+                    this.btn_addOptional.Enabled = true;
+                }
+                
             }
         }
 
@@ -643,6 +690,16 @@ namespace StockSystem
         private void button_Refresh_Click(object sender, EventArgs e)
         {
             DataBinding_Stock_Holder();
+        }
+
+        private void btn_addOptional_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("加入");
+            //验证是否已经持有该股票
+
+            //加入到数据库中
+
+            //type = 2
         }
     }
 }

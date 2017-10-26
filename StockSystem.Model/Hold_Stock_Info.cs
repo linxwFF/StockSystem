@@ -34,6 +34,9 @@ namespace StockSystem.Model
         [DataField("stock_name")]
         public string stock_name { get; set; }
 
+        [DataField("type")]
+        public int type { get; set; }
+
         // 持有股票指定的策略
         [DataField("tactics")]
         public Tactics tactics { get; set; }

@@ -72,7 +72,7 @@ namespace StockSystem.DAL
         //通过id获取股东所有的股票持仓记录
         public List<Hold_Stock_Info> getHoldStockInfoById(int id)
         {
-            string sql = "select * from t_hold_stock_info as h left join t_tactics as t on h.id = t.hold_stock_info_id where h.stock_holder_id = @id;";
+            string sql = "select * from t_hold_stock_info as h left join t_tactics as t on h.id = t.hold_stock_info_id where h.stock_holder_id = @id and h.type = 1;";
             List<MySqlParameter> Paramter = new List<MySqlParameter>();
             Paramter.Add(new MySqlParameter("@id", id));
 
