@@ -21,6 +21,7 @@ namespace StockSystem
         private Stock_HolderService stock_HolderService = new Stock_HolderService();
         private CommissionService commissionService = new CommissionService();
         private Personal_Stock_AccountService accountService = new Personal_Stock_AccountService();
+        private Hold_Stock_InfoService holdStockInfoService = new Hold_Stock_InfoService();
 
         // 布尔标志，用来确定输入的是否是字符.
         private bool nonNumberEntered = false;
@@ -46,6 +47,9 @@ namespace StockSystem
 
         //当前持有股票的总价值
         private double CountStockAssets;
+
+        //当前查询出的股票信息
+        private Hold_Stock_Info ReachInfo;
 
         public Form_Main()
         {
@@ -178,7 +182,13 @@ namespace StockSystem
             this.sell_5.Text = divide_result[28];
             this.sell_5_price.Text = divide_result[29];
 
+            //存储股票搜索信息
+            Hold_Stock_Info result = new Hold_Stock_Info();
+            result.stock_name = divide_result[0];
+            this.ReachInfo = result;
+
             this.isReachResult = true;
+
             return true;
         }
 
@@ -187,7 +197,7 @@ namespace StockSystem
         {
             //更新数据库的股东持仓信息
             stock_HolderService.updateStockHolderInfo(stock_id);
-            DataBinding_Stock_Holder();
+            LoadData();
 
             //结算股东账户
             accountService.updateTotalStock(this.CountStockAssets);
@@ -225,14 +235,21 @@ namespace StockSystem
         //窗体加载事件
         private void Form_Main_Load(object sender, EventArgs e)
         {
-            DataBinding_Stock_Holder();
+            LoadData();
         }
 
-        //ListView 窗口数据绑定
-        private void DataBinding_Stock_Holder()
+        //加载所有信息
+        private void LoadData()
         {
-            Stock_Holder sh = stock_HolderService.getStockHolder(stock_id);
+            DataBinding_Stock_Holder();
+            DataBinding_Account_info();
+            DataBinding_Commission();
+        }
 
+        //数据绑定（用户账户信息）
+        private void DataBinding_Account_info()
+        {
+            Stock_Holder sh = Utility.user;
             //账户信息
             this.lab_bankroll.Text = sh.account.bankroll.ToString("f2");
             this.lab_bankroll_freezed.Text = sh.account.bankroll.ToString("f2");
@@ -240,7 +257,11 @@ namespace StockSystem
             this.lab_bankroll_useable.Text = sh.account.bankroll_useable.ToString("f2");
             this.lab_total.Text = sh.account.total.ToString("f2");
             this.lab_total_stock.Text = sh.account.total_stock.ToString("f2");
+        }
 
+        //数据绑定 （委托记录）
+        private void DataBinding_Commission()
+        {
             //委托记录信息
             listView2.Items.Clear();
             List<Commission> lisCom = commissionService.GetAllCommissionById(Utility.user.id);
@@ -274,8 +295,12 @@ namespace StockSystem
                 Lvitem.SubItems.Add(item.time.ToString());
                 this.listView2.Items.Add(Lvitem);
             }
+        }
 
-
+        //ListView 窗口数据绑定（持有股票信息）
+        private void DataBinding_Stock_Holder()
+        {
+            Stock_Holder sh = Utility.user;
             if (sh.HoldStockInfo == null) { return; }
             //持有股票信息
             listView1.Items.Clear();
@@ -584,7 +609,7 @@ namespace StockSystem
              if (form_toBuy.DialogResult == DialogResult.OK)
              {
                  start_Refresh();
-                 DataBinding_Stock_Holder();//重新绑定
+                 LoadData();//重新加载数据
                  //index_Timer_Tick(sender, e);
              }
         }
@@ -606,7 +631,7 @@ namespace StockSystem
             if (form_toBuy.DialogResult == DialogResult.OK)
             {
                 start_Refresh();
-                DataBinding_Stock_Holder();//重新绑定
+                LoadData();//重新加载数据
                 //index_Timer_Tick(sender, e);
             }
         }
@@ -634,7 +659,7 @@ namespace StockSystem
             if (form_toSell.DialogResult == DialogResult.OK)
             {
                 start_Refresh();
-                DataBinding_Stock_Holder();//重新绑定
+                LoadData();//重新加载数据
                 //index_Timer_Tick(sender, e);
             }
         }
@@ -657,7 +682,7 @@ namespace StockSystem
             if (form_ProfitAndLoss.DialogResult == DialogResult.OK)
             {
                 start_Refresh();
-                DataBinding_Stock_Holder();//重新绑定
+                LoadData();//重新加载数据
             }
         }
 
@@ -689,17 +714,40 @@ namespace StockSystem
 
         private void button_Refresh_Click(object sender, EventArgs e)
         {
-            DataBinding_Stock_Holder();
+            LoadData();//重新加载数据
         }
 
         private void btn_addOptional_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("加入");
-            //验证是否已经持有该股票
+            this.stock_code = "sh" + this.text_stockCode.Text;
 
-            //加入到数据库中
-
-            //type = 2
+            //是否是持有的股票代码
+            if (Utility.user.HoldStockInfo != null)
+            {
+                var datalist = Utility.user.HoldStockInfo.Where(hsi => hsi.stock_code.Equals(stock_code)).ToList();
+                if (datalist.Count == 0)
+                {
+                    //是否是已经加入到自选股中的股票
+                    if (holdStockInfoService.IsHaveOptional(stock_id, this.stock_code)) {
+                        MessageBox.Show("已加入自选股中");
+                        start_Refresh();
+                        return;
+                    }
+                    //未持有，加入到数据库中  type = 2
+                    this.ReachInfo.type = 2;
+                    this.ReachInfo.stock_code = this.stock_code;
+                    this.ReachInfo.stock_holder_id = stock_id;
+                    holdStockInfoService.AddHoldStockInfo(this.ReachInfo);
+                }
+                else {
+                    //如果是持有的股票，则不做处理
+                    MessageBox.Show("已持有该股票!");
+                    start_Refresh();
+                    return;
+                }
+            }
         }
+
+
     }
 }

@@ -50,6 +50,7 @@
             this.ToolStripMenuItem_buy = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolStripMenuItem_sell = new System.Windows.Forms.ToolStripMenuItem();
             this.btn_make_plan = new System.Windows.Forms.ToolStripMenuItem();
+            this.分析ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btn_min = new System.Windows.Forms.Button();
             this.btn_daily = new System.Windows.Forms.Button();
@@ -136,6 +137,7 @@
             this.label27 = new System.Windows.Forms.Label();
             this.label26 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.btn_addOptional = new System.Windows.Forms.Button();
             this.btn_simulate = new System.Windows.Forms.Button();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
@@ -149,23 +151,21 @@
             this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.button_Refresh = new System.Windows.Forms.Button();
-            this.分析ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.listView4 = new System.Windows.Forms.ListView();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.listView5 = new System.Windows.Forms.ListView();
+            this.columnHeader11 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader12 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.button_Refresh = new System.Windows.Forms.Button();
             this.tabControl2 = new System.Windows.Forms.TabControl();
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.tabPage5 = new System.Windows.Forms.TabPage();
             this.listView3 = new System.Windows.Forms.ListView();
-            this.listView4 = new System.Windows.Forms.ListView();
-            this.listView5 = new System.Windows.Forms.ListView();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
             this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader10 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader11 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader12 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.btn_addOptional = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.tabPage6 = new System.Windows.Forms.TabPage();
             this.contextMenuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox3.SuspendLayout();
@@ -333,6 +333,12 @@
             this.btn_make_plan.Size = new System.Drawing.Size(124, 22);
             this.btn_make_plan.Text = "制定策略";
             this.btn_make_plan.Click += new System.EventHandler(this.btn_make_plan_Click);
+            // 
+            // 分析ToolStripMenuItem
+            // 
+            this.分析ToolStripMenuItem.Name = "分析ToolStripMenuItem";
+            this.分析ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.分析ToolStripMenuItem.Text = "分析";
             // 
             // pictureBox1
             // 
@@ -1189,6 +1195,17 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "交易信息";
             // 
+            // btn_addOptional
+            // 
+            this.btn_addOptional.Enabled = false;
+            this.btn_addOptional.Location = new System.Drawing.Point(70, 237);
+            this.btn_addOptional.Name = "btn_addOptional";
+            this.btn_addOptional.Size = new System.Drawing.Size(75, 23);
+            this.btn_addOptional.TabIndex = 12;
+            this.btn_addOptional.Text = "加入自选股";
+            this.btn_addOptional.UseVisualStyleBackColor = true;
+            this.btn_addOptional.Click += new System.EventHandler(this.btn_addOptional_Click);
+            // 
             // btn_simulate
             // 
             this.btn_simulate.Location = new System.Drawing.Point(97, 13);
@@ -1213,6 +1230,7 @@
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Controls.Add(this.tabPage3);
+            this.tabControl1.Controls.Add(this.tabPage6);
             this.tabControl1.Location = new System.Drawing.Point(6, 20);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
@@ -1288,21 +1306,15 @@
             this.tabPage2.Text = "交易记录";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // button_Refresh
+            // listView4
             // 
-            this.button_Refresh.Location = new System.Drawing.Point(259, 13);
-            this.button_Refresh.Name = "button_Refresh";
-            this.button_Refresh.Size = new System.Drawing.Size(75, 23);
-            this.button_Refresh.TabIndex = 30;
-            this.button_Refresh.Text = "刷新数据";
-            this.button_Refresh.UseVisualStyleBackColor = true;
-            this.button_Refresh.Click += new System.EventHandler(this.button_Refresh_Click);
-            // 
-            // 分析ToolStripMenuItem
-            // 
-            this.分析ToolStripMenuItem.Name = "分析ToolStripMenuItem";
-            this.分析ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
-            this.分析ToolStripMenuItem.Text = "分析";
+            this.listView4.GridLines = true;
+            this.listView4.Location = new System.Drawing.Point(3, 3);
+            this.listView4.Name = "listView4";
+            this.listView4.Size = new System.Drawing.Size(760, 212);
+            this.listView4.TabIndex = 0;
+            this.listView4.UseCompatibleStateImageBehavior = false;
+            this.listView4.View = System.Windows.Forms.View.Details;
             // 
             // tabPage3
             // 
@@ -1313,6 +1325,37 @@
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "优选股（推荐买入股）";
             this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // listView5
+            // 
+            this.listView5.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader11,
+            this.columnHeader12});
+            this.listView5.GridLines = true;
+            this.listView5.Location = new System.Drawing.Point(3, 3);
+            this.listView5.Name = "listView5";
+            this.listView5.Size = new System.Drawing.Size(763, 215);
+            this.listView5.TabIndex = 0;
+            this.listView5.UseCompatibleStateImageBehavior = false;
+            this.listView5.View = System.Windows.Forms.View.Details;
+            // 
+            // columnHeader11
+            // 
+            this.columnHeader11.Text = "股票名称";
+            // 
+            // columnHeader12
+            // 
+            this.columnHeader12.Text = "股票代码";
+            // 
+            // button_Refresh
+            // 
+            this.button_Refresh.Location = new System.Drawing.Point(259, 13);
+            this.button_Refresh.Name = "button_Refresh";
+            this.button_Refresh.Size = new System.Drawing.Size(75, 23);
+            this.button_Refresh.TabIndex = 30;
+            this.button_Refresh.Text = "刷新数据";
+            this.button_Refresh.UseVisualStyleBackColor = true;
+            this.button_Refresh.Click += new System.EventHandler(this.button_Refresh_Click);
             // 
             // tabControl2
             // 
@@ -1350,8 +1393,7 @@
             // 
             this.listView3.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader8,
-            this.columnHeader9,
-            this.columnHeader10});
+            this.columnHeader9});
             this.listView3.GridLines = true;
             this.listView3.Location = new System.Drawing.Point(4, 4);
             this.listView3.Name = "listView3";
@@ -1360,28 +1402,13 @@
             this.listView3.UseCompatibleStateImageBehavior = false;
             this.listView3.View = System.Windows.Forms.View.Details;
             // 
-            // listView4
+            // columnHeader8
             // 
-            this.listView4.GridLines = true;
-            this.listView4.Location = new System.Drawing.Point(3, 3);
-            this.listView4.Name = "listView4";
-            this.listView4.Size = new System.Drawing.Size(760, 212);
-            this.listView4.TabIndex = 0;
-            this.listView4.UseCompatibleStateImageBehavior = false;
-            this.listView4.View = System.Windows.Forms.View.Details;
+            this.columnHeader8.Text = "股票名称";
             // 
-            // listView5
+            // columnHeader9
             // 
-            this.listView5.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader11,
-            this.columnHeader12});
-            this.listView5.GridLines = true;
-            this.listView5.Location = new System.Drawing.Point(3, 3);
-            this.listView5.Name = "listView5";
-            this.listView5.Size = new System.Drawing.Size(763, 215);
-            this.listView5.TabIndex = 0;
-            this.listView5.UseCompatibleStateImageBehavior = false;
-            this.listView5.View = System.Windows.Forms.View.Details;
+            this.columnHeader9.Text = "股票代码";
             // 
             // button1
             // 
@@ -1401,36 +1428,14 @@
             this.button2.Text = "半自动";
             this.button2.UseVisualStyleBackColor = true;
             // 
-            // columnHeader8
+            // tabPage6
             // 
-            this.columnHeader8.Text = "股票名称";
-            // 
-            // columnHeader9
-            // 
-            this.columnHeader9.Text = "股票代码";
-            // 
-            // columnHeader10
-            // 
-            this.columnHeader10.Text = "当前价";
-            // 
-            // columnHeader11
-            // 
-            this.columnHeader11.Text = "股票名称";
-            // 
-            // columnHeader12
-            // 
-            this.columnHeader12.Text = "股票代码";
-            // 
-            // btn_addOptional
-            // 
-            this.btn_addOptional.Enabled = false;
-            this.btn_addOptional.Location = new System.Drawing.Point(70, 237);
-            this.btn_addOptional.Name = "btn_addOptional";
-            this.btn_addOptional.Size = new System.Drawing.Size(75, 23);
-            this.btn_addOptional.TabIndex = 12;
-            this.btn_addOptional.Text = "加入自选股";
-            this.btn_addOptional.UseVisualStyleBackColor = true;
-            this.btn_addOptional.Click += new System.EventHandler(this.btn_addOptional_Click);
+            this.tabPage6.Location = new System.Drawing.Point(4, 22);
+            this.tabPage6.Name = "tabPage6";
+            this.tabPage6.Size = new System.Drawing.Size(769, 221);
+            this.tabPage6.TabIndex = 3;
+            this.tabPage6.Text = "规则执行的历史报告";
+            this.tabPage6.UseVisualStyleBackColor = true;
             // 
             // Form_Main
             // 
@@ -1618,9 +1623,9 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.ColumnHeader columnHeader8;
         private System.Windows.Forms.ColumnHeader columnHeader9;
-        private System.Windows.Forms.ColumnHeader columnHeader10;
         private System.Windows.Forms.ColumnHeader columnHeader11;
         private System.Windows.Forms.ColumnHeader columnHeader12;
         private System.Windows.Forms.Button btn_addOptional;
+        private System.Windows.Forms.TabPage tabPage6;
     }
 }

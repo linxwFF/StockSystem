@@ -142,7 +142,7 @@ namespace StockSystem.DAL
         //通过id获取股东所有的股票持仓记录的股票代码 <id,股票代码>
         public Dictionary<String, String> getStockInfo(int id)
         {
-            string sql = "select id,stock_code from t_hold_stock_info where stock_holder_id = @id";
+            string sql = "select id,stock_code from t_hold_stock_info where stock_holder_id = @id and type=1";
             List<MySqlParameter> Paramter = new List<MySqlParameter>();
             Paramter.Add(new MySqlParameter("@id", id));
 

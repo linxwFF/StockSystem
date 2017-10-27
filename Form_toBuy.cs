@@ -255,7 +255,7 @@ namespace StockSystem
                 holdStockInfo.hold_quantity = this.buy_quantity;
                 holdStockInfo.cost_price = this.buy_price * this.buy_quantity;
                 holdStockInfo.stock_holder_id = Utility.user.id;
-                holdStockInfo.type = 1;
+                holdStockInfo.type = 1;     // 1. 持有股 2. 自选股
                 commissionService.AddCommission(model, holdStockInfo);
 
                 //委托交易成功后，减少 bankroll的金额 cost_price

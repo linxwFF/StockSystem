@@ -37,5 +37,26 @@ namespace StockSystem.DAL
 
             return (int)DBHelperSQL.Ins.ExecuteLastId(sql, Paramter.ToArray());
         }
+
+        // 根据用户ID,查询所有自选股信息
+        public List<Hold_Stock_Info> GetAllOptionalStock(int id)
+        {
+            string sql = "select * from t_hold_stock_info where stock_holder_id = @id and type = 2";
+            List<MySqlParameter> Paramter = new List<MySqlParameter>();
+            Paramter.Add(new MySqlParameter("@id", id));
+
+            DataTable dt = DBHelperSQL.Ins.ExcuteDataTable(sql, Paramter.ToArray());
+            if (dt.Rows.Count > 0)
+            {
+                List<Hold_Stock_Info> list = (List<Hold_Stock_Info>)DataConvert<Hold_Stock_Info>.ToList(dt);
+                return list;
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+
     }
 }
