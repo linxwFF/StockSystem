@@ -160,7 +160,7 @@
             this.tabControl2 = new System.Windows.Forms.TabControl();
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.tabPage5 = new System.Windows.Forms.TabPage();
-            this.listView3 = new System.Windows.Forms.ListView();
+            this.listView_Optional = new System.Windows.Forms.ListView();
             this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.button1 = new System.Windows.Forms.Button();
@@ -1380,7 +1380,7 @@
             // 
             // tabPage5
             // 
-            this.tabPage5.Controls.Add(this.listView3);
+            this.tabPage5.Controls.Add(this.listView_Optional);
             this.tabPage5.Location = new System.Drawing.Point(4, 22);
             this.tabPage5.Name = "tabPage5";
             this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
@@ -1389,18 +1389,20 @@
             this.tabPage5.Text = "自选股信息";
             this.tabPage5.UseVisualStyleBackColor = true;
             // 
-            // listView3
+            // listView_Optional
             // 
-            this.listView3.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.listView_Optional.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader8,
             this.columnHeader9});
-            this.listView3.GridLines = true;
-            this.listView3.Location = new System.Drawing.Point(4, 4);
-            this.listView3.Name = "listView3";
-            this.listView3.Size = new System.Drawing.Size(974, 289);
-            this.listView3.TabIndex = 0;
-            this.listView3.UseCompatibleStateImageBehavior = false;
-            this.listView3.View = System.Windows.Forms.View.Details;
+            this.listView_Optional.FullRowSelect = true;
+            this.listView_Optional.GridLines = true;
+            this.listView_Optional.Location = new System.Drawing.Point(4, 4);
+            this.listView_Optional.Name = "listView_Optional";
+            this.listView_Optional.Size = new System.Drawing.Size(974, 289);
+            this.listView_Optional.TabIndex = 0;
+            this.listView_Optional.UseCompatibleStateImageBehavior = false;
+            this.listView_Optional.View = System.Windows.Forms.View.Details;
+            this.listView_Optional.SelectedIndexChanged += new System.EventHandler(this.listView_Optional_SelectedIndexChanged);
             // 
             // columnHeader8
             // 
@@ -1618,7 +1620,7 @@
         private System.Windows.Forms.TabPage tabPage5;
         private System.Windows.Forms.ListView listView4;
         private System.Windows.Forms.ListView listView5;
-        private System.Windows.Forms.ListView listView3;
+        private System.Windows.Forms.ListView listView_Optional;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.ColumnHeader columnHeader8;

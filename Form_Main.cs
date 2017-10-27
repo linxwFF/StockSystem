@@ -244,6 +244,24 @@ namespace StockSystem
             DataBinding_Stock_Holder();
             DataBinding_Account_info();
             DataBinding_Commission();
+            DataBinding_Optional();
+        }
+
+        //数据绑定 （优选股）
+        //todo
+
+        //数据绑定 （用户自选股）
+        private void DataBinding_Optional()
+        {
+            listView_Optional.Items.Clear();
+            List<Hold_Stock_Info> listOptional = holdStockInfoService.GetAllOptionalStock(Utility.user.id);
+            foreach (Hold_Stock_Info item in listOptional)
+            {
+                ListViewItem Lvitem = new ListViewItem(item.stock_name);
+                Lvitem.SubItems.Add(item.stock_code);
+
+                this.listView_Optional.Items.Add(Lvitem);
+            }
         }
 
         //数据绑定（用户账户信息）
@@ -411,6 +429,7 @@ namespace StockSystem
             this.listView1.Items[SelectedIndices].Selected = true;
         }
 
+        // 持有股票的选中事件
         private void listView1_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (listView1.SelectedItems.Count > 0) 
@@ -438,6 +457,19 @@ namespace StockSystem
                 }
                 default_query(this.stock_code, this.stock_k_url);
                 this.SelectedIndices = this.listView1.SelectedIndices[0];
+            }
+        }
+
+        //自选股票的选中事件
+        private void listView_Optional_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (listView_Optional.SelectedItems.Count > 0)
+            {
+                ListViewItem vItem = listView_Optional.SelectedItems[0];
+                //获取当前选中的股票代码
+                this.stock_code = vItem.SubItems[1].Text;
+
+                default_query(this.stock_code, this.stock_k_url);
             }
         }
 
@@ -738,6 +770,7 @@ namespace StockSystem
                     this.ReachInfo.stock_code = this.stock_code;
                     this.ReachInfo.stock_holder_id = stock_id;
                     holdStockInfoService.AddHoldStockInfo(this.ReachInfo);
+                    DataBinding_Optional();//刷新界面
                 }
                 else {
                     //如果是持有的股票，则不做处理
@@ -747,6 +780,8 @@ namespace StockSystem
                 }
             }
         }
+
+
 
 
     }
