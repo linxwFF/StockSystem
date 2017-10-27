@@ -29,6 +29,10 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.rb_1_6 = new System.Windows.Forms.RadioButton();
+            this.rb_1_5 = new System.Windows.Forms.RadioButton();
+            this.rb_1_3 = new System.Windows.Forms.RadioButton();
+            this.rb_1_4 = new System.Windows.Forms.RadioButton();
             this.numericUpDown_loss_per = new System.Windows.Forms.NumericUpDown();
             this.numericUpDown_loss_quantity = new System.Windows.Forms.NumericUpDown();
             this.rb_1_0 = new System.Windows.Forms.RadioButton();
@@ -39,6 +43,10 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.rb_2_6 = new System.Windows.Forms.RadioButton();
+            this.rb_2_5 = new System.Windows.Forms.RadioButton();
+            this.rb_2_4 = new System.Windows.Forms.RadioButton();
+            this.rb_2_3 = new System.Windows.Forms.RadioButton();
             this.numericUpDown_profit_per = new System.Windows.Forms.NumericUpDown();
             this.numericUpDown_profit_quantity = new System.Windows.Forms.NumericUpDown();
             this.rb_2_0 = new System.Windows.Forms.RadioButton();
@@ -62,6 +70,10 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.rb_1_6);
+            this.groupBox1.Controls.Add(this.rb_1_5);
+            this.groupBox1.Controls.Add(this.rb_1_3);
+            this.groupBox1.Controls.Add(this.rb_1_4);
             this.groupBox1.Controls.Add(this.numericUpDown_loss_per);
             this.groupBox1.Controls.Add(this.numericUpDown_loss_quantity);
             this.groupBox1.Controls.Add(this.rb_1_0);
@@ -73,10 +85,58 @@
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Location = new System.Drawing.Point(13, 25);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(384, 96);
+            this.groupBox1.Size = new System.Drawing.Size(384, 133);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "自动止损";
+            // 
+            // rb_1_6
+            // 
+            this.rb_1_6.AutoSize = true;
+            this.rb_1_6.Location = new System.Drawing.Point(118, 105);
+            this.rb_1_6.Name = "rb_1_6";
+            this.rb_1_6.Size = new System.Drawing.Size(83, 16);
+            this.rb_1_6.TabIndex = 9;
+            this.rb_1_6.TabStop = true;
+            this.rb_1_6.Text = "转折点卖出";
+            this.rb_1_6.UseVisualStyleBackColor = true;
+            this.rb_1_6.CheckedChanged += new System.EventHandler(this.radioButton1_CheckedChanged);
+            // 
+            // rb_1_5
+            // 
+            this.rb_1_5.AutoSize = true;
+            this.rb_1_5.Location = new System.Drawing.Point(25, 105);
+            this.rb_1_5.Name = "rb_1_5";
+            this.rb_1_5.Size = new System.Drawing.Size(83, 16);
+            this.rb_1_5.TabIndex = 9;
+            this.rb_1_5.TabStop = true;
+            this.rb_1_5.Text = "转折点买入";
+            this.rb_1_5.UseVisualStyleBackColor = true;
+            this.rb_1_5.CheckedChanged += new System.EventHandler(this.radioButton1_CheckedChanged);
+            // 
+            // rb_1_3
+            // 
+            this.rb_1_3.AutoSize = true;
+            this.rb_1_3.Location = new System.Drawing.Point(25, 83);
+            this.rb_1_3.Name = "rb_1_3";
+            this.rb_1_3.Size = new System.Drawing.Size(71, 16);
+            this.rb_1_3.TabIndex = 9;
+            this.rb_1_3.TabStop = true;
+            this.rb_1_3.Text = "跌停卖出";
+            this.rb_1_3.UseVisualStyleBackColor = true;
+            this.rb_1_3.CheckedChanged += new System.EventHandler(this.radioButton1_CheckedChanged);
+            // 
+            // rb_1_4
+            // 
+            this.rb_1_4.AutoSize = true;
+            this.rb_1_4.Location = new System.Drawing.Point(118, 83);
+            this.rb_1_4.Name = "rb_1_4";
+            this.rb_1_4.Size = new System.Drawing.Size(71, 16);
+            this.rb_1_4.TabIndex = 9;
+            this.rb_1_4.TabStop = true;
+            this.rb_1_4.Text = "跌停买入";
+            this.rb_1_4.UseVisualStyleBackColor = true;
+            this.rb_1_4.CheckedChanged += new System.EventHandler(this.radioButton1_CheckedChanged);
             // 
             // numericUpDown_loss_per
             // 
@@ -127,7 +187,7 @@
             // 
             this.rb_1_0.AutoSize = true;
             this.rb_1_0.Checked = true;
-            this.rb_1_0.Location = new System.Drawing.Point(296, 61);
+            this.rb_1_0.Location = new System.Drawing.Point(310, 105);
             this.rb_1_0.Name = "rb_1_0";
             this.rb_1_0.Size = new System.Drawing.Size(59, 16);
             this.rb_1_0.TabIndex = 6;
@@ -139,7 +199,7 @@
             // rb_1_2
             // 
             this.rb_1_2.AutoSize = true;
-            this.rb_1_2.Location = new System.Drawing.Point(166, 61);
+            this.rb_1_2.Location = new System.Drawing.Point(118, 61);
             this.rb_1_2.Name = "rb_1_2";
             this.rb_1_2.Size = new System.Drawing.Size(71, 16);
             this.rb_1_2.TabIndex = 6;
@@ -196,6 +256,10 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.rb_2_6);
+            this.groupBox2.Controls.Add(this.rb_2_5);
+            this.groupBox2.Controls.Add(this.rb_2_4);
+            this.groupBox2.Controls.Add(this.rb_2_3);
             this.groupBox2.Controls.Add(this.numericUpDown_profit_per);
             this.groupBox2.Controls.Add(this.numericUpDown_profit_quantity);
             this.groupBox2.Controls.Add(this.rb_2_0);
@@ -205,12 +269,60 @@
             this.groupBox2.Controls.Add(this.label6);
             this.groupBox2.Controls.Add(this.label7);
             this.groupBox2.Controls.Add(this.label8);
-            this.groupBox2.Location = new System.Drawing.Point(15, 153);
+            this.groupBox2.Location = new System.Drawing.Point(15, 193);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(384, 96);
+            this.groupBox2.Size = new System.Drawing.Size(382, 130);
             this.groupBox2.TabIndex = 0;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "自动止盈";
+            // 
+            // rb_2_6
+            // 
+            this.rb_2_6.AutoSize = true;
+            this.rb_2_6.Location = new System.Drawing.Point(116, 105);
+            this.rb_2_6.Name = "rb_2_6";
+            this.rb_2_6.Size = new System.Drawing.Size(83, 16);
+            this.rb_2_6.TabIndex = 10;
+            this.rb_2_6.TabStop = true;
+            this.rb_2_6.Text = "转折点买入";
+            this.rb_2_6.UseVisualStyleBackColor = true;
+            this.rb_2_6.CheckedChanged += new System.EventHandler(this.radioButton6_CheckedChanged);
+            // 
+            // rb_2_5
+            // 
+            this.rb_2_5.AutoSize = true;
+            this.rb_2_5.Location = new System.Drawing.Point(25, 105);
+            this.rb_2_5.Name = "rb_2_5";
+            this.rb_2_5.Size = new System.Drawing.Size(83, 16);
+            this.rb_2_5.TabIndex = 10;
+            this.rb_2_5.TabStop = true;
+            this.rb_2_5.Text = "转折点卖出";
+            this.rb_2_5.UseVisualStyleBackColor = true;
+            this.rb_2_5.CheckedChanged += new System.EventHandler(this.radioButton6_CheckedChanged);
+            // 
+            // rb_2_4
+            // 
+            this.rb_2_4.AutoSize = true;
+            this.rb_2_4.Location = new System.Drawing.Point(116, 83);
+            this.rb_2_4.Name = "rb_2_4";
+            this.rb_2_4.Size = new System.Drawing.Size(71, 16);
+            this.rb_2_4.TabIndex = 10;
+            this.rb_2_4.TabStop = true;
+            this.rb_2_4.Text = "涨停卖出";
+            this.rb_2_4.UseVisualStyleBackColor = true;
+            this.rb_2_4.CheckedChanged += new System.EventHandler(this.radioButton6_CheckedChanged);
+            // 
+            // rb_2_3
+            // 
+            this.rb_2_3.AutoSize = true;
+            this.rb_2_3.Location = new System.Drawing.Point(25, 83);
+            this.rb_2_3.Name = "rb_2_3";
+            this.rb_2_3.Size = new System.Drawing.Size(71, 16);
+            this.rb_2_3.TabIndex = 10;
+            this.rb_2_3.TabStop = true;
+            this.rb_2_3.Text = "涨停买入";
+            this.rb_2_3.UseVisualStyleBackColor = true;
+            this.rb_2_3.CheckedChanged += new System.EventHandler(this.radioButton6_CheckedChanged);
             // 
             // numericUpDown_profit_per
             // 
@@ -261,7 +373,7 @@
             // 
             this.rb_2_0.AutoSize = true;
             this.rb_2_0.Checked = true;
-            this.rb_2_0.Location = new System.Drawing.Point(294, 61);
+            this.rb_2_0.Location = new System.Drawing.Point(306, 105);
             this.rb_2_0.Name = "rb_2_0";
             this.rb_2_0.Size = new System.Drawing.Size(59, 16);
             this.rb_2_0.TabIndex = 6;
@@ -273,7 +385,7 @@
             // rb_2_2
             // 
             this.rb_2_2.AutoSize = true;
-            this.rb_2_2.Location = new System.Drawing.Point(166, 61);
+            this.rb_2_2.Location = new System.Drawing.Point(116, 61);
             this.rb_2_2.Name = "rb_2_2";
             this.rb_2_2.Size = new System.Drawing.Size(71, 16);
             this.rb_2_2.TabIndex = 6;
@@ -330,7 +442,7 @@
             // 
             // btn_reset
             // 
-            this.btn_reset.Location = new System.Drawing.Point(96, 127);
+            this.btn_reset.Location = new System.Drawing.Point(96, 164);
             this.btn_reset.Name = "btn_reset";
             this.btn_reset.Size = new System.Drawing.Size(75, 23);
             this.btn_reset.TabIndex = 4;
@@ -340,7 +452,7 @@
             // 
             // btn_submit
             // 
-            this.btn_submit.Location = new System.Drawing.Point(257, 127);
+            this.btn_submit.Location = new System.Drawing.Point(257, 164);
             this.btn_submit.Name = "btn_submit";
             this.btn_submit.Size = new System.Drawing.Size(75, 23);
             this.btn_submit.TabIndex = 5;
@@ -350,7 +462,7 @@
             // 
             // btn_reset2
             // 
-            this.btn_reset2.Location = new System.Drawing.Point(96, 255);
+            this.btn_reset2.Location = new System.Drawing.Point(96, 329);
             this.btn_reset2.Name = "btn_reset2";
             this.btn_reset2.Size = new System.Drawing.Size(75, 23);
             this.btn_reset2.TabIndex = 4;
@@ -360,7 +472,7 @@
             // 
             // btn_submit2
             // 
-            this.btn_submit2.Location = new System.Drawing.Point(259, 255);
+            this.btn_submit2.Location = new System.Drawing.Point(257, 329);
             this.btn_submit2.Name = "btn_submit2";
             this.btn_submit2.Size = new System.Drawing.Size(75, 23);
             this.btn_submit2.TabIndex = 5;
@@ -372,7 +484,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(411, 291);
+            this.ClientSize = new System.Drawing.Size(410, 361);
             this.Controls.Add(this.btn_submit2);
             this.Controls.Add(this.btn_submit);
             this.Controls.Add(this.groupBox2);
@@ -419,5 +531,13 @@
         private System.Windows.Forms.RadioButton rb_2_0;
         private System.Windows.Forms.Button btn_reset2;
         private System.Windows.Forms.Button btn_submit2;
+        private System.Windows.Forms.RadioButton rb_2_3;
+        private System.Windows.Forms.RadioButton rb_2_5;
+        private System.Windows.Forms.RadioButton rb_1_6;
+        private System.Windows.Forms.RadioButton rb_1_5;
+        private System.Windows.Forms.RadioButton rb_1_3;
+        private System.Windows.Forms.RadioButton rb_1_4;
+        private System.Windows.Forms.RadioButton rb_2_6;
+        private System.Windows.Forms.RadioButton rb_2_4;
     }
 }

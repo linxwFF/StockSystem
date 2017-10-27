@@ -781,6 +781,34 @@ namespace StockSystem
             }
         }
 
+        // 跳转出自选股界面
+        private void tabControl_top_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (tabControl_top.SelectedTab.Name == "tabPage_optional")
+            {
+                tabControl_bottom.SelectedTab = this.tabPage_advise;
+                //请求远程的优选股数据
+                //todo
+            }
+        }
+
+        //跳转出优选股界面
+        private void tabControl_bottom_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (tabControl_bottom.SelectedTab.Name == "tabPage_advise")
+            {
+                tabControl_top.SelectedTab = this.tabPage_optional;
+                //请求远程的优选股数据
+                //todo
+            }
+        }
+
+        
+
+
+        
+
+
 
 
 

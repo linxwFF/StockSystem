@@ -46,35 +46,65 @@ namespace StockSystem
             {
                 this.numericUpDown_loss_per.Value = Convert.ToDecimal(info.loss_per);
                 this.numericUpDown_loss_quantity.Value = info.loss_quantity;
-                if (info.loss_tactics == 1)
+                switch (info.loss_tactics)
                 {
-                    this.rb_1_1.Select();
+                    case 1:
+                        this.rb_1_1.Select();
+                        break;
+                    case 2:
+                        this.rb_1_2.Select();
+                        break;
+                    case 3:
+                        this.rb_1_3.Select();
+                        break;
+                    case 4:
+                        this.rb_1_4.Select();
+                        break;
+                    case 5:
+                        this.rb_1_5.Select();
+                        break;
+                    case 6:
+                        this.rb_1_6.Select();
+                        break;
+                    case -1:
+                        this.rb_1_0.Select();
+                        break;
+                    default:
+                        break;
                 }
-                else if (info.loss_tactics == 2)
-                {
-                    this.rb_1_2.Select();
-                }
-                else if (info.loss_tactics == 0)
-                {
-                    this.rb_1_0.Select();
-                }
+
                 this.numericUpDown_profit_per.Value = Convert.ToDecimal(info.profit_per);
                 this.numericUpDown_profit_quantity.Value = info.profit_quantity;
-                if (info.profit_tactics == 1)
+                switch (info.profit_tactics)
                 {
-                    this.rb_2_1.Select();
-                }
-                else if (info.profit_tactics == 2)
-                {
-                    this.rb_2_2.Select();
-                }
-                else if (info.profit_tactics == 0)
-                {
-                    this.rb_2_0.Select();
+                    case 1:
+                        this.rb_2_1.Select();
+                        break;
+                    case 2:
+                        this.rb_2_2.Select();
+                        break;
+                    case 3:
+                        this.rb_2_3.Select();
+                        break;
+                    case 4:
+                        this.rb_2_4.Select();
+                        break;
+                    case 5:
+                        this.rb_2_5.Select();
+                        break;
+                    case 6:
+                        this.rb_2_6.Select();
+                        break;
+                    case -1:
+                        this.rb_2_0.Select();
+                        break;
+                    default:
+                        break;
                 }
             }
         }
 
+        //下跌设置
         private void radioButton1_CheckedChanged(object sender, EventArgs e)
         {
             if (!((RadioButton)sender).Checked)
@@ -89,12 +119,28 @@ namespace StockSystem
                 case "下跌加仓":
                     this.loss_tactics = 2;
                     break;
+                case "跌停卖出":
+                    this.loss_tactics = 3;
+                    break;
+                case "跌停买入":
+                    this.loss_tactics = 4;
+                    break;
+                case "转折点买入":
+                    this.loss_tactics = 5;
+                    break;
+                case "转折点卖出":
+                    this.loss_tactics = 6;
+                    break;
+                case "不设置":
+                    this.loss_tactics = -1;
+                    break;
                 default:
                     this.loss_tactics = 0;
                     break;
             }
         }
 
+        //盈利设置
         private void radioButton6_CheckedChanged(object sender, EventArgs e)
         {
             if (!((RadioButton)sender).Checked)
@@ -109,6 +155,21 @@ namespace StockSystem
                 case "盈利加仓":
                     this.profit_tactics = 2;
                     break;
+                case "涨停买入":
+                    this.loss_tactics = 3;
+                    break;
+                case "涨停卖出":
+                    this.loss_tactics = 4;
+                    break;
+                case "转折点卖出":
+                    this.loss_tactics = 5;
+                    break;
+                case "转折点买入":
+                    this.loss_tactics = 6;
+                    break;
+                case "不设置":
+                    this.loss_tactics = -1;
+                    break;
                 default:
                     this.profit_tactics = 0;
                     break;
@@ -119,20 +180,17 @@ namespace StockSystem
         {
             this.loss_per = Convert.ToDouble(this.numericUpDown_loss_per.Value);
             this.loss_quantity = Convert.ToInt32(this.numericUpDown_loss_quantity.Value);
-            if (loss_tactics == 1 || loss_tactics == 2) {
-                if (loss_per <= 0 ) {
-                    MessageBox.Show("请设置止损百分比！");
-                    return;
-                }
-                if (loss_quantity % 100 != 0) {
-                    MessageBox.Show("输入的数量应是100的倍数！");
-                    return;
-                }
-                if (loss_tactics != 0) {
-                    MessageBox.Show(string.Format("设置成功{0} {1}", this.loss_per.ToString(), this.loss_quantity.ToString()));
-                    
-                    
-                }
+            if ((loss_tactics == 1 || loss_tactics == 2) && loss_per <= 0 ) {
+                MessageBox.Show("请设置止损百分比！");
+                return;
+            }
+            if ((loss_tactics == 1 || loss_tactics == 2) && loss_quantity % 100 != 0)
+            {
+                MessageBox.Show("输入的数量应是100的倍数！");
+                return;
+            }
+            if (loss_tactics != 0) {
+                MessageBox.Show(string.Format("设置成功{0} {1}", this.loss_per.ToString(), this.loss_quantity.ToString()));
             }
         }
 
@@ -140,25 +198,22 @@ namespace StockSystem
         {
             this.profit_per = Convert.ToDouble(this.numericUpDown_profit_per.Value);
             this.profit_quantity = Convert.ToInt32(this.numericUpDown_profit_quantity.Value);
-            if (profit_tactics == 1 || profit_tactics == 2)
+            if ((loss_tactics == 1 || loss_tactics == 2) && profit_per <= 0)
             {
-                if (profit_per <= 0)
-                {
-                    MessageBox.Show("请设置止损百分比！");
-                    return;
-                }
-                if (profit_quantity % 100 != 0)
-                {
-                    MessageBox.Show("输入的数量应是100的倍数！");
-                    return;
-                }
-                if (profit_tactics != 0) {
-                    MessageBox.Show(string.Format("设置成功{0} {1}", this.profit_per.ToString(), this.profit_quantity.ToString()));
+                MessageBox.Show("请设置止损百分比！");
+                return;
+            }
+            if ((loss_tactics == 1 || loss_tactics == 2) && profit_quantity % 100 != 0)
+            {
+                MessageBox.Show("输入的数量应是100的倍数！");
+                return;
+            }
+            if (profit_tactics != 0) {
+                MessageBox.Show(string.Format("设置成功{0} {1}", this.profit_per.ToString(), this.profit_quantity.ToString()));
 
-                    this.DialogResult = DialogResult.OK;
-                    //关闭窗口
-                    this.Close();
-                }
+                //this.DialogResult = DialogResult.OK;
+                ////关闭窗口
+                //this.Close();
             }
         }
 
@@ -173,5 +228,6 @@ namespace StockSystem
             this.numericUpDown_profit_per.Value = 0;
             this.numericUpDown_profit_quantity.Value = 100;
         }
+
     }
 }
