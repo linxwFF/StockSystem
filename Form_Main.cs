@@ -318,7 +318,7 @@ namespace StockSystem
         //ListView 窗口数据绑定（持有股票信息）
         private void DataBinding_Stock_Holder()
         {
-            Stock_Holder sh = Utility.user;
+            Stock_Holder sh = stock_HolderService.getStockHolder(Utility.user.id);
             if (sh.HoldStockInfo == null) { return; }
             //持有股票信息
             listView1.Items.Clear();
@@ -355,6 +355,17 @@ namespace StockSystem
                 {
                     //上涨加仓
                     tempString = string.Format("上涨{0}%,买入{1}股", item.tactics.profit_per, item.tactics.profit_quantity);
+                }else if(item.tactics.profit_tactics == 3){
+                    tempString = string.Format("涨停买入,买入{0}股", item.tactics.profit_quantity);
+                }
+                else if (item.tactics.profit_tactics == 4) {
+                    tempString = string.Format("涨停卖出,卖出{0}股", item.tactics.profit_quantity);
+                }
+                else if (item.tactics.profit_tactics == 5) {
+                    tempString = string.Format("转折点卖出,卖出{0}股", item.tactics.profit_quantity);
+                }
+                else if (item.tactics.profit_tactics == 6) {
+                    tempString = string.Format("转折点买入,买入{0}股", item.tactics.profit_quantity);
                 }
                 else
                 {
@@ -363,15 +374,31 @@ namespace StockSystem
 
                 Lvitem.SubItems.Add(tempString);
 
-                if(item.tactics != null && item.tactics.loss_tactics == 1)
+                if(item.tactics != null && item.tactics.loss_tactics == 1 && item.tactics.loss_per != 0)
                 {
                     //下跌减仓
                     tempString = string.Format("下跌{0}%,卖出{1}股", item.tactics.loss_per,item.tactics.loss_quantity);
                 }
-                else if (item.tactics != null && item.tactics.loss_tactics == 2)
+                else if (item.tactics != null && item.tactics.loss_tactics == 2 && item.tactics.loss_per != 0)
                 {
                     //下跌加仓
                     tempString = string.Format("下跌{0}%,买入{1}股", item.tactics.loss_per, item.tactics.loss_quantity);
+                }
+                else if (item.tactics.loss_tactics == 3)
+                {
+                    tempString = string.Format("跌停卖出,卖出{0}股", item.tactics.loss_quantity);
+                }
+                else if (item.tactics.loss_tactics == 4)
+                {
+                    tempString = string.Format("跌停买入,买入{0}股", item.tactics.loss_quantity);
+                }
+                else if (item.tactics.loss_tactics == 5)
+                {
+                    tempString = string.Format("转折点买入,买入{0}股", item.tactics.loss_quantity);
+                }
+                else if (item.tactics.loss_tactics == 6)
+                {
+                    tempString = string.Format("转折点卖出,卖出{0}股", item.tactics.loss_quantity);
                 }
                 else {
                     tempString = string.Format(" ");

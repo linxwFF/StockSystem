@@ -56,8 +56,6 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
-            this.btn_reset = new System.Windows.Forms.Button();
-            this.btn_submit = new System.Windows.Forms.Button();
             this.btn_reset2 = new System.Windows.Forms.Button();
             this.btn_submit2 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
@@ -269,7 +267,7 @@
             this.groupBox2.Controls.Add(this.label6);
             this.groupBox2.Controls.Add(this.label7);
             this.groupBox2.Controls.Add(this.label8);
-            this.groupBox2.Location = new System.Drawing.Point(15, 193);
+            this.groupBox2.Location = new System.Drawing.Point(13, 164);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(382, 130);
             this.groupBox2.TabIndex = 0;
@@ -440,29 +438,9 @@
             this.label8.TabIndex = 0;
             this.label8.Text = "上涨";
             // 
-            // btn_reset
-            // 
-            this.btn_reset.Location = new System.Drawing.Point(96, 164);
-            this.btn_reset.Name = "btn_reset";
-            this.btn_reset.Size = new System.Drawing.Size(75, 23);
-            this.btn_reset.TabIndex = 4;
-            this.btn_reset.Text = "重置";
-            this.btn_reset.UseVisualStyleBackColor = true;
-            this.btn_reset.Click += new System.EventHandler(this.btn_reset_Click);
-            // 
-            // btn_submit
-            // 
-            this.btn_submit.Location = new System.Drawing.Point(257, 164);
-            this.btn_submit.Name = "btn_submit";
-            this.btn_submit.Size = new System.Drawing.Size(75, 23);
-            this.btn_submit.TabIndex = 5;
-            this.btn_submit.Text = "提交";
-            this.btn_submit.UseVisualStyleBackColor = true;
-            this.btn_submit.Click += new System.EventHandler(this.btn_submit_Click);
-            // 
             // btn_reset2
             // 
-            this.btn_reset2.Location = new System.Drawing.Point(96, 329);
+            this.btn_reset2.Location = new System.Drawing.Point(94, 300);
             this.btn_reset2.Name = "btn_reset2";
             this.btn_reset2.Size = new System.Drawing.Size(75, 23);
             this.btn_reset2.TabIndex = 4;
@@ -472,7 +450,7 @@
             // 
             // btn_submit2
             // 
-            this.btn_submit2.Location = new System.Drawing.Point(257, 329);
+            this.btn_submit2.Location = new System.Drawing.Point(257, 300);
             this.btn_submit2.Name = "btn_submit2";
             this.btn_submit2.Size = new System.Drawing.Size(75, 23);
             this.btn_submit2.TabIndex = 5;
@@ -484,12 +462,10 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(410, 361);
+            this.ClientSize = new System.Drawing.Size(410, 330);
             this.Controls.Add(this.btn_submit2);
-            this.Controls.Add(this.btn_submit);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.btn_reset2);
-            this.Controls.Add(this.btn_reset);
             this.Controls.Add(this.groupBox1);
             this.Name = "Form_ProfitAndLoss";
             this.Text = "Form_ProfitAndLoss";
@@ -525,8 +501,6 @@
         private System.Windows.Forms.NumericUpDown numericUpDown_profit_quantity;
         private System.Windows.Forms.NumericUpDown numericUpDown_loss_per;
         private System.Windows.Forms.NumericUpDown numericUpDown_profit_per;
-        private System.Windows.Forms.Button btn_reset;
-        private System.Windows.Forms.Button btn_submit;
         private System.Windows.Forms.RadioButton rb_1_0;
         private System.Windows.Forms.RadioButton rb_2_0;
         private System.Windows.Forms.Button btn_reset2;

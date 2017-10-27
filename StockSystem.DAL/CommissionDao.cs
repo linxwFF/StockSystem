@@ -65,7 +65,7 @@ namespace StockSystem.DAL
         //根据用户ID查询所有的委托记录
         public List<Commission> GetAllCommissionById(int id)
         {
-            string sql = "select * from t_commission as c right join t_hold_stock_info as h on c.hold_stock_info_id = h.id where c.stockholder_id = @id;";
+            string sql = "select * from t_commission as c right join t_hold_stock_info as h on c.hold_stock_info_id = h.id where c.stockholder_id = @id order by c.time";
             List<MySqlParameter> Paramter = new List<MySqlParameter>();
             Paramter.Add(new MySqlParameter("@id", id));
 

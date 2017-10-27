@@ -72,7 +72,7 @@ namespace StockSystem.DAL
         //通过id获取股东所有的股票持仓记录
         public List<Hold_Stock_Info> getHoldStockInfoById(int id)
         {
-            string sql = "select * from t_hold_stock_info as h left join t_tactics as t on h.id = t.hold_stock_info_id where h.stock_holder_id = @id and h.type = 1;";
+            string sql = "select * from t_hold_stock_info as h left join t_tactics as t on h.id = t.hold_stock_info_id where h.stock_holder_id = @id and h.type = 1 order by h.profit_loss desc;";
             List<MySqlParameter> Paramter = new List<MySqlParameter>();
             Paramter.Add(new MySqlParameter("@id", id));
 
@@ -84,29 +84,29 @@ namespace StockSystem.DAL
                 for (int i = 0; i < list.Count; i++)
                 {
                     Tactics tactics = new Tactics();
-                    if (dt.Rows[i][13] != DBNull.Value)
-                    {
-                        tactics.loss_per = Convert.ToDouble(dt.Rows[i][13]);
-                    }
                     if (dt.Rows[i][14] != DBNull.Value)
                     {
-                        tactics.loss_quantity = int.Parse(dt.Rows[i][14].ToString());
+                        tactics.loss_per = Convert.ToDouble(dt.Rows[i][14]);
                     }
                     if (dt.Rows[i][15] != DBNull.Value)
                     {
-                        tactics.loss_tactics = int.Parse(dt.Rows[i][15].ToString());
+                        tactics.loss_quantity = int.Parse(dt.Rows[i][15].ToString());
                     }
                     if (dt.Rows[i][16] != DBNull.Value)
                     {
-                        tactics.profit_per = double.Parse(dt.Rows[i][16].ToString());
+                        tactics.loss_tactics = int.Parse(dt.Rows[i][16].ToString());
                     }
                     if (dt.Rows[i][17] != DBNull.Value)
                     {
-                        tactics.profit_quantity = int.Parse(dt.Rows[i][17].ToString());
+                        tactics.profit_per = double.Parse(dt.Rows[i][17].ToString());
                     }
                     if (dt.Rows[i][18] != DBNull.Value)
                     {
-                        tactics.profit_tactics = int.Parse(dt.Rows[i][18].ToString());
+                        tactics.profit_quantity = int.Parse(dt.Rows[i][18].ToString());
+                    }
+                    if (dt.Rows[i][19] != DBNull.Value)
+                    {
+                        tactics.profit_tactics = int.Parse(dt.Rows[i][19].ToString());
                     }
                         list[i].tactics = tactics;
                 }
