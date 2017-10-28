@@ -181,6 +181,7 @@
             this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
+            this.btn_simulate_deal = new System.Windows.Forms.Button();
             this.contextMenuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox3.SuspendLayout();
@@ -210,7 +211,7 @@
             // 
             // btn_Refresh
             // 
-            this.btn_Refresh.Location = new System.Drawing.Point(178, 13);
+            this.btn_Refresh.Location = new System.Drawing.Point(97, 13);
             this.btn_Refresh.Name = "btn_Refresh";
             this.btn_Refresh.Size = new System.Drawing.Size(75, 23);
             this.btn_Refresh.TabIndex = 1;
@@ -327,33 +328,33 @@
             this.btn_make_plan,
             this.分析ToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(153, 114);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(125, 92);
             // 
             // ToolStripMenuItem_buy
             // 
             this.ToolStripMenuItem_buy.Name = "ToolStripMenuItem_buy";
-            this.ToolStripMenuItem_buy.Size = new System.Drawing.Size(152, 22);
+            this.ToolStripMenuItem_buy.Size = new System.Drawing.Size(124, 22);
             this.ToolStripMenuItem_buy.Text = "买入股票";
             this.ToolStripMenuItem_buy.Click += new System.EventHandler(this.btn_toBuy_Click_code);
             // 
             // ToolStripMenuItem_sell
             // 
             this.ToolStripMenuItem_sell.Name = "ToolStripMenuItem_sell";
-            this.ToolStripMenuItem_sell.Size = new System.Drawing.Size(152, 22);
+            this.ToolStripMenuItem_sell.Size = new System.Drawing.Size(124, 22);
             this.ToolStripMenuItem_sell.Text = "卖出股票";
             this.ToolStripMenuItem_sell.Click += new System.EventHandler(this.btn_toSell_Click_code);
             // 
             // btn_make_plan
             // 
             this.btn_make_plan.Name = "btn_make_plan";
-            this.btn_make_plan.Size = new System.Drawing.Size(152, 22);
+            this.btn_make_plan.Size = new System.Drawing.Size(124, 22);
             this.btn_make_plan.Text = "制定规则";
             this.btn_make_plan.Click += new System.EventHandler(this.btn_make_plan_Click);
             // 
             // 分析ToolStripMenuItem
             // 
             this.分析ToolStripMenuItem.Name = "分析ToolStripMenuItem";
-            this.分析ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.分析ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
             this.分析ToolStripMenuItem.Text = "分析";
             // 
             // pictureBox1
@@ -1224,11 +1225,11 @@
             // 
             // btn_simulate
             // 
-            this.btn_simulate.Location = new System.Drawing.Point(97, 13);
+            this.btn_simulate.Location = new System.Drawing.Point(421, 13);
             this.btn_simulate.Name = "btn_simulate";
             this.btn_simulate.Size = new System.Drawing.Size(75, 23);
             this.btn_simulate.TabIndex = 28;
-            this.btn_simulate.Text = "模拟";
+            this.btn_simulate.Text = "模拟行情";
             this.btn_simulate.UseVisualStyleBackColor = true;
             // 
             // groupBox6
@@ -1460,7 +1461,7 @@
             // 
             // button_Refresh
             // 
-            this.button_Refresh.Location = new System.Drawing.Point(259, 13);
+            this.button_Refresh.Location = new System.Drawing.Point(178, 13);
             this.button_Refresh.Name = "button_Refresh";
             this.button_Refresh.Size = new System.Drawing.Size(75, 23);
             this.button_Refresh.TabIndex = 30;
@@ -1526,7 +1527,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(340, 13);
+            this.button1.Location = new System.Drawing.Point(259, 13);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 32;
@@ -1535,18 +1536,29 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(421, 13);
+            this.button2.Location = new System.Drawing.Point(340, 13);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 23);
             this.button2.TabIndex = 32;
             this.button2.Text = "半自动";
             this.button2.UseVisualStyleBackColor = true;
             // 
+            // btn_simulate_deal
+            // 
+            this.btn_simulate_deal.Location = new System.Drawing.Point(502, 13);
+            this.btn_simulate_deal.Name = "btn_simulate_deal";
+            this.btn_simulate_deal.Size = new System.Drawing.Size(75, 23);
+            this.btn_simulate_deal.TabIndex = 33;
+            this.btn_simulate_deal.Text = "模拟结算";
+            this.btn_simulate_deal.UseVisualStyleBackColor = true;
+            this.btn_simulate_deal.Click += new System.EventHandler(this.btn_simulate_deal_Click);
+            // 
             // Form_Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1367, 699);
+            this.Controls.Add(this.btn_simulate_deal);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.tabControl_top);
@@ -1748,5 +1760,6 @@
         private System.Windows.Forms.ColumnHeader columnHeader23;
         private System.Windows.Forms.ColumnHeader columnHeader24;
         private System.Windows.Forms.ColumnHeader columnHeader25;
+        private System.Windows.Forms.Button btn_simulate_deal;
     }
 }

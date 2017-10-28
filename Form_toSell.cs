@@ -20,6 +20,7 @@ namespace StockSystem
     {
         private Stock_HolderService stock_HolderService = new Stock_HolderService();
         private CommissionService commissionService = new CommissionService();
+        private Hold_Stock_InfoService hold_stock_infoService = new Hold_Stock_InfoService();
 
         // 布尔标志，用来确定输入的是否是字符.
         private bool nonNumberEntered = false;
@@ -249,7 +250,7 @@ namespace StockSystem
             model.stockholder_id = Utility.user.id;
 
             commissionService.AddCommission(model);
-            commissionService.UpdateAmountUseable(this.hold_stock_info_select.amount_useable - this.sell_quantity, this.hold_stock_info_select);
+            hold_stock_infoService.UpdateAmountUseable(this.hold_stock_info_select.amount_useable - this.sell_quantity, this.hold_stock_info_select);
             //委托交易成功后，增加 bankroll_freezed的金额
 
             this.DialogResult = DialogResult.OK;

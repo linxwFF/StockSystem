@@ -22,6 +22,7 @@ namespace StockSystem
         private CommissionService commissionService = new CommissionService();
         private Personal_Stock_AccountService accountService = new Personal_Stock_AccountService();
         private Hold_Stock_InfoService holdStockInfoService = new Hold_Stock_InfoService();
+        private DealService dealService = new DealService();
 
         // 布尔标志，用来确定输入的是否是字符.
         private bool nonNumberEntered = false;
@@ -50,6 +51,9 @@ namespace StockSystem
 
         //当前查询出的股票信息
         private Hold_Stock_Info ReachInfo;
+
+        //当前账户
+        private Personal_Stock_Account Account;
 
         public Form_Main()
         {
@@ -267,14 +271,14 @@ namespace StockSystem
         //数据绑定（用户账户信息）
         private void DataBinding_Account_info()
         {
-            Stock_Holder sh = Utility.user;
+            this.Account =  accountService.GetByID(Utility.user.id);
             //账户信息
-            this.lab_bankroll.Text = sh.account.bankroll.ToString("f2");
-            this.lab_bankroll_freezed.Text = sh.account.bankroll.ToString("f2");
-            this.lab_bankroll_in_cash.Text = sh.account.bankroll_in_cash.ToString("f2");
-            this.lab_bankroll_useable.Text = sh.account.bankroll_useable.ToString("f2");
-            this.lab_total.Text = sh.account.total.ToString("f2");
-            this.lab_total_stock.Text = sh.account.total_stock.ToString("f2");
+            this.lab_bankroll.Text = Account.bankroll.ToString("f2");
+            this.lab_bankroll_freezed.Text = Account.bankroll_freezed.ToString("f2");
+            this.lab_bankroll_in_cash.Text = Account.bankroll_in_cash.ToString("f2");
+            this.lab_bankroll_useable.Text = Account.bankroll_useable.ToString("f2");
+            this.lab_total.Text = Account.total.ToString("f2");
+            this.lab_total_stock.Text = Account.total_stock.ToString("f2");
         }
 
         //数据绑定 （委托记录）
@@ -305,6 +309,7 @@ namespace StockSystem
                         break;
                     case 2:
                         Lvitem.SubItems.Add("已成交");
+                        Lvitem.ForeColor = Color.Red;
                         break;
                     case 3:
                         Lvitem.SubItems.Add("已提交");
@@ -827,6 +832,97 @@ namespace StockSystem
                 tabControl_top.SelectedTab = this.tabPage_optional;
                 //请求远程的优选股数据
                 //todo
+            }
+        }
+
+        //根据股票代码获取出当前的价格
+        private double getCurrentPrice(string code)
+        {
+            string stock_data_content = default_query(code, this.stock_k_url);
+            //股票数据
+            string stock_data = stock_data_content.Substring(stock_data_content.IndexOf("\"") + 1, (stock_data_content.LastIndexOf("\"") - stock_data_content.IndexOf("\"") - 1));
+            string[] divide = new string[] { "," };
+            string[] divide_result;
+
+            divide_result = stock_data.Split(divide, StringSplitOptions.None);
+
+            if (divide_result.Length != 33)
+            {
+                return 0.0;
+            }
+
+            if (divide_result[10] == null || divide_result[20] == null)
+            {
+                return 0.0;
+            }
+
+            return double.Parse(divide_result[3]);
+        }
+
+        //对委托的记录进行结算
+        private void btn_simulate_deal_Click(object sender, EventArgs e)
+        {
+            //查询出用户所有的委托记录
+            List<Commission> AllCommission = commissionService.GetAllCommissionByIdDeal(Utility.user.id);
+            foreach(Commission item in AllCommission)
+            {
+                //委托的股票的当前价格
+                double current_price = getCurrentPrice(item.hold_stock_info.stock_code);
+                if (current_price != 0)
+                {
+                    //和当前价格进行匹配
+                    if (item.commission_price <= current_price && item.direction == 1)
+                    {
+                        //若 委托买入价格  > 当前价格 （交易不成功） 
+                        MessageBox.Show(item.id + "买入，交易成功。" + item.hold_stock_info.stock_code +" 委托价格："+item.commission_price +" 委托数量" +item.commission_amount +"可用金额 -"+ item.commission_price*item.commission_amount);
+                        //修改委托状态 2.交易成功
+                        commissionService.UpdateState(item.id, 2);
+                        //交易成功的生成交易记录
+                        Deal deal = new Deal();
+                        deal.hold_stock_id = Utility.user.id;
+                        deal.stock_code = item.hold_stock_info.stock_code;
+                        deal.deal_price = item.commission_amount * item.commission_price;
+                        deal.direction = item.direction;
+                        deal.dealed_amount = item.commission_amount;
+                        deal.dealed_value = item.commission_price;
+                        deal.buy_commission = item.id;
+                        deal.sell_commission = 0;   //表示系统模拟结算
+                        dealService.AddDeal(deal);
+                        //修改持有股票可用数量 +可用股票数量
+                        holdStockInfoService.BuyCommissionAmount(item.commission_amount, item.hold_stock_info.stock_code, Utility.user.id);
+                        //结算个人账户信息 -余额
+                        accountService.updateUserableBuy(item.commission_amount * item.commission_price, Utility.user.id);
+                        //结算总资产
+                        double total = Account.bankroll + Account.bankroll_freezed + Account.bankroll_useable + Account.total_stock;
+                        accountService.UpdateTotal(total,Utility.user.id);
+                    }
+
+                    if (item.commission_price >= current_price && item.direction == 2)
+                    {
+                        //若 委托卖出价格  < 当前价格 （交易不成功）
+                        MessageBox.Show(item.id + "卖出，交易成功。" + item.hold_stock_info.stock_code + " 委托价格：" + item.commission_price + " 委托数量" + item.commission_amount + "冻结金额 +" + item.commission_price * item.commission_amount);
+                        //修改委托状态 2.交易成功
+                        commissionService.UpdateState(item.id, 2);
+                        //交易成功的生成交易记录
+                        Deal deal = new Deal();
+                        deal.hold_stock_id = Utility.user.id;
+                        deal.stock_code = item.hold_stock_info.stock_code;
+                        deal.deal_price = item.commission_amount * item.commission_price;
+                        deal.direction = item.direction;
+                        deal.dealed_amount = item.commission_amount;
+                        deal.dealed_value = item.commission_price;
+                        deal.buy_commission = 0;    //表示系统模拟结算
+                        deal.sell_commission = item.id;   
+                        dealService.AddDeal(deal);
+                        //修改持有股票可用数量 -持有股票
+                        holdStockInfoService.SellCommissionHold(item.commission_amount, item.hold_stock_info.stock_code, Utility.user.id);
+                        //结算个人账户信息 +可用余额
+                        accountService.updateUserableSell(item.commission_amount * item.commission_price, Utility.user.id);
+                        //结算总资产
+                        double total = Account.bankroll + Account.bankroll_freezed + Account.bankroll_useable + Account.total_stock;
+                        accountService.UpdateTotal(total, Utility.user.id);
+                    }
+                }
             }
         }
 

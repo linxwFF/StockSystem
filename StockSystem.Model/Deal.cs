@@ -14,6 +14,10 @@ namespace StockSystem.Model
         public int id { get; set; }
         [DataField("stock_code")]
         public string stock_code { get; set; }
+        //持有者ID
+        [DataField("hold_stock_id")]
+        public int hold_stock_id { get; set; }
+        //成交金额
         [DataField("deal_price")]
         public double deal_price { get; set; }
 
